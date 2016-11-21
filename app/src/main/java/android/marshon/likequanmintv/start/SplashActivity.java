@@ -63,12 +63,12 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 
         String firstrun = "";
         if (TextUtils.isEmpty(firstrun)){
-            Intent intent = new Intent(this,GuideActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this,GuideActivity.class);
+//            startActivity(intent);
             finish();
         }else{
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
             finish();
         }
 

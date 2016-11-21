@@ -7,8 +7,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".base.APP"
         android:theme="@style/AppTheme" >
-        <activity android:name=".SplashActivity" >
+
+        <meta-data
+            android:name="com.bumptech.glide.integration.okhttp.OkHttpGlideModule"
+            android:value="GlideModule" />
+
+
+        <activity android:name=".start.SplashActivity"
+            android:theme="@style/FullScreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
