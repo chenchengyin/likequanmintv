@@ -2,8 +2,9 @@
 
 buildscript {
     repositories {
-      jcenter()
+        jcenter()
       mavenCentral()
+//      maven{ url 'http://maven.oschina.net/content/groups/public/'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
@@ -15,8 +16,9 @@ buildscript {
 
 allprojects {
     repositories {
-       jcenter()
+        jcenter()
        mavenCentral()
+//       maven{ url 'http://maven.oschina.net/content/groups/public/'}
     }
 }
 

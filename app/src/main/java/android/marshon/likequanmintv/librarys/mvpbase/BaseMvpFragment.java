@@ -20,16 +20,16 @@ import android.widget.Toast;
  * 邮箱：itmarshon@163.com
  * 功能描述：slidingtab模板
  */
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment implements BaseView {
     protected View rootView;
     protected BaseActivity mActivity;
 
     protected T mPresenter;
     protected FragmentComponent mFragmentComponent;
 
-    protected abstract T initInjector();
+    protected abstract T  initInjector();
     protected abstract int getLayoutId();
-    protected abstract void initView();
+    protected abstract void initView(View rootView);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,11 +39,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
                 .fragmentModule(new FragmentModule(this))
                 .build();
         mPresenter=initInjector();
+        mPresenter.attachView(this);
 
         //leak
 //        RefWatcher refWatcher = APP.getRefWatcher(getActivity());
 //        refWatcher.watch(this);
     }
+
+
 
     @Nullable
     @Override
@@ -51,7 +54,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         int layoutId = getLayoutId();
         View inflate = inflater.inflate(layoutId, null);
         rootView = inflate;
-        initView();
+        initView(rootView);
+
         return rootView;
     }
 

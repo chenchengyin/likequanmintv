@@ -21,6 +21,7 @@ import android.content.Context;
 import android.marshon.likequanmintv.di.module.FragmentModule;
 import android.marshon.likequanmintv.di.scope.ContextLife;
 import android.marshon.likequanmintv.di.scope.PerFragment;
+import android.marshon.likequanmintv.mvp.main.LiveFragment;
 
 
 import dagger.Component;
@@ -41,5 +42,5 @@ public interface FragmentComponent {
     Activity getActivity();
 
 
-//    void inject(TabJokeListFragment tabJokeListFragment);
+    void inject(LiveFragment liveFragment);
 }
