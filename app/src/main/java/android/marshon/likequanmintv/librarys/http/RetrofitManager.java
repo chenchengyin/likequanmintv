@@ -16,7 +16,14 @@
  */
 package android.marshon.likequanmintv.librarys.http;
 
+import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.base.APP;
+import android.marshon.likequanmintv.librarys.http.apiservice.ColumnAPIService;
+import android.marshon.likequanmintv.librarys.http.apiservice.LiveAPIService;
+import android.marshon.likequanmintv.librarys.http.apiservice.ProfileAPIService;
+import android.marshon.likequanmintv.librarys.http.apiservice.RecommendAPIService;
+import android.marshon.likequanmintv.librarys.http.converter.JsonConverterFactory;
+import android.marshon.likequanmintv.librarys.http.rxjavacalladapter.RxJavaCallAdapterFactory;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.NetUtil;
 import android.support.annotation.NonNull;
@@ -35,23 +42,41 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author 咖枯
  * @version 1.0 2016/5/26
  */
 public class RetrofitManager {
-    private static final String JOKE_BASE = "http://api.juheapi.com/";
+    private static final String JOKE_BASE = "http://www.quanmin.tv/";
+//    private static final String JOKE_BASE = "http://120.24.71.47/";
+    private final Retrofit mRetrofit;
+
     private String getHost(int hostType) {
         if (hostType==HostType.NETEASE_JOKE) {
             return JOKE_BASE;
         }
-        return null;
+        return JOKE_BASE;
     }
 
-    private APIService mApiService;
+    private RecommendAPIService mRecommendAPIService;
+    private ColumnAPIService mColumnAPIService;
+    private LiveAPIService mLiveAPIService;
+    private ProfileAPIService mProfileAPIService;
+
+    public RecommendAPIService getRecommendAPIService(){
+        return mRetrofit.create(RecommendAPIService.class);
+    }
+    public ColumnAPIService getColumnAPIService(){
+        return mRetrofit.create(ColumnAPIService.class);
+    }
+    public LiveAPIService getLiveAPIService(){
+        return mRetrofit.create(LiveAPIService.class);
+    }
+    public ProfileAPIService getProfileAPIService(){
+        return mRetrofit.create(ProfileAPIService.class);
+    }
+
 
     /**
      * 设缓存有效期为两天
@@ -75,10 +100,10 @@ public class RetrofitManager {
     private static SparseArray<RetrofitManager> sRetrofitManager = new SparseArray<>();
 
     public RetrofitManager(@HostType.HostTypeChecker int hostType) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(getHost(hostType))
-                .client(getOkHttpClient()).addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
-        mApiService = retrofit.create(APIService.class);
+        mRetrofit = new Retrofit.Builder().baseUrl(getHost(hostType))
+                .client(getOkHttpClient())
+                .addConverterFactory(JsonConverterFactory.create())
+               .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
     }
 
 
@@ -89,9 +114,9 @@ public class RetrofitManager {
                         1024 * 1024 * 100);
                 if (sOkHttpClient == null) {
                     sOkHttpClient = new OkHttpClient.Builder().cache(cache)
-                            .connectTimeout(6, TimeUnit.SECONDS)
-                            .readTimeout(6, TimeUnit.SECONDS)
-                            .writeTimeout(6, TimeUnit.SECONDS)
+                            .connectTimeout(10, TimeUnit.SECONDS)
+                            .readTimeout(10, TimeUnit.SECONDS)
+                            .writeTimeout(10, TimeUnit.SECONDS)
                             .addInterceptor(mRewriteCacheControlInterceptor)
                             .addNetworkInterceptor(mRewriteCacheControlInterceptor)
                             .addInterceptor(mLoggingInterceptor).build();
@@ -167,15 +192,13 @@ public class RetrofitManager {
         return retrofitManager;
     }
 
-    public APIService getApiService(){
-        return mApiService;
-    }
+
 
     /**
      * 根据网络状况获取缓存的策略
      */
     @NonNull
-    private String getCacheControl() {
+    public String getCacheControl() {
         return NetUtil.isNetWorkConnectted() ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
     }
 

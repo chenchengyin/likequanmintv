@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.marshon.likequanmintv.R;
+import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.mvp.main.MainActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.BaseAdapter;
 
 /**
  * Created by Marshon.Chen on 2016/6/1.
@@ -66,10 +68,12 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
         if (TextUtils.isEmpty(firstrun)){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
             finish();
         }else{
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
             finish();
         }
 

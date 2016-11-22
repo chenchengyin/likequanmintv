@@ -5,12 +5,13 @@ import android.marshon.likequanmintv.di.component.FragmentComponent;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+
+import javax.annotation.Nullable;
 
 
 /**

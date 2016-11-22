@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(0);
     }
 
     private class MainPagerAdapter extends FragmentStatePagerAdapter {

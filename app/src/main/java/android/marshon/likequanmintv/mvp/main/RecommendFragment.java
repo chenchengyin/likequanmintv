@@ -2,6 +2,7 @@ package android.marshon.likequanmintv.mvp.main;
 
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.base.BaseFragment;
+import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;

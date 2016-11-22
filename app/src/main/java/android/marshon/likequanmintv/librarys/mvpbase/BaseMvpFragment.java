@@ -30,6 +30,7 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
     protected abstract T  initInjector();
     protected abstract int getLayoutId();
     protected abstract void initView(View rootView);
+    protected abstract void initData();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,9 +56,11 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
         View inflate = inflater.inflate(layoutId, null);
         rootView = inflate;
         initView(rootView);
-
+        initData();
         return rootView;
     }
+
+
 
 
     @Override

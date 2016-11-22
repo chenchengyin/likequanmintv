@@ -5,7 +5,10 @@ import com.squareup.okhttp.ResponseBody;*/
 
 
 
+
 import android.marshon.likequanmintv.librarys.http.HttpResult;
+
+import org.json.JSONObject;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -23,12 +26,12 @@ public class JsonConverterFactory extends Converter.Factory {
 
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        return new JsonResponseBodyConverter<HttpResult>();
+        return new JsonResponseBodyConverter<JSONObject>();
     }
 
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        return new JsonRequestBodyConverter<HttpResult>();
+        return new JsonRequestBodyConverter<JSONObject>();
     }
 
     /*public Converter<ResponseBody, ?> fromResponseBody(Type type, Annotation[] annotations) {

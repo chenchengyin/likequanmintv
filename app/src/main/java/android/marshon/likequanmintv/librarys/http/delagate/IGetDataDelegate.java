@@ -5,6 +5,6 @@ package android.marshon.likequanmintv.librarys.http.delagate;
  * DESC:
  */
 public interface IGetDataDelegate<T> {
-    void getDataSuccess(T ts);
+    void getDataSuccess(T t);
     void getDataError(String errmsg);
 }

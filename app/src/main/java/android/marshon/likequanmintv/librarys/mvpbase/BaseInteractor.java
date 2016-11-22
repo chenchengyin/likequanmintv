@@ -1,9 +1,17 @@
 package android.marshon.likequanmintv.librarys.mvpbase;
 
 import android.marshon.likequanmintv.base.APP;
+import android.marshon.likequanmintv.bean.PlayBeanListHolder;
+import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.NetUtil;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -12,6 +20,7 @@ import android.widget.Toast;
 
 public class BaseInteractor {
 
+    protected Gson mGson=new Gson();
 
     //检测网络转改
     protected boolean hasNetWork(){
@@ -23,9 +32,14 @@ public class BaseInteractor {
     }
 
 
+
     protected void exceptionHandler(Throwable e){
         LogUtil.e("error!!:"+e.toString());
 
     }
 
+    public <T> List<T> convertList(String jsonStr) {
+        Type token =new TypeToken<List<T>>(){}.getType();
+        return mGson.fromJson(jsonStr,token);
+    }
 }

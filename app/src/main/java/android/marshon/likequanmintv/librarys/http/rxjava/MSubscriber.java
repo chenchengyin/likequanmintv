@@ -30,6 +30,7 @@ public class MSubscriber<T> extends Subscriber<T> {
 
    @Override
     public void onNext(T obj) {
+       LogUtil.i("netback:"+obj.toString());
 
     }
 }

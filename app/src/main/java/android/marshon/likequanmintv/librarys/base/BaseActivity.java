@@ -14,7 +14,6 @@ import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +28,8 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 
 import java.lang.reflect.Field;
+
+import javax.annotation.Nullable;
 
 
 /**
@@ -99,15 +100,31 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         //4.4之后实现沉浸式状态栏
         //初始化布局文件加载器
         mLayoutInflater = LayoutInflater.from(this);
-
         //initDaggerComponent
         initActivityComponent();
-
 
         //leak
 //        RefWatcher refWatcher = APP.getRefWatcher(this);
 //        refWatcher.watch(this);
+    }
 
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+//        overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_right);
     }
 
     @Override

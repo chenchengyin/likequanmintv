@@ -36,6 +36,16 @@ public class SPUtils {
         LogUtil.d("token:" +token);
         return token;
     }
+    public static String getVersionCode(){
+        String version = getInstance().getString("v","2.24");
+        LogUtil.d("v:" +version);
+        return version;
+    }
+    public static String getApiVersion(){
+        String version = getInstance().getString("ver","4");
+        LogUtil.d("ver:" +version);
+        return version;
+    }
     public synchronized static void setToken(String token){
         getInstance().putString("token",token);
     }

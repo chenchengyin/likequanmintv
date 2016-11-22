@@ -18,6 +18,11 @@ public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T>
     protected List<T> mDatas;
     protected LayoutInflater mInflater;
 
+    public void refreshDatas(List<T> mList){
+        mDatas=mList;
+        notifyDataSetChanged();
+    }
+
     public CommonAdapter(final Context context, final int layoutId, List<T> datas)
     {
         super(context, datas);

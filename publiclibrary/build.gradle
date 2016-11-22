@@ -40,15 +40,14 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     //retrofit
     //    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.1.0' 自定义
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0' //自定义
     testCompile 'junit:junit:4.12'
     //dagger2
     compile 'com.google.dagger:dagger:2.2'
-    // dagger2
     compile 'com.google.dagger:dagger-compiler:2.2'
-    // dagger2
     //systembartint
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     //eventbus

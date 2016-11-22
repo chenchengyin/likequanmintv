@@ -19,23 +19,21 @@ final class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     }
 
     @Override
-    public T convert(ResponseBody value) throws IOException,SocketTimeoutException {
+    public T convert(ResponseBody value) throws IOException {
 
+        LogUtil.e("返回值类型："+value.string());
         try{
             JSONObject jsonObj;
-            try {
-                jsonObj = new JSONObject(value.string());
-                return (T) jsonObj;
-            } catch(JSONException e) {
-                return null;
-            }
+            jsonObj = new JSONObject(value.string());
+            return (T) jsonObj;
         }
         catch (Exception e){
 //            LogUtil.e("泛型只允许为 HttpResult ,请查看com.huashen.android.lock.http.HttpResult");
             LogUtil.e("泛型只允许为 String,错误信息为:"+e.toString());
-            if ( e instanceof SocketTimeoutException)
-            throw new SocketTimeoutException(e.getMessage());
+//            if ( e instanceof SocketTimeoutException)
+//            throw new SocketTimeoutException(e.getMessage());
         }
+
         return (T) value;
 
     }
