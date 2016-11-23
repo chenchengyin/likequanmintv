@@ -1,8 +1,6 @@
 package android.marshon.likequanmintv.librarys.mvpbase;
 
 import android.marshon.likequanmintv.base.APP;
-import android.marshon.likequanmintv.bean.PlayBeanListHolder;
-import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.NetUtil;
 import android.widget.Toast;
