@@ -1,6 +1,7 @@
 package android.marshon.likequanmintv.adapter;
 
 import android.content.Context;
+import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.PlayBean;
 
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -21,7 +22,10 @@ public class LiveFragmentListAdapter extends LoadMoreCommonAdapter<PlayBean> {
 
     @Override
     protected void convert(ViewHolder holder, PlayBean playBeanListHolder, int position) {
-
-
+        holder.setImageUrl(R.id.thumnails,playBeanListHolder.thumb);
+        holder.setText(R.id.title,playBeanListHolder.title);
+        holder.setText(R.id.tv_viewnum,playBeanListHolder.view);
+        holder.setText(R.id.nickName,playBeanListHolder.nick);
+        holder.setImageUrl(R.id.ic_head,playBeanListHolder.avatar);
     }
 }

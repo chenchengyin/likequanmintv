@@ -23,14 +23,12 @@ public class ProfileFragment extends BaseFragment {
     }
     @Override
     protected int getLayoutId() {
-        return R.layout.frg_recommend;
+        return R.layout.frg_profile;
     }
 
     @Override
     protected void initView(View rootView) {
 
-        TextView tvName= (TextView) rootView.findViewById(R.id.tvName);
-        tvName.setText("我的");
 
     }
 }

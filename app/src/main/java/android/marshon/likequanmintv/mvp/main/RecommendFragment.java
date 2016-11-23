@@ -30,8 +30,6 @@ public class RecommendFragment extends BaseFragment {
     @Override
     protected void initView(View rootView) {
 
-        TextView tvName= (TextView) rootView.findViewById(R.id.tvName);
-        tvName.setText("推荐");
 
     }
 }

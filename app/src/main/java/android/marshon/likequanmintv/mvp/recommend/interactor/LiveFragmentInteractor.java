@@ -10,9 +10,12 @@ import android.marshon.likequanmintv.librarys.mvpbase.BaseInteractor;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.SPUtils;
 
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,7 +60,9 @@ public class LiveFragmentInteractor extends BaseInteractor {
                         try {
                             LogUtil.e("jsonObject"+jsonObject.toString());
                             JSONArray data = jsonObject.optJSONArray("data");
-                            List<PlayBean> playBeanList = convertList(data.toString());
+                            Type token =new TypeToken<List<PlayBean>>(){}.getType();
+                            List<PlayBean> playBeanList=mGson.fromJson(data.toString(),token);
+//                            List<PlayBean> playBeanList = convertList(data.toString());
                             delegate.getDataSuccess(playBeanList);
                         } catch (Exception e) {
                             LogUtil.e("数据有误" + jsonObject);

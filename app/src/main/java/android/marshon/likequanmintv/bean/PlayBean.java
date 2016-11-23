@@ -38,6 +38,4 @@ public class PlayBean {
     public String grade;
     public boolean hidden;
     public String icontext;
-
-
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
 
     protected Context mContext;
     protected int mLayoutId;
-    protected List<T> mDatas;
     protected LayoutInflater mInflater;
 
     public LoadMoreCommonAdapter(final Context context, final int layoutId, List<T> datas)
@@ -92,12 +92,13 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
         {
             return ITEM_TYPE_LOAD_MORE;
         }
-        return getItemViewType(position);
+        return super.getItemViewType(position);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+        Log.d("LoadMoreCommonAdapter","onCreateViewHolder");
         if (viewType == ITEM_TYPE_LOAD_MORE)
         {
             ViewHolder holder;
@@ -116,6 +117,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
+        Log.d("LoadMoreCommonAdapter","onBindViewHolder");
         if (isShowLoadMore(position))
         {
             if (mOnLoadMoreListener != null)
@@ -130,29 +132,39 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView)
     {
-        WrapperUtils.onAttachedToRecyclerView(this, recyclerView, new WrapperUtils.SpanSizeCallback()
+        Log.d("LoadMoreCommonAdapter","onAttachedToRecyclerView");
+        super.onAttachedToRecyclerView(recyclerView);
+        final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager)
         {
-            @Override
-            public int getSpanSize(GridLayoutManager layoutManager, GridLayoutManager.SpanSizeLookup oldLookup, int position)
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            final GridLayoutManager.SpanSizeLookup spanSizeLookup = gridLayoutManager.getSpanSizeLookup();
+
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
             {
-                if (isShowLoadMore(position))
+                @Override
+                public int getSpanSize(int position)
                 {
-                    return layoutManager.getSpanCount();
+                    if (isShowLoadMore(position))
+                    {
+                        return gridLayoutManager.getSpanCount();
+                    }
+                    if (spanSizeLookup != null)
+                    {
+                        return spanSizeLookup.getSpanSize(position);
+                    }
+                    return 1;
                 }
-                if (oldLookup != null)
-                {
-                    return oldLookup.getSpanSize(position);
-                }
-                return 1;
-            }
-        });
+            });
+            gridLayoutManager.setSpanCount(gridLayoutManager.getSpanCount());
+        }
     }
 
 
     @Override
     public void onViewAttachedToWindow(ViewHolder holder)
     {
-        onViewAttachedToWindow(holder);
+        Log.d("LoadMoreCommonAdapter","onViewAttachedToWindow");
 
         if (isShowLoadMore(holder.getLayoutPosition()))
         {
@@ -176,7 +188,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public int getItemCount()
     {
-        return getItemCount() + (hasLoadMore() ? 1 : 0);
+        return super.getItemCount() + (hasLoadMore() ? 1 : 0);
     }
 
 

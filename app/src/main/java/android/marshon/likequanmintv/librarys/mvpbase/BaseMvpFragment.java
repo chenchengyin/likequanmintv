@@ -56,12 +56,15 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
         View inflate = inflater.inflate(layoutId, null);
         rootView = inflate;
         initView(rootView);
-        initData();
         return rootView;
     }
 
 
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
 
     @Override
     public void onDestroy() {

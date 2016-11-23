@@ -27,7 +27,7 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
 
 
     private RecyclerView mRv;
-    private List<PlayBean> mPlayBeanListHolderList =new ArrayList<>();
+    private List<PlayBean> mPlayBeanListHolderList =new ArrayList<PlayBean>();
     private LiveFragmentListAdapter mAdapter;
 
     public static LiveFragment newInstance() {

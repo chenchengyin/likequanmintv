@@ -29,8 +29,6 @@ public class ColumnFragment extends BaseFragment {
     @Override
     protected void initView(View rootView) {
 
-        TextView tvName= (TextView) rootView.findViewById(R.id.tvName);
-        tvName.setText("栏目");
 
     }
 }

@@ -20,6 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import arg.marshon.publiclibrary.R;
+
 public class ViewHolder extends RecyclerView.ViewHolder
 {
     private SparseArray<View> mViews;
@@ -102,6 +106,7 @@ public class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView view = getView(viewId);
         view.setImageBitmap(bitmap);
+
         return this;
     }
 
@@ -109,6 +114,16 @@ public class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView view = getView(viewId);
         view.setImageDrawable(drawable);
+        return this;
+    }
+    public ViewHolder setImageUrl(int viewId, String url)
+    {
+        ImageView view = getView(viewId);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .placeholder(R.drawable.ic_default_cover)
+                .into(view);
         return this;
     }
 
