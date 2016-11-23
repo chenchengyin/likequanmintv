@@ -23,7 +23,7 @@ public class ColumnFragment extends BaseFragment {
     }
     @Override
     protected int getLayoutId() {
-        return R.layout.frg_recommend;
+        return R.layout.frg_column;
     }
 
     @Override

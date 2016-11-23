@@ -16,7 +16,6 @@
  */
 package android.marshon.likequanmintv.librarys.http;
 
-import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.base.APP;
 import android.marshon.likequanmintv.librarys.http.apiservice.ColumnAPIService;
 import android.marshon.likequanmintv.librarys.http.apiservice.LiveAPIService;
@@ -26,9 +25,7 @@ import android.marshon.likequanmintv.librarys.http.converter.JsonConverterFactor
 import android.marshon.likequanmintv.librarys.http.rxjavacalladapter.RxJavaCallAdapterFactory;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.NetUtil;
-import android.support.annotation.NonNull;
 import android.util.SparseArray;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -197,7 +194,6 @@ public class RetrofitManager {
     /**
      * 根据网络状况获取缓存的策略
      */
-    @NonNull
     public String getCacheControl() {
         return NetUtil.isNetWorkConnectted() ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
     }

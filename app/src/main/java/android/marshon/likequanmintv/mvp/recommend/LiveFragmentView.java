@@ -1,6 +1,6 @@
 package android.marshon.likequanmintv.mvp.recommend;
 
-import android.marshon.likequanmintv.bean.PlayBeanListHolder;
+import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 
 import java.util.List;
@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface LiveFragmentView extends BaseView {
 
-    void onPlayBeanList(List<PlayBeanListHolder> playBeanListHolderList);
+    void onPlayBeanList(List<PlayBean> playBeanListHolderList);
 }

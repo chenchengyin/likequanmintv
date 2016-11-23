@@ -1,8 +1,6 @@
 package android.marshon.likequanmintv.mvp.recommend.interactor;
 
-import android.marshon.likequanmintv.bean.LiveCategory;
-import android.marshon.likequanmintv.bean.PlayBeanListHolder;
-import android.marshon.likequanmintv.librarys.http.HttpResult;
+import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.http.RetrofitManager;
 import android.marshon.likequanmintv.librarys.http.apiservice.LiveAPIService;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
@@ -12,6 +10,7 @@ import android.marshon.likequanmintv.librarys.mvpbase.BaseInteractor;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.SPUtils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -34,38 +33,40 @@ public class LiveFragmentInteractor extends BaseInteractor {
     }
 
 
-    public Subscription  loadPlayList(final IGetDataDelegate<List<PlayBeanListHolder>> delegate){
+    public Subscription  loadPlayList(final IGetDataDelegate<List<PlayBean>> delegate){
 
-        LiveAPIService liveAPIServicee = RetrofitManager.getInstance()
-                .getLiveAPIService();
-        Observable<LiveCategory> playJson = null;
-                  playJson= liveAPIServicee.getPlayJson(
+         return RetrofitManager.getInstance()
+                .getLiveAPIService().getPlayJson(
                 RetrofitManager.getInstance().getCacheControl(),
-                SPUtils.getVersionCode(), SPUtils.getApiVersion());
-        Subscription subscription = playJson
-                .compose(TransformUtils.<LiveCategory>defaultSchedulers())
-                .subscribe(new MSubscriber<LiveCategory>() {
+                SPUtils.getVersionCode(), SPUtils.getApiVersion()).
+                compose(TransformUtils.<JSONObject>defaultSchedulers())
+                .subscribe(new MSubscriber<JSONObject>() {
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                    }
 
                     @Override
-                    public void onNext(LiveCategory jsonObject) {
-                        super.onNext(jsonObject);
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                    }
 
+                    @Override
+                    public void onNext(JSONObject jsonObject) {
+                        super.onNext(jsonObject);
                         try {
                             LogUtil.e("jsonObject"+jsonObject.toString());
-//                            JSONArray data = jsonObject.optJSONArray("data");
-//                            Type typeToken = new TypeToken<List<PlayBean>>() {
-//                            }.getType();
-//                            List<PlayBean> playBeanList = mGson.fromJson(data.toString(), typeToken);
-//                            delegate.getDataSuccess(playBeanList);
+                            JSONArray data = jsonObject.optJSONArray("data");
+                            List<PlayBean> playBeanList = convertList(data.toString());
+                            delegate.getDataSuccess(playBeanList);
                         } catch (Exception e) {
                             LogUtil.e("数据有误" + jsonObject);
                         }
                     }
                 });
-        return subscription;
     }
 
-    public Subscription  loadPlayList2(final IGetDataDelegate<List<PlayBeanListHolder>> delegate){
+    public Subscription  loadPlayList2(final IGetDataDelegate<List<PlayBean>> delegate){
 
         LiveAPIService liveAPIServicee = RetrofitManager.getInstance()
                 .getLiveAPIService();

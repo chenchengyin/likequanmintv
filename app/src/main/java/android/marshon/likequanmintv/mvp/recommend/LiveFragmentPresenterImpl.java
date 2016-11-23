@@ -1,6 +1,6 @@
 package android.marshon.likequanmintv.mvp.recommend;
 
-import android.marshon.likequanmintv.bean.PlayBeanListHolder;
+import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenterImpl;
 import android.marshon.likequanmintv.mvp.recommend.interactor.LiveFragmentInteractor;
@@ -32,10 +32,10 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
 
     @Override
     public void loadPlayList() {
-        liveFragmentInteractor.loadPlayList2(new IGetDataDelegate<List<PlayBeanListHolder>>(){
+        liveFragmentInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
 
             @Override
-            public void getDataSuccess(List<PlayBeanListHolder> playBeanListHolderList) {
+            public void getDataSuccess(List<PlayBean> playBeanListHolderList) {
                 mPresenterView.onPlayBeanList(playBeanListHolderList);
 
             }
@@ -45,5 +45,10 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
 
             }
         });
+    }
+
+    @Override
+    public void addMorePlayList() {
+
     }
 }
