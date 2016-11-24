@@ -5,6 +5,7 @@ import android.marshon.likequanmintv.librarys.utils.LogUtil;
 
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ final class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     }
 
 
+    //zhi
     @Override
     public T convert(ResponseBody value) throws IOException {
 
@@ -30,11 +32,23 @@ final class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         String canonicalName = clazz.getCanonicalName();
 
         if (canonicalName.equals(JSONObject.class.getName())){
-            LogUtil.e("进来了");
+
+            LogUtil.e("进来了 JSONObject");
             try{
                 JSONObject jsonObj;
                 jsonObj = new JSONObject(value.string());
                 return (T) jsonObj;
+            }
+            catch (Exception e){
+                LogUtil.e("解析返回json数据出错:"+e.toString());
+            }
+        }else if (canonicalName.equals(JSONArray.class.getName())){
+
+            LogUtil.e("进来了 JSONArray");
+            try{
+                JSONArray jsonArray;
+                jsonArray = new JSONArray(value.string());
+                return (T) jsonArray;
             }
             catch (Exception e){
                 LogUtil.e("解析返回json数据出错:"+e.toString());

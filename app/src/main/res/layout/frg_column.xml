@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include layout="@layout/widget_status_bar"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/black_80"
-            android:text="哈嘎"
+            android:text="栏目"
             android:layout_centerInParent="true"
             />
 
@@ -24,22 +26,27 @@
             android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
+            android:clickable="true"
             android:layout_centerVertical="true"
             android:src="@drawable/btn_search_selector"/>
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
+        android:layout_height="0.5dp"
         android:background="@color/line_color"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRv"
+        android:padding="5dp"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
+        android:layout_height="0.5dp"
         android:background="@color/line_color"/>
 </LinearLayout>

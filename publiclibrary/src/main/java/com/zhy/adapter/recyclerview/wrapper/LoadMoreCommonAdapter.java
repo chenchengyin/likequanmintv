@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
-import com.zhy.adapter.recyclerview.utils.WrapperUtils;
 
 import java.util.List;
 
@@ -98,7 +96,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        Log.d("LoadMoreCommonAdapter","onCreateViewHolder");
+//        Log.d("LoadMoreCommonAdapter","onCreateViewHolder");
         if (viewType == ITEM_TYPE_LOAD_MORE)
         {
             ViewHolder holder;
@@ -117,7 +115,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
-        Log.d("LoadMoreCommonAdapter","onBindViewHolder");
+//        Log.d("LoadMoreCommonAdapter","onBindViewHolder");
         if (isShowLoadMore(position))
         {
             if (mOnLoadMoreListener != null)
@@ -132,7 +130,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView)
     {
-        Log.d("LoadMoreCommonAdapter","onAttachedToRecyclerView");
+//        Log.d("LoadMoreCommonAdapter","onAttachedToRecyclerView");
         super.onAttachedToRecyclerView(recyclerView);
         final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager)
@@ -164,7 +162,7 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     @Override
     public void onViewAttachedToWindow(ViewHolder holder)
     {
-        Log.d("LoadMoreCommonAdapter","onViewAttachedToWindow");
+//        Log.d("LoadMoreCommonAdapter","onViewAttachedToWindow");
 
         if (isShowLoadMore(holder.getLayoutPosition()))
         {

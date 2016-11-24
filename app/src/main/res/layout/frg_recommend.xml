@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/widget_status_bar"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
             android:id="@+id/logo"
+            android:layout_marginLeft="@dimen/common_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_rec_logo"
@@ -23,6 +26,7 @@
             android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
+            android:clickable="true"
             android:layout_centerVertical="true"
             android:src="@drawable/btn_search_selector"/>
     </RelativeLayout>
@@ -47,7 +51,8 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="13dp"
-            android:src="@drawable/ic_tab_more"/>
+            android:clickable="true"
+            android:src="@drawable/btn_send_commenting_selector"/>
     </LinearLayout>
 
 

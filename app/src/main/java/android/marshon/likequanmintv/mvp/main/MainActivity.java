@@ -44,6 +44,9 @@ public class MainActivity extends BaseActivity {
         iniTab();
     }
 
+
+
+
     private void iniTab() {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
@@ -53,6 +56,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabSelect(int position) {
                 mViewPager.setCurrentItem(position);
+
             }
 
             @Override
@@ -78,8 +82,12 @@ public class MainActivity extends BaseActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
         mViewPager.setCurrentItem(0);
+    }
+
+    @Override
+    public boolean isTranslateStatusBar() {
+        return true;
     }
 
     private class MainPagerAdapter extends FragmentStatePagerAdapter {

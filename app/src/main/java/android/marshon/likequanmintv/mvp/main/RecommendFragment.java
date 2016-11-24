@@ -2,10 +2,8 @@ package android.marshon.likequanmintv.mvp.main;
 
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.base.BaseFragment;
-import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * Created by Administrator on 2016/11/21.
@@ -30,6 +28,10 @@ public class RecommendFragment extends BaseFragment {
     @Override
     protected void initView(View rootView) {
 
+    }
+
+    @Override
+    protected void initData() {
 
     }
 }

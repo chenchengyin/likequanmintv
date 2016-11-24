@@ -21,8 +21,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
-import arg.marshon.publiclibrary.R;
+import com.zhy.adapter.recyclerview.glide.glide.GlideCircleTransform;
+import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
 
 public class ViewHolder extends RecyclerView.ViewHolder
 {
@@ -122,7 +122,26 @@ public class ViewHolder extends RecyclerView.ViewHolder
         Glide.with(mContext)
                 .load(url)
                 .fitCenter()
-                .placeholder(R.drawable.ic_default_cover)
+                .into(view);
+        return this;
+    }
+    public ViewHolder setImageUrl(int viewId, String url,GlideCircleTransform circleTransform)
+    {
+        ImageView view = getView(viewId);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .transform(circleTransform)
+                .into(view);
+        return this;
+    }
+    public ViewHolder setImageUrl(int viewId, String url, GlideRoundTransform glideRoundTransform)
+    {
+        ImageView view = getView(viewId);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .transform(glideRoundTransform)
                 .into(view);
         return this;
     }

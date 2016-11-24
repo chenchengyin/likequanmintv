@@ -6,11 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">false</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">false</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+    </style>
+
+    <style name="font14_mine">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+
     </style>
 
 </resources>

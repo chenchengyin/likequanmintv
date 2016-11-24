@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20.0dip">
+        <Button
+            android:id="@+id/layout_me_feedback"
+            android:layout_width="25.0dip"
+            android:layout_height="25.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10.0dip"
+            android:background="@mipmap/btn_nav_profile_suggest_logged_in" />
+
+        <Button
+            android:id="@+id/layout_me_setting"
+            android:layout_width="25.0dip"
+            android:layout_height="25.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10.0dip"
+            android:background="@mipmap/btn_nav_profile_settings" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_personal"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="match_parent" >
+            <TextView
+                android:id="@+id/tv_phonenumber"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="1364646377"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="12dp"
+                android:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:text="登录"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/common_margin"
+                android:visibility="invisible"
+                android:background="@color/main_back"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/profile_headimg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="@dimen/common_margin"
+                android:layout_above="@+id/btn_login"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/user_headimg"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

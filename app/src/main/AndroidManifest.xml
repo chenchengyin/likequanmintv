@@ -19,10 +19,6 @@
         android:name=".base.APP"
         android:theme="@style/AppTheme" >
 
-
-
-
-
         <activity android:name=".start.SplashActivity"
             android:theme="@style/FullScreen"
             >

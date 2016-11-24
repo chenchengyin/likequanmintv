@@ -1,7 +1,7 @@
 package android.marshon.likequanmintv.librarys.http.apiservice;
 
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,7 +13,7 @@ import rx.Observable;
 
 public interface ColumnAPIService {
 
-    @GET("json/play/list.json?11211639&v=2.2.4&os=1&ver=4")
-    Observable<JSONObject> getPlayJson(@Query("v") String v, @Query("os") String os, @Query("ver") String ver);
+    @GET("json/categories/list.json?11211637&os=1")
+    Observable<JSONArray> getColumnList(@Query("v") String v, @Query("ver") String ver);
 
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_margin">12dp</dimen>
+    <dimen name="bt_row_height">45dp</dimen>
+
+
+    <dimen name="status_bar_height">0dp</dimen>
+</resources>

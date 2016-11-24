@@ -46,11 +46,16 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         return  rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, @android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
 
 
 
     public boolean canScroll(){
-        return true;
+        return false;
     }
 
     @Override
@@ -61,6 +66,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected abstract  int getLayoutId();
     protected abstract void initView(View rootView);
+    protected abstract void initData();
 
     public <T extends View> T find(int viewId)
     {

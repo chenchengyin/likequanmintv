@@ -59,6 +59,12 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (isTranslateStatusBar()) {
 
+                SystemBarTintManager tintManager = new SystemBarTintManager(this);
+                // enable status bar tint
+                tintManager.setStatusBarTintEnabled(false);
+                // enable navigation bar tint
+                tintManager.setNavigationBarTintEnabled(false);
+
             } else {
                 // create our manager instance after the content view is set
                 SystemBarTintManager tintManager = new SystemBarTintManager(this);
@@ -68,6 +74,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
                 tintManager.setNavigationBarTintEnabled(true);
                 //noinspection deprecation
                 tintManager.setStatusBarTintColor(getResources().getColor(getColorPrimary()));
+
             }
         }
     }

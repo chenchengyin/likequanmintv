@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_me_top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_rechange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_me_nickname"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10.0dip"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/shape_mine_recharge"
+                android:gravity="center_horizontal"
+                android:padding="10.0dip"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_me_seek"
+                    style="@style/font14_mine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/seek"
+                    android:drawablePadding="5.0dip"
+                    android:text="0" />
+
+                <LinearLayout
+                    android:id="@+id/layout_me_energy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tv_me_seek"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_toRightOf="@+id/tv_me_seek"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/font14_mine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:drawableLeft="@mipmap/platform_icon"
+                        android:drawablePadding="5.0dip"
+                        android:text="0" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/layout_me_energy"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/btn_mine_topup"
+                    android:gravity="center"
+                    android:text="充值"
+                    android:textColor="@color/login_title_color" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="@color/divider_high" />
+
+            <RelativeLayout
+                android:id="@+id/layout_me_room_manage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_manage"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/ic_profile_host_room" />
+
+                <TextView
+                    style="@style/font14_mine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_manage"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_room_manage" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:background="@color/divider_low" />
+
+            <LinearLayout
+                android:id="@+id/layout_me_host_manage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selbg_white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10.0dip"
+                    android:paddingTop="10.0dip">
+
+                    <ImageView
+                        android:id="@+id/iv_host_manage"
+                        android:layout_width="20.0dip"
+                        android:layout_height="20.0dip"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15.0dip"
+                        android:src="@mipmap/ic_profile_room" />
+
+                    <TextView
+                        android:id="@+id/tv_host_manage"
+                        style="@style/font14_mine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv_host_manage"
+                        android:paddingLeft="5.0dip"
+                        android:text="@string/my_host_manage" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15.0dip"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/btn_profile_enter" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@color/divider_low" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_me_focus"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_focus"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/ic_profile_concern" />
+
+                <TextView
+                    android:id="@+id/tv_me_focus"
+                    style="@style/font14_mine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_focus"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_focus_on" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:background="@color/divider_low" />
+
+            <RelativeLayout
+                android:id="@+id/layout_me_history"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_history"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/ic_profile_histoy" />
+
+                <TextView
+                    android:id="@+id/tv_me_history"
+                    style="@style/font14_mine"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_history"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_history" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:background="@color/divider_low" />
+
+            <RelativeLayout
+                android:id="@+id/layout_me_mind"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/me_line1"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_mind"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/icon_profile_remind" />
+
+                <TextView
+                    android:id="@+id/tv_me_mind"
+                    style="@style/font14_mine"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_mind"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_mind" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:background="@color/divider_low" />
+
+            <RelativeLayout
+                android:id="@+id/layout_me_task"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_task"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/ic_profile_task" />
+
+                <TextView
+                    android:id="@+id/tv_me_task"
+                    android:layout_width="70.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_task"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_task"
+                    android:textColor="@color/login_forget_pw_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_marginLeft="15.0dip"
+                android:background="@color/divider_low" />
+
+            <RelativeLayout
+                android:id="@+id/layout_me_getseed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/btn_selbg_white"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip">
+
+                <ImageView
+                    android:id="@+id/iv_me_getseed"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:src="@mipmap/ic_profile_game" />
+
+                <TextView
+                    android:id="@+id/tv_me_getseed"
+                    style="@style/font14_mine"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_me_getseed"
+                    android:paddingLeft="5.0dip"
+                    android:text="@string/my_getseed" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/btn_profile_enter" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="@color/divider_high" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_me_top"
+            android:layout_marginBottom="10.0dip"
+            android:background="@color/login_title_color" />
+    </RelativeLayout>
+
+</LinearLayout>
