@@ -32,7 +32,7 @@
 
                 <TextView
                     android:id="@+id/tv_me_seek"
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -52,7 +52,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/font14_mine"
+                        style="@style/font14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -97,7 +97,7 @@
                     android:src="@mipmap/ic_profile_host_room" />
 
                 <TextView
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -145,7 +145,7 @@
 
                     <TextView
                         android:id="@+id/tv_host_manage"
-                        style="@style/font14_mine"
+                        style="@style/font14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -189,7 +189,7 @@
 
                 <TextView
                     android:id="@+id/tv_me_focus"
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -232,7 +232,7 @@
 
                 <TextView
                     android:id="@+id/tv_me_history"
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/iv_me_history"
                     android:paddingLeft="5.0dip"
@@ -274,7 +274,7 @@
 
                 <TextView
                     android:id="@+id/tv_me_mind"
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/iv_me_mind"
                     android:paddingLeft="5.0dip"
@@ -360,7 +360,7 @@
 
                 <TextView
                     android:id="@+id/tv_me_getseed"
-                    style="@style/font14_mine"
+                    style="@style/font14"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/iv_me_getseed"
                     android:paddingLeft="5.0dip"

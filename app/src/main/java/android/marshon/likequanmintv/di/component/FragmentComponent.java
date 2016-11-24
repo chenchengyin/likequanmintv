@@ -23,7 +23,7 @@ import android.marshon.likequanmintv.di.scope.ContextLife;
 import android.marshon.likequanmintv.di.scope.PerFragment;
 import android.marshon.likequanmintv.mvp.main.LiveFragment;
 import android.marshon.likequanmintv.mvp.main.RecommendFragment;
-
+import android.marshon.likequanmintv.mvp.recommend.ui.RecommendRecommendFragment;
 
 import dagger.Component;
 
@@ -44,5 +44,6 @@ public interface FragmentComponent {
 
 
     void inject(RecommendFragment liveFragment);
+    void inject(RecommendRecommendFragment recommendRecommendFragment);
     void inject(LiveFragment liveFragment);
 }

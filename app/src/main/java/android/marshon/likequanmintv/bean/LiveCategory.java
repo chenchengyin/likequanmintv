@@ -23,12 +23,12 @@ public class LiveCategory {
      */
 
     @Id
-    public int id;
-    public String name;
-    public int is_default;
-    public String slug;
-    public int type;
-    public int screen;
+    private int id;
+    private String name;
+    private int is_default;
+    private String slug;
+    private int type;
+    private int screen;
 
     @Transient
     public List<Room> list;

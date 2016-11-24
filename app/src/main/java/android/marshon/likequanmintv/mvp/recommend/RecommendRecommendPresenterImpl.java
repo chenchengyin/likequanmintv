@@ -10,29 +10,26 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by It.Marshon on 2016/11/24 0024 17:55
+ * Created by ITMarshon.Chen on 2016/11/24.
+ * emal:itmarshon@163.com
+ * desc:
  */
 
-public class RecommendFragmentPresenterImpl extends BasePresenterImpl<RecommendFragmentView> implements RecommendFragmentPresenter{
+public class RecommendRecommendPresenterImpl extends BasePresenterImpl<RecommendRecommendView> implements RecommendRecommendPresenter{
 
+    @Inject
+    public RecommendRecommendPresenterImpl(){}
 
     @Inject
     public RecommendFragmentInteractorImpl mInteractor;
 
-
-    @Inject
-    public RecommendFragmentPresenterImpl(){
-    }
-
-
-
     @Override
-    public void getAllCategories() {
-        mInteractor.getAllCategories(new IGetDataDelegate<List<LiveCategory>>(){
+    public void getRecommendCategories() {
+        mInteractor.getRecommendCategories(new IGetDataDelegate<List<LiveCategory>>(){
 
             @Override
             public void getDataSuccess(List<LiveCategory> liveCategories) {
-                mPresenterView.onGetAllCategories(liveCategories);
+                mPresenterView.onGetRecommendCategories(liveCategories);
             }
 
             @Override

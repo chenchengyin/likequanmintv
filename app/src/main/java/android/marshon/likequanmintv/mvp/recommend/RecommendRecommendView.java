@@ -6,11 +6,13 @@ import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/11/22.
+ * Created by ITMarshon.Chen on 2016/11/24.
+ * emal:itmarshon@163.com
+ * desc:
  */
 
-public interface RecommendFragmentView extends BaseView {
+public interface RecommendRecommendView extends BaseView {
 
-    void onGetAllCategories(List<LiveCategory> liveCategoryList);
 
+    void onGetRecommendCategories(List<LiveCategory> liveCategoryList);
 }

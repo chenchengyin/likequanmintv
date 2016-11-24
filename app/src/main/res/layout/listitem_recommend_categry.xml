@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        android:paddingTop="10.0dip">
+
+        <TextView
+            android:id="@+id/category_name"
+            style="@style/font14"
+            android:drawableLeft="@drawable/title_left"
+            android:drawablePadding="5.0dip"
+            android:textColor="@color/findback_text_color" />
+
+        <TextView
+            android:id="@+id/goToThisLive"
+            style="@style/font14"
+            android:textSize="11sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="1.0dip"
+            android:drawableRight="@drawable/looklook"
+            android:gravity="center"
+            android:paddingLeft="12.0dip"
+            android:paddingRight="10.0dip"
+            android:text="瞅瞅"
+            android:textColor="@drawable/btn_main_rec_huan_tx_selector" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rmGridView"
+        android:numColumns="2"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/white_60"/>
+
+
+
+</LinearLayout>

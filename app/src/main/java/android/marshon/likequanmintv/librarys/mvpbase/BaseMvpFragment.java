@@ -41,6 +41,7 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
                 .build();
         mPresenter=initInjector();
         mPresenter.attachView(this);
+        mPresenter.onCreate();
 
         //leak
 //        RefWatcher refWatcher = APP.getRefWatcher(getActivity());

@@ -46,7 +46,7 @@ public class MSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-        LogUtil.e("网络出错了:"+e);
+        LogUtil.e("MSubscriber onError:"+e);
 
     }
 

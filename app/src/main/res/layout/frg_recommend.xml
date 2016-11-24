@@ -37,15 +37,22 @@
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/mTablayout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:paddingLeft="5dp"
+            tl:tl_textsize="15sp"
+            tl:tl_indicator_corner_radius="15dp"
+            tl:tl_tab_padding="10dp"
+            tl:tl_tab_space_equal="false"
+            android:paddingLeft="0.5dp"
+            android:paddingRight="0.5dp"
+            tl:tl_indicator_color="#cce2e2e2"
             tl:tl_textSelectColor="@color/red_word_fb223c"
-            tl:tl_textUnselectColor="@color/grey"
-            android:paddingRight="5dp"
-            tl:tl_indicator_margin_left="2dp"
-            tl:tl_indicator_margin_right="2dp"
+            tl:tl_textUnselectColor="@color/primary_material_dark"
+            tl:tl_indicator_margin_left="1dp"
+            tl:tl_indicator_margin_right="1dp"
             tl:tl_indicator_style="BLOCK"/>
+
+
         <ImageView
             android:id="@+id/tabManager"
             android:layout_width="48dp"

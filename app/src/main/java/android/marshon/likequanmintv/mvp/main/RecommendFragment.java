@@ -1,7 +1,7 @@
 package android.marshon.likequanmintv.mvp.main;
 
 import android.marshon.likequanmintv.R;
-import android.marshon.likequanmintv.base.BaseFragment;
+import android.marshon.likequanmintv.adapter.RecommendPagerAdapter;
 import android.marshon.likequanmintv.bean.LiveCategory;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
 import android.marshon.likequanmintv.mvp.recommend.RecommendFragmentPresenter;
@@ -17,9 +17,6 @@ import com.flyco.tablayout.SlidingTabLayout;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static android.marshon.likequanmintv.R.id.search;
-import static android.marshon.likequanmintv.R.id.tabManager;
 
 /**
  * Created by Administrator on 2016/11/21.
@@ -60,9 +57,10 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
     protected void initView(View rootView) {
         logo = (ImageView) findViewById(R.id.logo);
         searchView = (ImageView) findViewById(R.id.searchView);
-        mTablayout = (com.flyco.tablayout.SlidingTabLayout) findViewById(R.id.mTablayout);
+        mTablayout = (SlidingTabLayout) findViewById(R.id.mTablayout);
         tabManager = (ImageView) findViewById(R.id.tabManager);
-        mViewPager = (android.support.v4.view.ViewPager) findViewById(R.id.mViewPager);
+        mViewPager = (ViewPager) findViewById(R.id.mViewPager);
+
 
 //        mViewPager.setAdapter(new Frag);
 //        mTablayout.setViewPager(mViewPager);
@@ -72,13 +70,18 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
 
     @Override
     protected void initData() {
-        mPresenter.getRecommendCategories();
+        mRecommendFragmentPresenter.getAllCategories();
     }
-
 
     @Override
-    public void onGetCategories(List<LiveCategory> liveCategoryList) {
-
-
+    public void onGetAllCategories(List<LiveCategory> liveCategoryList) {
+        mViewPager.setAdapter(new RecommendPagerAdapter(getChildFragmentManager(),liveCategoryList));
+        mTablayout.setViewPager(mViewPager);
     }
+
+
+//    @Override
+//    public void onGetCategories(List<LiveCategory> liveCategoryList) {
+
+//    }
 }
