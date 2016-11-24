@@ -1,4 +1,4 @@
-package android.marshon.likequanmintv.mvp.recommend;
+package android.marshon.likequanmintv.mvp.live;
 
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 

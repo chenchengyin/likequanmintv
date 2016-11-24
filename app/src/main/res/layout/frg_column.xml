@@ -7,6 +7,7 @@
         />
 
     <RelativeLayout
+        android:background="@color/like_white"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
@@ -39,9 +40,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRv"
         android:padding="5dp"
+
         android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -49,4 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/line_color"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"/>
 </LinearLayout>

@@ -15,7 +15,7 @@ import android.marshon.likequanmintv.bean.LiveCategory;
 /** 
  * DAO for table "LIVE_CATEGORY".
 */
-public class LiveCategoryDao extends AbstractDao<LiveCategory, String> {
+public class LiveCategoryDao extends AbstractDao<LiveCategory, Integer> {
 
     public static final String TABLENAME = "LIVE_CATEGORY";
 
@@ -24,8 +24,12 @@ public class LiveCategoryDao extends AbstractDao<LiveCategory, String> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Cid = new Property(0, String.class, "cid", true, "CID");
+        public final static Property Id = new Property(0, int.class, "id", true, "ID");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Is_default = new Property(2, int.class, "is_default", false, "IS_DEFAULT");
+        public final static Property Slug = new Property(3, String.class, "slug", false, "SLUG");
+        public final static Property Type = new Property(4, int.class, "type", false, "TYPE");
+        public final static Property Screen = new Property(5, int.class, "screen", false, "SCREEN");
     }
 
 
@@ -41,8 +45,12 @@ public class LiveCategoryDao extends AbstractDao<LiveCategory, String> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"LIVE_CATEGORY\" (" + //
-                "\"CID\" TEXT PRIMARY KEY NOT NULL ," + // 0: cid
-                "\"NAME\" TEXT);"); // 1: name
+                "\"ID\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
+                "\"NAME\" TEXT," + // 1: name
+                "\"IS_DEFAULT\" INTEGER NOT NULL ," + // 2: is_default
+                "\"SLUG\" TEXT," + // 3: slug
+                "\"TYPE\" INTEGER NOT NULL ," + // 4: type
+                "\"SCREEN\" INTEGER NOT NULL );"); // 5: screen
     }
 
     /** Drops the underlying database table. */
@@ -54,62 +62,78 @@ public class LiveCategoryDao extends AbstractDao<LiveCategory, String> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, LiveCategory entity) {
         stmt.clearBindings();
- 
-        String cid = entity.getCid();
-        if (cid != null) {
-            stmt.bindString(1, cid);
-        }
+        stmt.bindLong(1, entity.getId());
  
         String name = entity.getName();
         if (name != null) {
             stmt.bindString(2, name);
         }
+        stmt.bindLong(3, entity.getIs_default());
+ 
+        String slug = entity.getSlug();
+        if (slug != null) {
+            stmt.bindString(4, slug);
+        }
+        stmt.bindLong(5, entity.getType());
+        stmt.bindLong(6, entity.getScreen());
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, LiveCategory entity) {
         stmt.clearBindings();
- 
-        String cid = entity.getCid();
-        if (cid != null) {
-            stmt.bindString(1, cid);
-        }
+        stmt.bindLong(1, entity.getId());
  
         String name = entity.getName();
         if (name != null) {
             stmt.bindString(2, name);
         }
+        stmt.bindLong(3, entity.getIs_default());
+ 
+        String slug = entity.getSlug();
+        if (slug != null) {
+            stmt.bindString(4, slug);
+        }
+        stmt.bindLong(5, entity.getType());
+        stmt.bindLong(6, entity.getScreen());
     }
 
     @Override
-    public String readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0);
+    public Integer readKey(Cursor cursor, int offset) {
+        return cursor.getInt(offset + 0);
     }    
 
     @Override
     public LiveCategory readEntity(Cursor cursor, int offset) {
         LiveCategory entity = new LiveCategory( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // cid
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // name
+            cursor.getInt(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
+            cursor.getInt(offset + 2), // is_default
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // slug
+            cursor.getInt(offset + 4), // type
+            cursor.getInt(offset + 5) // screen
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, LiveCategory entity, int offset) {
-        entity.setCid(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
+        entity.setId(cursor.getInt(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setIs_default(cursor.getInt(offset + 2));
+        entity.setSlug(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setType(cursor.getInt(offset + 4));
+        entity.setScreen(cursor.getInt(offset + 5));
      }
     
     @Override
-    protected final String updateKeyAfterInsert(LiveCategory entity, long rowId) {
-        return entity.getCid();
+    protected final Integer updateKeyAfterInsert(LiveCategory entity, long rowId) {
+        return entity.getId();
     }
     
     @Override
-    public String getKey(LiveCategory entity) {
+    public Integer getKey(LiveCategory entity) {
         if(entity != null) {
-            return entity.getCid();
+            return entity.getId();
         } else {
             return null;
         }
@@ -117,7 +141,7 @@ public class LiveCategoryDao extends AbstractDao<LiveCategory, String> {
 
     @Override
     public boolean hasKey(LiveCategory entity) {
-        return entity.getCid() != null;
+        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
     }
 
     @Override

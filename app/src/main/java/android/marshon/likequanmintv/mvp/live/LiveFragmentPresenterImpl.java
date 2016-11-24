@@ -1,9 +1,9 @@
-package android.marshon.likequanmintv.mvp.recommend;
+package android.marshon.likequanmintv.mvp.live;
 
 import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenterImpl;
-import android.marshon.likequanmintv.mvp.recommend.interactor.LiveFragmentInteractor;
+import android.marshon.likequanmintv.mvp.live.interactor.LiveFragmentInteractor;
 
 import java.util.List;
 

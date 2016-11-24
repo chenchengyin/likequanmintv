@@ -26,9 +26,7 @@ import rx.Subscription;
 public class ColumnFragmentInteractorImpl {
     public ColumnFragmentInteractorImpl(){}
 
-
     public Subscription loadColumnList(final IGetDataDelegate<List<ItemColumn>> delegate){
-
         return RetrofitManager.getInstance()
                 .getColumnAPIService().getColumnList(SPUtils.getVersionCode(), SPUtils.getApiVersion())
                 .compose(TransformUtils.<JSONArray>defaultSchedulers())

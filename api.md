@@ -4755,4 +4755,56 @@
 
 ## ##
 
+|
+推荐
+-
+首页  --》推荐的分类
+-
+http://www.quanmin.tv/json/app/index/recommend/list-android.json?11241742&v=2.2.4&os=1&ver=4
 
+获取首页Banner图
+-
+http://www.quanmin.tv/json/page/app-data/info.json?v=2.2.4&os=1&ver=4
+获取所有分类
+-
+http://www.quanmin.tv/json/app/index/category/info-android.json?v=2.2.4&os=1&ver=4
+
+分类--二次元
+-
+http://www.quanmin.tv/json/categories/erciyuan/list.json?11241634&v=2.2.4&os=1&ver=4
+
+分类--颜值控
+-
+http://www.quanmin.tv/json/categories/love/list.json?11241634&v=2.2.4&os=1&ver=4
+
+分类--LOL  （list———1） 第二页
+-
+http://www.quanmin.tv/json/categories/lol/list.json?11241634&v=2.2.4&os=1&ver=4
+
+分类--全明星秀
+-
+http://www.quanmin.tv/json/categories/beauty/list.json?11241634&v=2.2.4&os=1&ver=4
+
+分类--炉石传说
+-
+http://www.quanmin.tv/json/categories/heartstone/list.json?11241634&v=2.2.4&os=1&ver=4
+
+分类--守望先锋
+-
+http://www.quanmin.tv/json/categories/overwatch/list.json?11241634&v=2.2.4&os=1&ver=4
+
+
+
+
+栏目
+
+王者荣耀
+-
+http://www.quanmin.tv/json/categories/wangzhe/list.json?11241652&v=2.2.4&os=1&ver=4
+
+
+
+
+进入直播间
+-
+http://www.quanmin.tv/json/rooms/8263112/info1.json?11241653&v=2.2.4&os=1&ver=4

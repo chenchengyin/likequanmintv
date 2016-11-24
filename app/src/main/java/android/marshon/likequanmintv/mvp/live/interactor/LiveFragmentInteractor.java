@@ -1,4 +1,4 @@
-package android.marshon.likequanmintv.mvp.recommend.interactor;
+package android.marshon.likequanmintv.mvp.live.interactor;
 
 import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.http.RetrofitManager;

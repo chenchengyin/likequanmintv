@@ -4,9 +4,10 @@ import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.adapter.LiveFragmentListAdapter;
 import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
-import android.marshon.likequanmintv.mvp.recommend.LiveFragmentPresenter;
-import android.marshon.likequanmintv.mvp.recommend.LiveFragmentPresenterImpl;
-import android.marshon.likequanmintv.mvp.recommend.LiveFragmentView;
+import android.marshon.likequanmintv.listener.UpDownRvScrollListener;
+import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenter;
+import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenterImpl;
+import android.marshon.likequanmintv.mvp.live.LiveFragmentView;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,12 +24,14 @@ import javax.inject.Inject;
  * Created by Administrator on 2016/11/21.
  */
 
-public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> implements LiveFragmentView, LoadMoreCommonAdapter.OnLoadMoreListener {
+public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> implements
+        LiveFragmentView, LoadMoreCommonAdapter.OnLoadMoreListener {
 
 
     private RecyclerView mRv;
     private List<PlayBean> mPlayBeanListHolderList =new ArrayList<PlayBean>();
     private LiveFragmentListAdapter mAdapter;
+    private UpDownRvScrollListener.UpdownScroll mUpdownScroll;
 
     public static LiveFragment newInstance() {
         
@@ -55,6 +58,9 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
     @Override
     protected void initView(View rootView) {
         mRv=(RecyclerView)rootView.findViewById(R.id.mRv);
+        if (mUpdownScroll!=null){
+            mRv.addOnScrollListener(new UpDownRvScrollListener(mUpdownScroll));
+        }
         mRv.setLayoutManager(new GridLayoutManager(mActivity,2));
         mAdapter=new LiveFragmentListAdapter(mActivity,R.layout.listitem_live, mPlayBeanListHolderList);
         mAdapter.setOnLoadMoreListener(this);
@@ -76,5 +82,10 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
     @Override
     public void onLoadMoreRequested() {
         liveFragmentPresenter.addMorePlayList();
+    }
+
+    public void setUpdownScroll(UpDownRvScrollListener.UpdownScroll updownScroll){
+        mUpdownScroll = updownScroll;
+
     }
 }

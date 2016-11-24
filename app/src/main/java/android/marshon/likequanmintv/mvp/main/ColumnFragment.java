@@ -5,6 +5,7 @@ import android.marshon.likequanmintv.adapter.ColumnFragmentListAdapter;
 import android.marshon.likequanmintv.base.BaseFragment;
 import android.marshon.likequanmintv.bean.ItemColumn;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
+import android.marshon.likequanmintv.listener.UpDownRvScrollListener;
 import android.marshon.likequanmintv.mvp.column.interactor.ColumnFragmentInteractorImpl;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,13 +21,14 @@ import java.util.List;
  * Created by Administrator on 2016/11/21.
  */
 
-public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapter.OnLoadMoreListener, IGetDataDelegate<List<ItemColumn>> {
+public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapter.OnLoadMoreListener, IGetDataDelegate<List<ItemColumn>>{
 
 
     private RecyclerView mRv;
     private List<ItemColumn> mColumnList=new ArrayList<>();
     private ColumnFragmentListAdapter mAdapter;
     private ColumnFragmentInteractorImpl mColumnFragmentInteractor;
+    private UpDownRvScrollListener.UpdownScroll mUpdownScroll;
 
 
     public static ColumnFragment newInstance() {
@@ -77,4 +79,7 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
     public void getDataError(String errmsg) {
 
     }
+
+
+
 }

@@ -388,6 +388,11 @@
             android:layout_below="@+id/layout_me_top"
             android:layout_marginBottom="10.0dip"
             android:background="@color/login_title_color" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"/>
     </RelativeLayout>
+
 
 </LinearLayout>

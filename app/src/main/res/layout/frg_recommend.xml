@@ -20,7 +20,7 @@
             />
 
         <ImageView
-            android:id="@+id/search"
+            android:id="@+id/searchView"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="5dp"
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/tl_9"
+            android:id="@+id/mTablayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -54,6 +54,13 @@
             android:clickable="true"
             android:src="@drawable/btn_send_commenting_selector"/>
     </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:overScrollMode="never"/>
 
 
     <View

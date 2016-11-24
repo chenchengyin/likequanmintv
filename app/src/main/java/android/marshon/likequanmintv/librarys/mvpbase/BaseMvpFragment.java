@@ -66,6 +66,11 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
         initData();
     }
 
+
+    protected View findViewById(int resId){
+        return rootView.findViewById(resId);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

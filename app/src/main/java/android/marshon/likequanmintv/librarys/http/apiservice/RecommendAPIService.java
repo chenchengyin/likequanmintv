@@ -1,6 +1,7 @@
 package android.marshon.likequanmintv.librarys.http.apiservice;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import retrofit2.http.GET;
@@ -13,7 +14,9 @@ import rx.Observable;
 
 public interface RecommendAPIService {
 
-    @GET("json/play/list.json?11211639&v=2.2.4&os=1&ver=4")
-    Observable<JSONObject> getPlayJson(@Query("v") String v,@Query("os") String os,@Query("ver") String ver);
+
+
+    @GET("json/app/index/recommend/list-android.json?11241742&v=2.2.4&os=1&ver=4")
+    Observable<JSONObject> getRecommendCategories();
 
 }

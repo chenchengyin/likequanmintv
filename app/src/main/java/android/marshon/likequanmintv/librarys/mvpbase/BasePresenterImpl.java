@@ -1,6 +1,5 @@
 package android.marshon.likequanmintv.librarys.mvpbase;
 
-import android.support.annotation.NonNull;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -22,7 +21,7 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
 
     //base 帮忙全局处理
     @Override
-    public void attachView(@NonNull T baseView) {
+    public void attachView(T baseView) {
         mPresenterView=baseView;
     }
 
