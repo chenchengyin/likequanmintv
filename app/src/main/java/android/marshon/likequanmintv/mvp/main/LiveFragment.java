@@ -9,6 +9,7 @@ import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenter;
 import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenterImpl;
 import android.marshon.likequanmintv.mvp.live.LiveFragmentView;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -62,6 +63,8 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
             mRv.addOnScrollListener(new UpDownRvScrollListener(mUpdownScroll));
         }
         mRv.setLayoutManager(new GridLayoutManager(mActivity,2));
+//        mRv.setAnimationCacheEnabled(true);
+//        mRv.setItemAnimator(new DefaultItemAnimator());
         mAdapter=new LiveFragmentListAdapter(mActivity,R.layout.listitem_live, mPlayBeanListHolderList);
         mAdapter.setOnLoadMoreListener(this);
         mRv.setAdapter(mAdapter);
@@ -70,7 +73,7 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
     @Override
     protected void initData() {
         //loadata
-        liveFragmentPresenter.onCreate();
+        liveFragmentPresenter.loadPlayList();
     }
 
 

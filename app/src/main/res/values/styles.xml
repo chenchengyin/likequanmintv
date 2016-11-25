@@ -18,9 +18,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:singleLine">true</item>
     </style>
-    <style name="font14" parent="font">
-        <item name="android:textSize">14sp</item>
-    </style>
     <style name="font11" parent="font">
         <item name="android:textSize">11sp</item>
     </style>
@@ -30,5 +27,10 @@
     <style name="font13" parent="font">
         <item name="android:textSize">11sp</item>
     </style>
-
+    <style name="font14" parent="font">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="font15" parent="font">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

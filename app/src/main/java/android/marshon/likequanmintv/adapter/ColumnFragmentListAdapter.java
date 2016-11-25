@@ -27,4 +27,6 @@ public class ColumnFragmentListAdapter extends LoadMoreCommonAdapter<ItemColumn>
         holder.setImageUrl(R.id.thumnails,itemColumn.image,new GlideRoundTransform(mContext,1.5f));
     }
 
+
+
 }

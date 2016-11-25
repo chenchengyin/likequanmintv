@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 /**
  * 作者：Marshon.Chen on 2016/9/8 09:43
@@ -74,10 +76,10 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if (mPresenter != null) {
             mPresenter.onDestroy();
         }
+        super.onDestroy();
     }
 
     @Override

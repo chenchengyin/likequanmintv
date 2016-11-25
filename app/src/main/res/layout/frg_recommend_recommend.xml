@@ -5,6 +5,8 @@
 
     <ListView
         android:id="@+id/listview"
+        android:divider="@color/transparent"
+        android:dividerHeight="0dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

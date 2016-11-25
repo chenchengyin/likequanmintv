@@ -4,6 +4,8 @@ package android.marshon.likequanmintv.librarys.http.apiservice;
 import org.json.JSONArray;
 
 import retrofit2.http.GET;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -13,7 +15,7 @@ import rx.Observable;
 
 public interface ColumnAPIService {
 
-    @GET("json/categories/list.json?11211637&os=1")
-    Observable<JSONArray> getColumnList(@Query("v") String v, @Query("ver") String ver);
+    @GET("{url}?11211637&os=1&v=2.2.4&os=1&ver=4")
+    Observable<JSONArray> getColumnList(@Path("url") String url);
 
 }

@@ -19,11 +19,10 @@ import java.util.List;
  * desc:
  */
 
-public abstract class BaseLiveListFragment<T> extends BaseFragment implements IGetDataDelegate<List<T>>{
+public abstract class BaseListFragment<T> extends BaseFragment implements IGetDataDelegate<List<T>>{
 
 
     private RecyclerView mRv;
-    protected List<T> mDatas=new ArrayList<>();
     protected LoadMoreCommonAdapter<T> adapter;
 
     @Override
@@ -35,7 +34,7 @@ public abstract class BaseLiveListFragment<T> extends BaseFragment implements IG
     protected void initView(View rootView) {
         mRv=(RecyclerView)find(R.id.mRv);
         mRv.setLayoutManager(new GridLayoutManager(mActivity,2));
-        adapter= new LoadMoreCommonAdapter<T>(mActivity, getListItemLayout(), mDatas) {
+        adapter= new LoadMoreCommonAdapter<T>(mActivity, this.getListItemLayout()) {
             @Override
             protected void convert(ViewHolder holder, T t, int position) {
                 convertItem(holder,t,position);
@@ -47,11 +46,11 @@ public abstract class BaseLiveListFragment<T> extends BaseFragment implements IG
 
     @Override
     public void getDataSuccess(List<T> datas) {
-        mDatas=datas;
+        adapter.refreshDatas(datas);
         adapter.notifyDataSetChanged();
     }
 
-    protected abstract void convertItem(ViewHolder holder, T t, int position);
-
     public abstract int getListItemLayout();
+
+    protected abstract void convertItem(ViewHolder holder, T t, int position);
 }

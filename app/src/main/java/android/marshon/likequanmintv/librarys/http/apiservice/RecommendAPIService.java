@@ -15,6 +15,9 @@ public interface RecommendAPIService {
 
 
 
+    @GET("json/page/app-data/info.json?v=2.2.4&os=1&ver=4")
+    Observable<JSONObject> getAppStartInfo();
+
     @GET("json/app/index/category/info-android.json?v=2.2.4&os=1&ver=4")
     Observable<JSONArray> getAllCategories();
 

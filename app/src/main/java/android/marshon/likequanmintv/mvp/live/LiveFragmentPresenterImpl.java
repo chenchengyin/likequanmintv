@@ -26,7 +26,6 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
 
     @Override
     public void onCreate() {
-        loadPlayList();
     }
 
 
@@ -44,8 +43,27 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
             public void getDataError(String errmsg) {
 
             }
-        });
+        },"json/play/list.json");
     }
+
+    @Override
+    public void loadPlayListByUrl(String url) {
+        liveFragmentInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
+
+            @Override
+            public void getDataSuccess(List<PlayBean> playBeanListHolderList) {
+                mPresenterView.onPlayBeanList(playBeanListHolderList);
+
+            }
+
+            @Override
+            public void getDataError(String errmsg) {
+
+            }
+        },""+url);
+
+    }
+
 
     @Override
     public void addMorePlayList() {

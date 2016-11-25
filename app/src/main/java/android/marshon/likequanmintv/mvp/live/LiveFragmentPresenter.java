@@ -9,6 +9,7 @@ import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 public interface LiveFragmentPresenter extends BasePresenter<LiveFragmentView> {
 
     void loadPlayList();
+    void loadPlayListByUrl(String url);
 
     void addMorePlayList();
 }

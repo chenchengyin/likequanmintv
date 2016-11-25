@@ -28,7 +28,7 @@ public class ColumnFragmentInteractorImpl {
 
     public Subscription loadColumnList(final IGetDataDelegate<List<ItemColumn>> delegate){
         return RetrofitManager.getInstance()
-                .getColumnAPIService().getColumnList(SPUtils.getVersionCode(), SPUtils.getApiVersion())
+                .getColumnAPIService().getColumnList("json/categories/list.json")
                 .compose(TransformUtils.<JSONArray>defaultSchedulers())
                 .subscribe(new MSubscriber<JSONArray>() {
                     @Override

@@ -1,5 +1,6 @@
 package android.marshon.likequanmintv.mvp.recommend;
 
+import android.marshon.likequanmintv.bean.Banner;
 import android.marshon.likequanmintv.bean.LiveCategory;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 
@@ -15,4 +16,6 @@ public interface RecommendRecommendView extends BaseView {
 
 
     void onGetRecommendCategories(List<LiveCategory> liveCategoryList);
+
+    void onGetBanners(List<Banner> bannerList);
 }

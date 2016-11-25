@@ -31,6 +31,12 @@ public class RecommendFragmentInteractorImpl extends BaseInteractor {
 
     }
 
+    public Subscription getStartInfo(MSubscriber<JSONObject> mSubscriber) {
+        return RetrofitManager.getInstance()
+                .getRecommendAPIService().getAppStartInfo()
+                .compose(TransformUtils.<JSONObject>defaultSchedulers())
+                .subscribe(mSubscriber);
+    }
     public Subscription getAllCategories(final IGetDataDelegate<List<LiveCategory>> delegate) {
 
         return RetrofitManager.getInstance()

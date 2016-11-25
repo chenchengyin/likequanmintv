@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -16,9 +17,8 @@ public interface LiveAPIService {
 
 
 //    @GET("dialogue/Home/message/getUserChapters?user_id=3")
-    @GET("json/play/list.json?11211639&os=1")
-    Observable<JSONObject> getPlayJson(@Header("Cache-Control") String cacheControl
-            , @Query("v") String v, @Query("ver") String ver);
+    @GET("{url}?11211639&os=1&v=2.2.4&os=1&ver=4")
+    Observable<JSONObject> getPlayJson(@Path("url")String url);
 
     @GET("json/play/list.json?11211639&os=1")
     Observable<JSONObject> getPlayJson2(@Header("Cache-Control") String cacheControl

@@ -80,8 +80,4 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
     }
 
 
-//    @Override
-//    public void onGetCategories(List<LiveCategory> liveCategoryList) {
-
-//    }
 }

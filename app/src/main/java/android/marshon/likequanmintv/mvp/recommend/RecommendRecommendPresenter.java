@@ -11,4 +11,6 @@ import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 public interface RecommendRecommendPresenter extends BasePresenter<RecommendRecommendView> {
     void getRecommendCategories();
 
+    void getAppStartInfo();
+
 }

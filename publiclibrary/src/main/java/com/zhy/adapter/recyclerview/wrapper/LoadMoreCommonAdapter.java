@@ -12,6 +12,7 @@ import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,10 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
 
     private View mLoadMoreView;
     private int mLoadMoreLayoutId;
+
+    public LoadMoreCommonAdapter(final Context context, int listItemLayout) {
+        this(context, listItemLayout,new ArrayList<T>());
+    }
 
 
     public void refreshDatas(List<T> mList){
@@ -40,6 +45,8 @@ public abstract class LoadMoreCommonAdapter<T> extends MultiItemTypeAdapter<T>
     protected Context mContext;
     protected int mLayoutId;
     protected LayoutInflater mInflater;
+
+
 
     public LoadMoreCommonAdapter(final Context context, final int layoutId, List<T> datas)
     {

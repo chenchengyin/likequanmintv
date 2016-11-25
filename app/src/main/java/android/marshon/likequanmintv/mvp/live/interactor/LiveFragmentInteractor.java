@@ -36,12 +36,10 @@ public class LiveFragmentInteractor extends BaseInteractor {
     }
 
 
-    public Subscription  loadPlayList(final IGetDataDelegate<List<PlayBean>> delegate){
+    public Subscription  loadPlayList(final IGetDataDelegate<List<PlayBean>> delegate,String url){
 
          return RetrofitManager.getInstance()
-                .getLiveAPIService().getPlayJson(
-                RetrofitManager.getInstance().getCacheControl(),
-                SPUtils.getVersionCode(), SPUtils.getApiVersion()).
+                .getLiveAPIService().getPlayJson(url).
                 compose(TransformUtils.<JSONObject>defaultSchedulers())
                 .subscribe(new MSubscriber<JSONObject>() {
                     @Override

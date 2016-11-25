@@ -26,6 +26,7 @@
             <TextView
                 android:id="@+id/tv_viewnum"
                 android:textSize="10.0sp"
+
                 android:textColor="@color/white_80"
                 android:background="@drawable/corner_live_num_bg"
                 android:paddingLeft="5.0dip"
@@ -38,6 +39,7 @@
                 android:drawablePadding="2.0dip"
                 android:layout_alignBottom="@id/thumnails"
                 android:layout_height="wrap_content"
+                android:minWidth="30dp"
                 android:layout_width="wrap_content"/>
         </RelativeLayout>
 

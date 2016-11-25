@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
+        <activity android:name=".utils.WebContainerActivity" />
     </application>
 
 </manifest>

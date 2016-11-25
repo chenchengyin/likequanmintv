@@ -47,12 +47,10 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void onViewCreated(View view, @android.support.annotation.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initData();
     }
-
-
 
     public boolean canScroll(){
         return false;
