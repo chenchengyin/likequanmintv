@@ -1,8 +1,6 @@
 package android.marshon.likequanmintv.adapter;
 
-import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.LiveCategory;
-import android.marshon.likequanmintv.mvp.main.TestFragment;
 import android.marshon.likequanmintv.mvp.recommend.ui.BaseLiveWraperFragment;
 import android.marshon.likequanmintv.mvp.recommend.ui.LoveLiveListFragment;
 import android.marshon.likequanmintv.mvp.recommend.ui.RecommendRecommendFragment;
@@ -22,7 +20,7 @@ import java.util.List;
 public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
 
 
-    private final List<LiveCategory> mLiveCategoryList;
+    private List<LiveCategory> mLiveCategoryList;
 
     public RecommendPagerAdapter(FragmentManager fm, List<LiveCategory> liveCategoryList) {
         super(fm);
@@ -37,6 +35,7 @@ public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
 //        if (getPageTitle(position).equals("颜值控")){
 //            return LoveLiveListFragment.newInstance();
 //        }
+
 
         LiveCategory liveCategory = mLiveCategoryList.get(position);
         String mUrl="json/categories/"+liveCategory.getSlug()+"/list.json";

@@ -18,3 +18,9 @@
 
 
 -keep class com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
+
+
+
+#  pldroidplayer
+-keep class com.pili.pldroid.player.** { *; }
+-keep class tv.danmaku.ijk.media.player.** {*;}

@@ -1,17 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="AppThemeWidthStatusBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
+    <style name="AppThemeWidthStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
+
+    <style name="ss" parent="Widget.AppCompat.ProgressBar"/>
 
     <style name="font">
         <item name="android:layout_height">wrap_content</item>
@@ -31,6 +39,26 @@
         <item name="android:textSize">14sp</item>
     </style>
     <style name="font15" parent="font">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="font16" parent="font">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="list_base">
+        <item name="android:scrollbars">none</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:listSelector">@color/item_selbg</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0.8000001dip</item>
+    </style>
+
+    <style name="NormalRadioStyle" parent="@style/font14">
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">5.0dip</item>
     </style>
 </resources>

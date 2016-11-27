@@ -6,18 +6,17 @@ import android.content.Intent;
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.AppStart;
 import android.marshon.likequanmintv.event.BannerEvent;
-import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.http.rxjava.MSubscriber;
 import android.marshon.likequanmintv.mvp.main.MainActivity;
 import android.marshon.likequanmintv.mvp.recommend.interactor.RecommendFragmentInteractorImpl;
 import android.marshon.likequanmintv.utils.WebContainerActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
 
 import com.google.gson.Gson;
 
@@ -46,7 +45,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.act_splash);
         start();
 
         initData();
@@ -69,14 +68,21 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 
                     if (androidstartObject!=null){
                         //广告
-                        AppStart mAppStart=mGson.fromJson(androidstartObject.toString(), AppStart.class);
+                        final AppStart mAppStart=mGson.fromJson(androidstartObject.toString(), AppStart.class);
                         if (mAppStart!=null){
                             hasAa=true;
                             //去广告页面
-                            Intent intent=new Intent(SplashActivity.this, WebContainerActivity.class);
-                            intent.putExtra(Intent.EXTRA_TITLE,""+mAppStart.title);
-                            intent.putExtra(Intent.EXTRA_TEXT,""+mAppStart.link);
-                            startActivityForResult(intent,CODE_AD);
+                            Handler mhandler=new Handler();
+                            mhandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent=new Intent(SplashActivity.this, WebContainerActivity.class);
+                                    intent.putExtra(Intent.EXTRA_TITLE,""+mAppStart.title);
+                                    intent.putExtra(Intent.EXTRA_TEXT,""+mAppStart.link);
+                                    startActivityForResult(intent,CODE_AD);
+                                }
+                            },1500);
+
                         }
                     }
 

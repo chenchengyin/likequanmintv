@@ -27,10 +27,11 @@ android {
     }
 
 
+
     sourceSets {
         main {
 
-            jniLibs.srcDirs = ['libs'] // 配置此处才会打包jni 的.so 文件
+            jniLibs.srcDirs = ['libs']
             jni.srcDirs = ['jni']
             java.srcDirs = ['src/main/java', 'src/main/java-gen']
         }
@@ -53,6 +54,9 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //player
+    compile files('libs/pldroid-player-1.4.0.jar')
+    compile 'com.qiniu.pili:pili-android-qos:0.8.+'
     compile project(':publiclibrary')
     compile project(':flycotablayout')
 

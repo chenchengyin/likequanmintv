@@ -130,6 +130,9 @@ public class AutoScrollViewPager extends ViewPager implements ViewPager.PageTran
         }
     }
 
+
+
+
     @Override
     public PagerAdapter getAdapter() {
         // In order to be compatible with ViewPagerIndicator

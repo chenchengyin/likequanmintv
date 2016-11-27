@@ -5,4 +5,5 @@
 
 
     <dimen name="status_bar_height">0dp</dimen>
+    <dimen name="vertical_video_height">205dp</dimen>
 </resources>

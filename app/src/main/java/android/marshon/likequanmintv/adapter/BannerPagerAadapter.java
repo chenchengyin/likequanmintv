@@ -7,6 +7,9 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -15,24 +18,29 @@ import java.util.List;
  */
 
 
-class BannerPagerAadapter extends PagerAdapter {
+public  class BannerPagerAadapter extends PagerAdapter {
 
+    private TextView title;
+    private Activity mContext;
     private List<Banner> banners;
 
-    public BannerPagerAadapter(Activity mContext, List<Banner> banners){
+    public BannerPagerAadapter(Activity mContext, List<Banner> banners, TextView title){
         this.banners = banners;
+        this.mContext=mContext;
+        this.title=title;
 
     }
-
 
     @Override
     public int getCount() {
         if (banners!=null&& !banners.isEmpty()){
             return banners.size();
-        }else if(bannerRes!=null&& !bannerRes.isEmpty()){
-            return bannerRes.size();
         }
-        return 3;
+        return 0;
+    }
+
+    public Banner getItem(int position) {
+        return banners.get(position);
     }
 
     @Override
@@ -42,21 +50,35 @@ class BannerPagerAadapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView webImageView = (ImageView) View.inflate(getActivity(), R.layout.item_banner, null);
+//        ImageView webImageView = (ImageView) View.inflate(mContext, R.layout.item_banner, null);
+        ImageView webImageView = new ImageView(mContext);
+        ViewGroup.LayoutParams layoutParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+                , ViewGroup.LayoutParams.MATCH_PARENT);
 //            if (banners!=null&& !banners.isEmpty()){
 //                webImageView.setImageWithURL(getActivity(), banners.get(position), R.drawable.banner);
 //                webImageView.setImageResource(R.drawable.banner);
 //                Picasso.with(mActivity).load()
 //            }else if(bannerRes!=null&& !bannerRes.isEmpty()){
 //            }
-        webImageView.setImageResource(R.drawable.banner);
+        webImageView.setImageResource(R.drawable.logo);
+        Banner banner = banners.get(position);
+        Glide.with(mContext)
+                .load(banner.thumb)
+                .fitCenter()
+                .into(webImageView);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        container.addView(webImageView);
+        container.addView(webImageView,layoutParams);
+        title.setText(""+banner.title);
         return webImageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public void setLiveCategoryList(List<Banner> liveCategoryList) {
+        this.banners.clear();
+        this.banners.addAll(liveCategoryList);
     }
 }

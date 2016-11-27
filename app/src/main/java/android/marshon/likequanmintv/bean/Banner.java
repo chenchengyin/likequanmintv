@@ -77,6 +77,7 @@ public class Banner  implements Serializable{
     public String title;
 
     public static class ExtBean {
+
         public String type;
     }
 

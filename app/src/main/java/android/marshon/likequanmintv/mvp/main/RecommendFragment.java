@@ -61,7 +61,6 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
         tabManager = (ImageView) findViewById(R.id.tabManager);
         mViewPager = (ViewPager) findViewById(R.id.mViewPager);
 
-
 //        mViewPager.setAdapter(new Frag);
 //        mTablayout.setViewPager(mViewPager);
 //        mTablayout.setCurrentTab(0);

@@ -16,4 +16,5 @@
     <string name="my_neiku" />
     <string name="my_room_manage">房间管理</string>
     <string name="my_task">种子任务</string>
+    <string name="buffering">正在缓冲...</string>
 </resources>

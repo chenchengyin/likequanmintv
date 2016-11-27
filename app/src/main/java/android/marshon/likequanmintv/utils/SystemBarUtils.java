@@ -1,6 +1,7 @@
 package android.marshon.likequanmintv.utils;
 
-import android.app.Activity;
+import android.marshon.likequanmintv.R;
+import android.support.v7.app.AppCompatActivity;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -13,10 +14,10 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 public class SystemBarUtils {
 
 
-    public static void setStatusBarTranslate(Activity mActivity,int resId){
+    public static void setStatusBarTranslate(AppCompatActivity mActivity, int resId){
 
         SystemBarTintManager tintManager = new SystemBarTintManager(mActivity);
-        if (resId==android.R.color.transparent){
+        if (resId== R.color.transparent){
             // enable status bar tint
             tintManager.setStatusBarTintEnabled(false);
             // enable navigation bar tint
@@ -29,7 +30,7 @@ public class SystemBarUtils {
             tintManager.setNavigationBarTintEnabled(true);
             // enable navigation bar tint
         }
-        tintManager.setStatusBarTintColor(resId);
+        tintManager.setStatusBarTintColor(mActivity.getResources().getColor(resId));
 
     }
 }

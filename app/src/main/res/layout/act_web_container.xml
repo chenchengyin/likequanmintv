@@ -5,8 +5,11 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:paddingTop="@dimen/status_bar_height"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/layout_navi"/>
 
 
     <WebView

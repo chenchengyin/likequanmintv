@@ -2,11 +2,9 @@ package android.marshon.likequanmintv.mvp.recommend.ui;
 
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.Banner;
-import android.marshon.likequanmintv.controller.BannerHeadViewController;
 import android.marshon.likequanmintv.bean.LiveCategory;
 import android.marshon.likequanmintv.bean.Room;
-import android.marshon.likequanmintv.event.BannerEvent;
-import android.marshon.likequanmintv.librarys.http.rxjava.MSubscriber;
+import android.marshon.likequanmintv.controller.BannerHeadViewController;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenter;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenterImpl;
@@ -20,18 +18,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.glide.glide.GlideCircleTransform;
 import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,6 +37,7 @@ import javax.inject.Inject;
 public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecommendPresenter> implements RecommendRecommendView{
 
     private ListView listview;
+    private List<LiveCategory> liveCategoryList=new ArrayList<>();
     private BannerHeadViewController bannerHeadViewHolder;
 
     @Inject
@@ -73,37 +66,34 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
     protected void initView(View rootView) {
         listview=(ListView)find(R.id.listview);
         //initHead
-        bannerHeadViewHolder=new BannerHeadViewController(mActivity);
+        bannerHeadViewHolder=new BannerHeadViewController(this);
 
-
-
+        adapter=new RecommendCategoryAdapter(liveCategoryList);
+        listview.setAdapter(adapter);
     }
 
 
     @Override
     public void onGetBanners(List<Banner> bannerList) {
         bannerHeadViewHolder.setBannerData(bannerList);
+
     }
     @Override
     protected void initData() {
-        EventBus.getDefault().register(this);
         mPresenter.getRecommendCategories();
+        mPresenter.getAppStartInfo();
     }
 
     @Override
-    public void onGetRecommendCategories(List<LiveCategory> liveCategoryList) {
-        adapter=new RecommendCategoryAdapter(liveCategoryList);
-        listview.setAdapter(adapter);
+    public void onGetRecommendCategories(List<LiveCategory> liveCategoryLists) {
+        adapter.refreshData(liveCategoryLists);
 
     }
-
-
-
 
     public class RecommendCategoryAdapter extends BaseAdapter{
 
         private static final int VIEWTYPE_HEAD = 1;
-        private final List<LiveCategory> liveCategoryList;
+        private  List<LiveCategory> liveCategoryList;
 
         public RecommendCategoryAdapter(List<LiveCategory> liveCategoryList){
             this.liveCategoryList = liveCategoryList;
@@ -145,7 +135,7 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
             if (itemViewType==VIEWTYPE_HEAD){
                 //头部
                 if (convertView == null) { //加载数据
-                    bannerHeadViewHolder.getBanner();
+//                    bannerHeadViewHolder.getBanner();
                 }
                 return bannerHeadViewHolder.headView;
             }else {
@@ -165,14 +155,14 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
                 }
 
                 return convertView;
-
-
-
-
-
             }
 
 
+        }
+
+        public void refreshData(List<LiveCategory> liveCategoryLists) {
+            this.liveCategoryList=liveCategoryLists;
+            notifyDataSetChanged();
         }
     }
 
@@ -213,10 +203,20 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        bannerHeadViewHolder.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        bannerHeadViewHolder.onPaused();
+    }
 
     @Override
     public void onDestroy() {
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

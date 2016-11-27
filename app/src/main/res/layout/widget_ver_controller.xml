@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/verticalMediaControll"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/vertical_video_height"
+        android:clickable="false">
+
+        <ImageView
+            android:id="@+id/iv_thelive_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5.0dip"
+            android:clickable="true"
+            android:src="@drawable/btn_live_back_selector" />
+
+        <LinearLayout
+            android:id="@+id/ll_four_container"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_thelive_more"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_margin="5.0dip"
+                android:clickable="true"
+                android:src="@drawable/btn_live_more_selector" />
+
+            <CheckBox
+                android:id="@+id/check_gift_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/iv_thelive_more"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:checked="false"
+                android:clickable="true"
+                android:drawableLeft="@drawable/btn_live_ver_gift_switch_selector"
+                android:layout_margin="5.0dip" />
+
+            <CheckBox
+                android:id="@+id/check_live_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/check_gift_switch"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:checked="false"
+                android:clickable="true"
+                android:drawableLeft="@drawable/btn_live_pause"
+                android:layout_margin="5dp"/>
+
+            <ImageView
+                android:id="@+id/iv_thelive_fullscreen"
+                style="@style/font11"
+                android:layout_width="wrap_content"
+                android:layout_height="0.0dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1.0"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:src="@drawable/btn_fullscreen_selector" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_thelive_num"
+            android:layout_width="wrap_content"
+            android:layout_height="21.0dip"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5.0dip"
+            android:background="@drawable/bg_live_ver_num"
+            android:drawableLeft="@drawable/ic_player_content_playic"
+            android:drawablePadding="2.0dip"
+            android:ellipsize="end"
+            android:clickable="true"
+            android:text="2255"
+            android:gravity="center"
+            android:paddingBottom="6.0dip"
+            android:paddingLeft="7.0dip"
+            android:paddingRight="7.0dip"
+            android:paddingTop="3.0dip"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="10.0sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_jubao_and_share"
+            android:layout_width="70.0dip"
+            android:layout_height="68.0dip"
+            android:layout_alignTop="@+id/ll_four_container"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_toLeftOf="@+id/ll_four_container"
+            android:background="@drawable/bg_pop_item_ver_more"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_jubao"
+                android:layout_width="70.0dip"
+                android:layout_height="34.0dip"
+                android:drawableLeft="@drawable/btn_live_jubao_selector"
+                android:gravity="center"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="14.0dip"
+                android:text="举报"
+                android:textColor="@drawable/color_red_white_selector"
+                android:textSize="11.0sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="@color/white_10" />
+
+            <TextView
+                android:id="@+id/tv_share"
+                android:layout_width="70.0dip"
+                android:layout_height="34.0dip"
+                android:drawableLeft="@drawable/btn_share_selector"
+                android:gravity="center"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="14.0dip"
+                android:text="分享"
+                android:textColor="@drawable/color_red_white_selector"
+                android:textSize="11.0sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/infoContainer"
+        android:background="@color/white"
+        android:layout_below="@+id/fl_headPng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ic_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="6dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_default_head"/>
+        <RelativeLayout
+            android:layout_toRightOf="@+id/ic_head"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/black_70"
+                android:text="国服第一打野成成天慢各种坑"/>
+            <TextView
+                android:id="@+id/title"
+                android:layout_below="@+id/nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_40"
+                android:textSize="10sp"
+                android:text="肌肉飒飒撒"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_the_live_focus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_thelive_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_thelive_focus"
+                    android:layout_width="26.0dip"
+                    android:layout_height="26.0dip"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:src="@drawable/btn_live_ver_focus_selector" />
+
+                <TextView
+                    android:id="@+id/tv_thelive_focus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="1.0dip"
+                    android:text="关注"
+                    android:textColor="@color/text_03"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_thelive_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switchview_remind"
+                    android:layout_width="43.0dip"
+                    android:layout_height="25.0dip" />
+
+                <TextView
+                    android:id="@+id/tv_player_remind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="1.0dip"
+                    android:text="开播提醒"
+                    android:textColor="@color/text_03"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider_low" />
+    <FrameLayout
+        android:id="@+id/live_vertical_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+</LinearLayout>

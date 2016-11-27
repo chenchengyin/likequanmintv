@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <meta-data
         android:name="com.bumptech.glide.integration.okhttp.OkHttpGlideModule"
@@ -22,14 +23,25 @@
         <activity android:name=".start.SplashActivity"
             android:theme="@style/FullScreen"
             >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
+        <activity android:name=".utils.WebContainerActivity" />
+        <activity android:name=".mvp.live.ui.CommonLivePlayerActivity"
+
+            android:configChanges="keyboardHidden|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
-        <activity android:name=".utils.WebContainerActivity" />
+
+            </activity>
+
     </application>
 
 </manifest>

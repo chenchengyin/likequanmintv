@@ -3,38 +3,40 @@ package android.marshon.likequanmintv.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.marshon.likequanmintv.R;
-import android.marshon.likequanmintv.librarys.base.BaseActivity;
-import android.marshon.likequanmintv.mvp.main.MainActivity;
-import android.marshon.likequanmintv.start.SplashActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 
-
-
-public class WebContainerActivity extends BaseActivity {
+public class WebContainerActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private String title;
     private String url;
 
     private WebView mWebView;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_container);
+        setContentView(R.layout.act_web_container);
+        SystemBarUtils.setStatusBarTranslate(this,R.color.colorPrimary);
+        imgBack=(ImageView)findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(this);
+
         mWebView= (WebView) findViewById(R.id.mWebView);
         Bundle bundle = getIntent().getExtras();
         if (null!=bundle){
             title=bundle.getString(Intent.EXTRA_TITLE,"全民tv");
             url=bundle.getString(Intent.EXTRA_TEXT,"");
         }
-        setToolBarTitle(title);
 
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.setWebViewClient(new WebViewClient());
@@ -65,8 +67,19 @@ public class WebContainerActivity extends BaseActivity {
             }
 
             setResult(Activity.RESULT_OK);
-            finish();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(Activity.RESULT_OK);
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onClick(View v) {
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 }
