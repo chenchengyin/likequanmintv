@@ -1,16 +1,22 @@
 package android.marshon.likequanmintv.view.mediacontroll;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.marshon.likequanmintv.R;
+import android.marshon.likequanmintv.bean.PlayBean;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.zhy.adapter.recyclerview.glide.glide.GlideCircleTransform;
 
 /**
  * Created by ITMarshon.Chen on 2016/11/27.
@@ -19,28 +25,35 @@ import android.widget.TextView;
  */
 
 public class VerticalMediaControllView extends FrameLayout {
-    private ViewGroup verticalMediaControll;
+
+    private Handler mHandler=new Handler();
+
     private ImageView ic_head;
     private TextView nickName;
-    private TextView nicktitleName;
-    private ImageView iv_thelive_focus;
-    private Switch switchview_remind;
+    private TextView titleName;
+    private ImageView ivIsFocus;
+    private Switch swRemind;
+
 
     // Content View Elements
 
     public ImageView ivBack;
     public LinearLayout ll_four_container;
-    public ImageView iv_thelive_more;
+    public ImageView theliveMore;
     public CheckBox check_gift_switch;
     public CheckBox check_live_pause;
     public ImageView ivFullscreen;
-    public TextView tv_thelive_num;
+    public TextView theliveNum;
     public LinearLayout ll_jubao_and_share;
     public TextView tv_jubao;
     public TextView tv_share;
     public FrameLayout live_vertical_bottom;
+    private View rootView;
     private OnVerticalControllListener onVerticalControllListener;
     private OnFullScreenListener onFullScreenListener;
+    private View verMediaControll;
+    private View infoContainer;
+
 
     public VerticalMediaControllView(Context context) {
         this(context, null, 0);
@@ -54,19 +67,21 @@ public class VerticalMediaControllView extends FrameLayout {
         super(context, attrs, defStyleAttr);
         initView(context);
         initLister();
+        onCreate();
     }
-
+    //init
     private void initView(Context context) {
-        View.inflate(context, R.layout.widget_ver_controller, this);
+        rootView = View.inflate(context, R.layout.widget_ver_controller, this);
 
-        verticalMediaControll = (ViewGroup) findViewById(R.id.verticalMediaControll);
         ivBack = (ImageView) findViewById(R.id.iv_thelive_back);
+        verMediaControll=findViewById(R.id.verMediaControll);
+        infoContainer=findViewById(R.id.infoContainer);
         ll_four_container = (LinearLayout) findViewById(R.id.ll_four_container);
-        iv_thelive_more = (ImageView) findViewById(R.id.iv_thelive_more);
+        theliveMore = (ImageView) findViewById(R.id.iv_thelive_more);
         check_gift_switch = (CheckBox) findViewById(R.id.check_gift_switch);
         check_live_pause = (CheckBox) findViewById(R.id.check_live_pause);
         ivFullscreen = (ImageView) findViewById(R.id.iv_thelive_fullscreen);
-        tv_thelive_num = (TextView) findViewById(R.id.tv_thelive_num);
+        theliveNum = (TextView) findViewById(R.id.tv_thelive_num);
         ll_jubao_and_share = (LinearLayout) findViewById(R.id.ll_jubao_and_share);
         tv_jubao = (TextView) findViewById(R.id.tv_jubao);
         tv_share = (TextView) findViewById(R.id.tv_share);
@@ -75,12 +90,11 @@ public class VerticalMediaControllView extends FrameLayout {
         //info
         ic_head=(ImageView)findViewById(R.id.ic_head);
         nickName=(TextView)findViewById(R.id.nickName);
-        nicktitleName=(TextView)findViewById(R.id.title);
-        iv_thelive_focus=(ImageView)findViewById(R.id.iv_thelive_focus);
-        switchview_remind=(Switch)findViewById(R.id.switchview_remind);
+        titleName =(TextView)findViewById(R.id.title);
+        ivIsFocus =(ImageView)findViewById(R.id.iv_thelive_focus);
+        swRemind =(Switch)findViewById(R.id.switchview_remind);
 
     }
-
     private void initLister() {
         ivFullscreen.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,33 +107,106 @@ public class VerticalMediaControllView extends FrameLayout {
 
             }
         });
+        ivBack.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onVerticalControllListener!=null){
+                    onVerticalControllListener.onVerticalClickBack();
+                }
+            }
+        });
+        theliveMore.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ll_jubao_and_share.setVisibility(VISIBLE);
+                show();
+            }
+        });
+
     }
-
-
+    //data
+    public void setData(PlayBean playBean){
+        theliveNum.setText(""+playBean.view);
+        Glide.with(getContext()).load(""+playBean.avatar).transform(new GlideCircleTransform(getContext()))
+                .into(ic_head);
+        nickName.setText(""+playBean.nick);
+        titleName.setText(""+playBean.title);
+        ivIsFocus.setSelected(playBean.follow>0);
+        swRemind.setChecked(true);
+    }
+    //life recycle
     public void  onCreate(){
-        setVisibility(VISIBLE);
-    }
+        show();
+        //info // TODO: 2016/11/29
+        infoContainer.setVisibility(VISIBLE);
 
+    }
     public void  onDestroy(){
-        setVisibility(GONE);
-
+        verMediaControll.setVisibility(INVISIBLE);
+        theliveNum.setVisibility(VISIBLE);
+        mHandler.removeCallbacksAndMessages(null);
+        //// TODO: 2016/11/29
+        infoContainer.setVisibility(GONE);
     }
 
+    //action
+    public boolean onTouchEvent(boolean isVertical,MotionEvent event) {
+        if (isVertical){
+            show();
+        }
+        return onTouchEvent(event);
+    }
+    private Runnable hiddenControll=new Runnable() {
+        @Override
+        public void run() {
+            verMediaControll.animate().alpha(0).setDuration(1000).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
 
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    hide();
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            }).start();
+        }
+    };
+    private void hide(){
+        verMediaControll.setAlpha(1f);
+        verMediaControll.setVisibility(INVISIBLE);
+        theliveNum.setVisibility(VISIBLE);
+    }
+    private void show(){
+        ll_jubao_and_share.setVisibility(GONE);
+        verMediaControll.setVisibility(VISIBLE);
+        mHandler.removeCallbacks(hiddenControll);
+        mHandler.postDelayed(hiddenControll,3000);
+    }
+
+    //listener
     public void setOnVerticalControllListener(OnVerticalControllListener onVerticalControllListener) {
         this.onVerticalControllListener = onVerticalControllListener;
     }
-
     public interface OnVerticalControllListener{
         void onVerticalClickPause();
         void onVerticalClickStart();
         void onVerticalClickBack();
-        void onVerticalClickShare();
     }
     public void setOnFullScreenListener(OnFullScreenListener onFullScreenListener) {
         this.onFullScreenListener = onFullScreenListener;
     }
-
     public interface OnFullScreenListener{
         void onVerticalClickFullScreen();
     }

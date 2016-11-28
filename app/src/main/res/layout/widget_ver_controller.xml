@@ -5,7 +5,7 @@
     android:layout_height="fill_parent">
 
     <RelativeLayout
-        android:id="@+id/verticalMediaControll"
+        android:id="@+id/verMediaControll"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/vertical_video_height"
         android:clickable="false">
@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/iv_thelive_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentTop="true"
             android:layout_margin="6.0dip"
             android:clickable="true"
@@ -58,7 +58,6 @@
                 android:layout_weight="1.0"
                 android:button="@null"
                 android:checked="false"
-                android:clickable="true"
                 android:drawableLeft="@drawable/btn_live_pause"
                 android:layout_margin="5dp"/>
 
@@ -143,7 +142,7 @@
     <RelativeLayout
         android:id="@+id/infoContainer"
         android:background="@color/white"
-        android:layout_below="@+id/fl_headPng"
+        android:layout_below="@id/verMediaControll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

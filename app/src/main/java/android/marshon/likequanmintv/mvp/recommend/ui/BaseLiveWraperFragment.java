@@ -41,7 +41,8 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
             public void onClick(View v) {
                 Intent intent =new Intent(mActivity, CommonLiveUI.class);
                 intent.putExtra("playBean",playBean);
-                startActivity(intent);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
             }
         });
     }

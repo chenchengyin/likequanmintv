@@ -41,11 +41,7 @@ public class MyOnVerticalControllListener implements VerticalMediaControllView.O
         activity.onBackPressed();
     }
 
-    @Override
-    public void onVerticalClickShare() {
 
-
-    }
 
 
 }

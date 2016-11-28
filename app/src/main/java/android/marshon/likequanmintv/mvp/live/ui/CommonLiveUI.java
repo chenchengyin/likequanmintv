@@ -6,6 +6,8 @@ import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.controller.LivePlayerHolder;
 import android.marshon.likequanmintv.controller.RoomDataController;
+import android.marshon.likequanmintv.librarys.utils.LogUtil;
+import android.marshon.likequanmintv.listener.MyOnHorControllListener;
 import android.marshon.likequanmintv.listener.MyOnVerticalControllListener;
 import android.marshon.likequanmintv.mvp.live.LivePlayerPresenterImpl;
 import android.marshon.likequanmintv.view.mediacontroll.HorMediaControllView;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +29,11 @@ import org.json.JSONObject;
 
 import javax.inject.Inject;
 
-import static android.marshon.likequanmintv.R.id.bgImg;
-
 
 /**
  *  This demo shows how to use PLMediaPlayer API playing video stream
  */
-public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllView.OnFullScreenListener {
+public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllView.OnFullScreenListener, View.OnTouchListener {
     private static final String TAG = CommonLiveUI.class.getSimpleName();
     private SurfaceView mSurfaceView;
     private VerticalMediaControllView verticalControll;
@@ -44,6 +45,7 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     private View mStatusbar;
     private HorMediaControllView horizontalControll;
     private PlayBean mPlayBean;
+    private boolean isVertical =true;
 
     @Inject
     LivePlayerPresenterImpl livePlayerPresenterImpl;
@@ -61,32 +63,32 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_commonliveplayer);
         mActivityComponent.inject(this);
+        mBasePresent=livePlayerPresenterImpl;
         livePlayerPresenterImpl.attachView(this);
         initPlayer();
         initVerControll();
         initHorContrll();
         initData();
     }
-
+    //init
     private void initPlayer() {
         mStatusbar = findViewById(R.id.statusbar);
         mLoadingView = findViewById(R.id.LoadingView);
         bgImage = (ImageView) findViewById(R.id.bgImg);
         mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+        mSurfaceView.setOnTouchListener(this);
         mPlayBean = (PlayBean) getIntent().getSerializableExtra("playBean");
         mCodec = getIntent().getIntExtra("mediaCodec", 0);
     }
-
     private void initVerControll(){
         verticalControll=(VerticalMediaControllView)findViewById(R.id.verticalControll);
         verticalControll.setOnVerticalControllListener(new MyOnVerticalControllListener(this,playerHolder));
         verticalControll.setOnFullScreenListener(this);
     }
-
     private void initHorContrll() {
         horizontalControll=(HorMediaControllView)findViewById(R.id.horizontalControll);
+        horizontalControll.setOnHorControllListener(new MyOnHorControllListener(this,playerHolder));
     }
-
     private void initData() {
         if (mPlayBean!=null){
             livePlayerPresenterImpl.enterRoom(mPlayBean.uid);
@@ -95,13 +97,7 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
                 .load(mPlayBean.thumb)
                 .fitCenter()
                 .into(bgImage);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (playerHolder!=null)
-        playerHolder.release();
+        verticalControll.setData(mPlayBean);
     }
 
     @Override
@@ -110,7 +106,6 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         if (playerHolder!=null)
         playerHolder.onResume();
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -119,28 +114,23 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     }
 
     @Override
+    protected void onDestroy() {
+        if (playerHolder!=null){
+            playerHolder.release();
+            playerHolder=null;
+        }
+        verticalControll.onDestroy();
+        horizontalControll.onDestroy();
+        super.onDestroy();
+
+
+    }
+
+    @Override
     protected void toPrepare() {
         if (playerHolder!=null)
         playerHolder.prepare();
     }
-
-    public void onClickPlay(View v) {
-            playerHolder.startPlayer();
-    }
-
-    public void onClickPause(View v) {
-        playerHolder.pausePlayer();
-    }
-
-    public void onClickResume(View v) {
-        playerHolder.startPlayer();
-    }
-
-    public void onClickStop(View v) {
-        playerHolder.stopPlayer();
-
-    }
-
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -152,50 +142,30 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         }
 
     }
-
     @Override
     public void setRequestedOrientation(int requestedOrientation) {
         super.setRequestedOrientation(requestedOrientation);
         if (requestedOrientation==ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
+            isVertical=true;
             verticalControll.onCreate();
             horizontalControll.onDestroy();
+
         }else {
+            isVertical=false;
             horizontalControll.onCreate();
             verticalControll.onDestroy();
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (getRequestedOrientation()==ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            ViewGroup.LayoutParams params =
-                    (ViewGroup.LayoutParams) mSurfaceView.getLayoutParams();
-            params.width=mPortWidth;
-            params.height=mPortHeight;
-
-            ViewGroup.LayoutParams mStatusbarParams = mStatusbar.getLayoutParams();
-            mStatusbarParams.height= (int) (getResources().getDimension(R.dimen.status_bar_height)+0.5f);
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-//            float dimension = getResources().getDimension(R.dimen.status_bar_height);
-//            params.topMargin= (int) dimension;
-            return;
-        }
-        if (playerHolder!=null)
-        playerHolder.release();
-        super.onBackPressed();
-    }
-
 
     @Override
     public void onConnecting() {
-
         mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onReConnecting() {
-        onConnecting();
+        showToastTips("正在重连...");
     }
 
     @Override
@@ -223,6 +193,7 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     @Override
     public void onPlayePause() {
 
+
     }
 
     @Override
@@ -231,6 +202,27 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         mPlayerPath = mRoomDataController.getPlayerPath(0);
         playerHolder = new LivePlayerHolder(this,mSurfaceView,mCodec,mPlayerPath);
         playerHolder.startPlayer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getRequestedOrientation()==ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            ViewGroup.LayoutParams params =
+                    (ViewGroup.LayoutParams) mSurfaceView.getLayoutParams();
+            params.width=mPortWidth;
+            params.height=mPortHeight;
+
+            ViewGroup.LayoutParams mStatusbarParams = mStatusbar.getLayoutParams();
+            mStatusbarParams.height= (int) (getResources().getDimension(R.dimen.status_bar_height)+0.5f);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+//            float dimension = getResources().getDimension(R.dimen.status_bar_height);
+//            params.topMargin= (int) dimension;
+            return;
+        }
+        if (playerHolder!=null)
+            playerHolder.release();
+        super.onBackPressed();
     }
 
     @Override
@@ -264,8 +256,15 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         params.width=widthPixels;
         params.height=heightPixels;
 
-
 //        mSurfaceView.setLayoutParams(params);
 
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        LogUtil.i("TOUCH  "+isVertical);
+        verticalControll.onTouchEvent(isVertical,event);
+        horizontalControll.onTouchEvent(isVertical,event);
+        return false;
     }
 }

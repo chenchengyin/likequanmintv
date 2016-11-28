@@ -6,8 +6,7 @@
             android:id="@+id/layout_topbar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_90"
-            android:paddingTop="17.0dip">
+            android:background="@color/black_90">
 
             <ImageView
                 android:id="@+id/img_btn_back"
@@ -140,6 +139,8 @@
                 android:layout_width="432.0dip"
                 android:layout_height="30.0dip"
                 android:layout_marginTop="7.0dip"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
                 android:layout_toLeftOf="@+id/rad_btn_danmu_switch"
                 android:layout_toRightOf="@+id/img_btn_refresh"
                 android:background="@drawable/bg_live_hor_et">
@@ -203,7 +204,8 @@
             <ImageView
                 android:id="@+id/img_btn_gift"
                 android:layout_width="wrap_content"
-                android:layout_height="44.0dip"
+                android:layout_height="55.0dip"
+                android:layout_gravity="center"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="10.0dip"
                 android:paddingRight="15.0dip"

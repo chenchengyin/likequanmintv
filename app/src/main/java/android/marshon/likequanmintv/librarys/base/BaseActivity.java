@@ -12,7 +12,6 @@ import android.marshon.likequanmintv.di.component.DaggerActivityComponent;
 import android.marshon.likequanmintv.di.module.ActivityModule;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -23,9 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-
-import com.readystatesoftware.systembartint.SystemBarTintManager;
-
 
 import java.lang.reflect.Field;
 
@@ -111,14 +107,17 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     @Override
     public void finish() {
         super.finish();
-//        overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_right);
+        overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_right);
     }
 
     @Override
     protected void onDestroy() {
         AppActivityManager.getInstance().removeActivity(this);
         super.onDestroy();
-        if (mBasePresent!=null)mBasePresent.onDestroy();
+        if (mBasePresent!=null){
+            mBasePresent.onDestroy();
+            mBasePresent=null;
+        }
 //        APP.getInstance().getLeakWather().watch(this);
         fixInputMethodManagerLeak(this);
     }

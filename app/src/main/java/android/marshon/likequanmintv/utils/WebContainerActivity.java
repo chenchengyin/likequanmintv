@@ -12,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class WebContainerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,7 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
     private ImageView imgBack;
     private boolean isAd;
     private ImageView imgForward;
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
         SystemBarUtils.setStatusBarTranslate(this,R.color.colorPrimary);
         imgBack=(ImageView)findViewById(R.id.imgBack);
         imgForward=(ImageView)findViewById(R.id.imgForward);
+        tvTitle=(TextView)findViewById(R.id.title);
         imgBack.setOnClickListener(this);
         imgForward.setOnClickListener(this);
 
@@ -41,6 +44,8 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
             title=bundle.getString(Intent.EXTRA_TITLE,"全民tv");
             url=bundle.getString(Intent.EXTRA_TEXT,"");
             isAd=bundle.getBoolean("isAd",false);
+
+            tvTitle.setText(""+title);
         }
         if (isAd){
             imgForward.setVisibility(View.VISIBLE);

@@ -1,15 +1,14 @@
 package android.marshon.likequanmintv.controller;
 
 import android.content.Context;
+import android.marshon.likequanmintv.base.APP;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.mvp.live.ui.BaseLiveUI;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.FrameLayout;
 
 import com.pili.pldroid.player.AVOptions;
 import com.pili.pldroid.player.PLMediaPlayer;
@@ -48,17 +47,13 @@ public class LivePlayerHolder {
         mAVOptions.setInteger(AVOptions.KEY_GET_AV_FRAME_TIMEOUT, 10 * 1000);
         mAVOptions.setInteger(AVOptions.KEY_LIVE_STREAMING, 1);
         mAVOptions.setInteger(AVOptions.KEY_DELAY_OPTIMIZATION, 1);
-
         mAVOptions.setInteger(AVOptions.KEY_MEDIACODEC, codec);
 
         // whether start play automatically after prepared, default value is 1
         mAVOptions.setInteger(AVOptions.KEY_START_ON_PREPARED, 0);
-        AudioManager audioManager = (AudioManager)mActivity.getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) APP.getContext().getSystemService(Context.AUDIO_SERVICE);
         audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-
     }
-
-
 
     private SurfaceHolder.Callback mCallback = new SurfaceHolder.Callback() {
 
@@ -205,8 +200,8 @@ public class LivePlayerHolder {
             // Todo pls handle the error status here, reconnect or call finish()
             release();
             if (isNeedReconnect) {
-
                 mActivity.onReConnecting();
+                prepare();
             } else {
                 mActivity.finish();
             }
@@ -312,7 +307,7 @@ public class LivePlayerHolder {
             mSurfaceView.getHolder().removeCallback(mCallback);
         }
 
-        AudioManager audioManager = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) APP.getContext().getSystemService(Context.AUDIO_SERVICE);
         audioManager.abandonAudioFocus(null);
 
     }

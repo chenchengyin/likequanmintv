@@ -71,9 +71,11 @@ public class VerFullLiveUI extends BaseLiveUI {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        if (playerHolder!=null)
+        if (playerHolder!=null) {
             playerHolder.release();
+            playerHolder=null;
+        }
+        super.onDestroy();
     }
 
     @Override

@@ -40,9 +40,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rmGridView"
         android:numColumns="2"
+        android:paddingLeft="2.5dp"
+        android:paddingRight="2.5dp"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"/>
 
     <View
         android:layout_width="match_parent"

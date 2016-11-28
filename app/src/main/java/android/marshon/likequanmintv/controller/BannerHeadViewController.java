@@ -5,6 +5,7 @@ import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.adapter.BannerPagerAadapter;
 import android.marshon.likequanmintv.bean.Banner;
 import android.marshon.likequanmintv.bean.PlayBean;
+import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
 import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
@@ -59,11 +60,13 @@ public class BannerHeadViewController {
                     if (playBean.category_slug.equals("love")){
                         Intent intent =new Intent(mContext.getActivity(), VerFullLiveUI.class);
                         intent.putExtra("playBean",playBean);
-                        mContext.startActivity(intent);
+                        BaseActivity activity= (BaseActivity) mContext.getActivity();
+                        activity.startActivity(intent);
                     }else {
                         Intent intent =new Intent(mContext.getActivity(), CommonLiveUI.class);
                         intent.putExtra("playBean",playBean);
-                        mContext.startActivity(intent);
+                        BaseActivity activity= (BaseActivity) mContext.getActivity();
+                        activity.startActivity(intent);
                     }
 
 
@@ -71,11 +74,13 @@ public class BannerHeadViewController {
                     Intent intent=new Intent(mContext.getActivity(), WebContainerActivity.class);
                     intent.putExtra(Intent.EXTRA_TITLE,""+item.title);
                     intent.putExtra(Intent.EXTRA_TEXT,""+item.link);
-                    mContext.getActivity().startActivity(intent);
+                    BaseActivity activity= (BaseActivity) mContext.getActivity();
+                    activity.startActivity(intent);
 
                 }
             }
         });
+
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
