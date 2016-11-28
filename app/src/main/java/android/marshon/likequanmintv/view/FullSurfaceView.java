@@ -3,6 +3,7 @@ package android.marshon.likequanmintv.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
+import android.view.ViewGroup;
 
 /**
  * Created by ITMarshon.Chen on 2016/11/27.
@@ -30,4 +31,11 @@ public class FullSurfaceView extends SurfaceView{
         int heightMeasureSize = getDefaultSize(0, heightMeasureSpec);
         setMeasuredDimension(widthMeasureSize,heightMeasureSize);
     }
+
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+    }
+
 }

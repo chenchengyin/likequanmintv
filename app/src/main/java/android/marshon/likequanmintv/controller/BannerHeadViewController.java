@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.adapter.BannerPagerAadapter;
 import android.marshon.likequanmintv.bean.Banner;
+import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
+import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
+import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.marshon.likequanmintv.mvp.recommend.ui.RecommendRecommendFragment;
 import android.marshon.likequanmintv.utils.WebContainerActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,6 +34,7 @@ public class BannerHeadViewController {
     private AutoScrollViewPager pager;
     public View headView;
     private Object banner;
+    private List<Banner> mBannerList;
 
     public BannerHeadViewController(final RecommendRecommendFragment mContext){
         headView = View.inflate(mContext.getActivity(), R.layout.widget_bannerview, null);
@@ -50,8 +55,17 @@ public class BannerHeadViewController {
                 Banner item = bannerAdapter.getItem(position);
 
                 if (item.ext.type.equals("play")){
+                    PlayBean playBean = item.link_object;
+                    if (playBean.category_slug.equals("love")){
+                        Intent intent =new Intent(mContext.getActivity(), VerFullLiveUI.class);
+                        intent.putExtra("playBean",playBean);
+                        mContext.startActivity(intent);
+                    }else {
+                        Intent intent =new Intent(mContext.getActivity(), CommonLiveUI.class);
+                        intent.putExtra("playBean",playBean);
+                        mContext.startActivity(intent);
+                    }
 
-                    //// TODO: 2016/11/25 开启直播
 
                 }else if (item.ext.type.equals("ad")){
                     Intent intent=new Intent(mContext.getActivity(), WebContainerActivity.class);
@@ -62,6 +76,24 @@ public class BannerHeadViewController {
                 }
             }
         });
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (mBannerList!=null){
+                    Banner banner = mBannerList.get(position);
+                    title.setText(""+banner.title);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
 
 //        mAdapter=new AutoScrollPagerAdapter(bannerAdapter);
 
@@ -69,8 +101,9 @@ public class BannerHeadViewController {
 
     public void setBannerData(List<Banner> bannerList){
         LogUtil.i(""+bannerList.toString());
+        mBannerList = bannerList;
         if (bannerAdapter==null){
-            bannerAdapter=new BannerPagerAadapter(mContext.getActivity(),bannerList,title);
+            bannerAdapter=new BannerPagerAadapter(mContext.getActivity(),bannerList);
             pager.setAdapter(bannerAdapter);
             if(this.stopAutoScroll) {
                 this.pager.stopAutoScroll();

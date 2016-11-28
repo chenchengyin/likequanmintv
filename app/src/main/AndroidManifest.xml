@@ -23,24 +23,24 @@
         <activity android:name=".start.SplashActivity"
             android:theme="@style/FullScreen"
             >
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
-        <activity android:name=".utils.WebContainerActivity" />
-        <activity android:name=".mvp.live.ui.CommonLivePlayerActivity"
-
-            android:configChanges="keyboardHidden|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
+        <activity android:name=".utils.WebContainerActivity" />
+        <activity android:name=".mvp.live.ui.CommonLiveUI"
+                  android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|screenSize|orientation">
 
-            </activity>
+        </activity>
+        <activity android:name=".mvp.live.ui.VerFullLiveUI"
+                  android:configChanges="keyboardHidden|screenSize|orientation"
+            android:launchMode="singleTop">
+
+        </activity>
 
     </application>
 

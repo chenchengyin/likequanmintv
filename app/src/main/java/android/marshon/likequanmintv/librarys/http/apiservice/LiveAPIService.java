@@ -20,6 +20,10 @@ public interface LiveAPIService {
     @GET("{url}?11211639&os=1&v=2.2.4&os=1&ver=4")
     Observable<JSONObject> getPlayJson(@Path("url")String url);
 
+
+    @GET("json/rooms/{uid}/info1.json?11241653&v=2.2.4&os=1&ver=4")
+    Observable<JSONObject> enterRoom(@Path("uid")String uid);
+
     @GET("json/play/list.json?11211639&os=1")
     Observable<JSONObject> getPlayJson2(@Header("Cache-Control") String cacheControl
             , @Query("v") String v, @Query("ver") String ver);

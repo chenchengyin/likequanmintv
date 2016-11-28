@@ -21,6 +21,9 @@ import android.content.Context;
 import android.marshon.likequanmintv.di.module.ActivityModule;
 import android.marshon.likequanmintv.di.scope.ContextLife;
 import android.marshon.likequanmintv.di.scope.PerActivity;
+import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
+import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
+import android.marshon.likequanmintv.mvp.main.MainActivity;
 
 
 import dagger.Component;
@@ -42,7 +45,8 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
-//    void inject(MainActivity mainActivity);
+    void inject(CommonLiveUI commonLiveUI);
+    void inject(VerFullLiveUI verFullLiveUI);
 
 //    void inject(NewsDetailActivity newsDetailActivity);
 //

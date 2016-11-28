@@ -1,10 +1,12 @@
 package android.marshon.likequanmintv.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by It.Marshon on 2016/11/22 0022 10:40
  */
 
-public class PlayBean {
+public class PlayBean implements Serializable{
 
     public String recommend_image;
     public String announcement;

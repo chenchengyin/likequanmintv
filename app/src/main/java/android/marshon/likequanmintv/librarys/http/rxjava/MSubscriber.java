@@ -46,6 +46,7 @@ public class MSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
+
         LogUtil.e("MSubscriber onError:"+e);
 
     }

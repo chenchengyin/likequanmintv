@@ -2,7 +2,7 @@ package android.marshon.likequanmintv.controller;
 
 import android.content.Context;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
-import android.marshon.likequanmintv.mvp.live.ui.BaseLivePlayerActivity;
+import android.marshon.likequanmintv.mvp.live.ui.BaseLiveUI;
 import android.media.AudioManager;
 import android.os.PowerManager;
 import android.util.Log;
@@ -26,7 +26,7 @@ public class LivePlayerHolder {
 
     private static final String TAG = LivePlayerHolder.class.getSimpleName();;
     private  Integer codec;
-    private  BaseLivePlayerActivity mActivity;
+    private BaseLiveUI mActivity;
     private AVOptions mAVOptions;
     public int mSurfaceWidth;
     public int mSurfaceHeight;
@@ -36,7 +36,7 @@ public class LivePlayerHolder {
     private boolean mIsStopped = false;
 
 
-    public LivePlayerHolder(BaseLivePlayerActivity mActivity,SurfaceView surfaceView, Integer codec, String mVideoPath){
+    public LivePlayerHolder(BaseLiveUI mActivity, SurfaceView surfaceView, Integer codec, String mVideoPath){
         this.mActivity=mActivity;
         this.codec=codec;
         this.mVideoPath=mVideoPath;
@@ -62,8 +62,6 @@ public class LivePlayerHolder {
 
     private SurfaceHolder.Callback mCallback = new SurfaceHolder.Callback() {
 
-        
-
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
             prepare();
@@ -78,8 +76,9 @@ public class LivePlayerHolder {
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
             // release();
-            releaseWithoutStop();
+            release();
         }
+
     };
 
 
@@ -94,9 +93,9 @@ public class LivePlayerHolder {
                 float ratio = Math.max(ratioW, ratioH);
                 width  = (int) Math.ceil((float)width/ratio);
                 height = (int) Math.ceil((float)height/ratio);
-                FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(width, height);
-                layout.gravity = Gravity.CENTER;
-                mSurfaceView.setLayoutParams(layout);
+//                FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(width, height);
+//                layout.gravity = Gravity.CENTER;
+//                mSurfaceView.setLayoutParams(layout);
             }
         }
     };
@@ -106,7 +105,7 @@ public class LivePlayerHolder {
         @Override
         public void onPrepared(PLMediaPlayer mp) {
             Log.i(TAG, "On Prepared !");
-            mMediaPlayer.start();
+            startPlayer();
             mIsStopped = false;
         }
     };
@@ -265,13 +264,16 @@ public class LivePlayerHolder {
         if (mIsStopped||mMediaPlayer==null) {
             prepare();
         } else {
+
             mMediaPlayer.start();
+            mActivity.onPlayerStart();
         }
 
     }
     public void pausePlayer(){
         if (mMediaPlayer!=null)
             mMediaPlayer.pause();
+        mActivity.onPlayePause();
     }
 
     public void stopPlayer(){
@@ -289,16 +291,31 @@ public class LivePlayerHolder {
         }
     }
 
+
+    public void onResume() {
+        mSurfaceView.getHolder().addCallback(mCallback);
+        startPlayer();
+    }
+
+    public void onPause() {
+        pausePlayer();
+    }
+
+
     public void release() {
         if (mMediaPlayer != null) {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
+        if (mSurfaceView.getHolder()!=null){
+            mSurfaceView.getHolder().removeCallback(mCallback);
+        }
 
         AudioManager audioManager = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
         audioManager.abandonAudioFocus(null);
 
     }
+
 
 }

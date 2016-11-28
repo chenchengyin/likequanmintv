@@ -68,7 +68,7 @@ public class Banner  implements Serializable{
      * weight : 3109460
      */
 
-    public LinkObjectBean link_object;
+    public PlayBean link_object;
     public int priority;
     public int slot_id;
     public int status;
@@ -81,36 +81,4 @@ public class Banner  implements Serializable{
         public String type;
     }
 
-    public static class LinkObjectBean {
-        public String announcement;
-        public String app_shuffling_image;
-        public String avatar;
-        public String beauty_cover;
-        public String category_id;
-        public String category_name;
-        public String category_slug;
-        public String create_at;
-        public String default_image;
-        public String follow;
-        public String grade;
-        public boolean hidden;
-        public String intro;
-        public String level;
-        public String like;
-        public String love_cover;
-        public String nick;
-        public String play_at;
-        public String recommend_image;
-        public int screen;
-        public String slug;
-        public String start_time;
-        public String status;
-        public String thumb;
-        public String title;
-        public String uid;
-        public String video;
-        public String video_quality;
-        public String view;
-        public String weight;
-    }
 }

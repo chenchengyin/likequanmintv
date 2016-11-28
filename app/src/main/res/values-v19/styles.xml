@@ -3,8 +3,7 @@
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
-
 
 </resources>

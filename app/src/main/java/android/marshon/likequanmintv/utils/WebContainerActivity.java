@@ -22,6 +22,8 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
 
     private WebView mWebView;
     private ImageView imgBack;
+    private boolean isAd;
+    private ImageView imgForward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +31,20 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.act_web_container);
         SystemBarUtils.setStatusBarTranslate(this,R.color.colorPrimary);
         imgBack=(ImageView)findViewById(R.id.imgBack);
+        imgForward=(ImageView)findViewById(R.id.imgForward);
         imgBack.setOnClickListener(this);
+        imgForward.setOnClickListener(this);
 
         mWebView= (WebView) findViewById(R.id.mWebView);
         Bundle bundle = getIntent().getExtras();
         if (null!=bundle){
             title=bundle.getString(Intent.EXTRA_TITLE,"全民tv");
             url=bundle.getString(Intent.EXTRA_TEXT,"");
+            isAd=bundle.getBoolean("isAd",false);
+        }
+        if (isAd){
+            imgForward.setVisibility(View.VISIBLE);
+            imgBack.setVisibility(View.GONE);
         }
 
         mWebView.setWebChromeClient(new WebChromeClient());
@@ -79,7 +88,16 @@ public class WebContainerActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        setResult(Activity.RESULT_OK);
-        finish();
+        switch (v.getId()){
+            case R.id.imgBack:
+                setResult(Activity.RESULT_OK);
+                finish();
+                break;
+            case R.id.imgForward:
+                setResult(Activity.RESULT_OK);
+                finish();
+                break;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package android.marshon.likequanmintv.mvp.live.ui;
 
 import android.content.pm.ActivityInfo;
+import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.utils.NetUtil;
 import android.marshon.likequanmintv.mvp.live.LivePlayerView;
 import android.os.Handler;
@@ -15,7 +16,7 @@ import android.widget.Toast;
  * desc:
  */
 
-public abstract class BaseLivePlayerActivity extends AppCompatActivity implements LivePlayerView {
+public abstract class BaseLiveUI extends BaseActivity implements LivePlayerView {
 
     protected boolean mIsActivityPaused = true;
     protected Toast mToast = null;
@@ -54,7 +55,7 @@ public abstract class BaseLivePlayerActivity extends AppCompatActivity implement
                 if (mToast != null) {
                     mToast.cancel();
                 }
-                mToast = Toast.makeText(BaseLivePlayerActivity.this, tips, Toast.LENGTH_SHORT);
+                mToast = Toast.makeText(BaseLiveUI.this, tips, Toast.LENGTH_SHORT);
                 mToast.show();
             }
         });

@@ -1,15 +1,15 @@
 package android.marshon.likequanmintv.mvp.recommend.ui;
 
+import android.content.Intent;
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.PlayBean;
-import android.marshon.likequanmintv.librarys.utils.screen.ScreenUtils;
-import android.marshon.likequanmintv.mvp.live.interactor.LiveFragmentInteractor;
+import android.marshon.likequanmintv.mvp.live.interactor.LiveInteractor;
+import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
+import android.view.View;
 
 import com.zhy.adapter.recyclerview.base.ViewHolder;
-import com.zhy.adapter.recyclerview.glide.glide.GlideCircleTransform;
 import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
 
 
@@ -22,7 +22,7 @@ import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
 
 public class LoveLiveListFragment extends BaseLiveWraperFragment {
 
-    private LiveFragmentInteractor mLiveFragmentInteractor;
+    private LiveInteractor mLiveInteractor;
     private int mScreenWidth;
 
     public static LoveLiveListFragment newInstance(Bundle args) {
@@ -30,8 +30,6 @@ public class LoveLiveListFragment extends BaseLiveWraperFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-
 
     @Override
     public int getListItemLayout() {
@@ -45,20 +43,23 @@ public class LoveLiveListFragment extends BaseLiveWraperFragment {
     }
 
     @Override
-    protected void convertItem(ViewHolder holder, PlayBean playBean, int position) {
-//        ImageView imageView=holder.getView(R.id.thumnails);
-//        imageView.setMaxWidth(mScreenWidth/2);
-//        imageView.setAdjustViewBounds(true);
-
+    protected void convertItem(ViewHolder holder, final PlayBean playBean, int position) {
         holder.setImageUrl(R.id.thumnails,playBean.thumb,new GlideRoundTransform(mActivity,5));
         holder.setText(R.id.tv_viewnum,playBean.view);
-//        holder.setText(R.id.nickName,playBean.nick);
         holder.setText(R.id.intro,playBean.title);
-//        holder.setImageUrl(R.id.ic_head,playBean.avatar,new GlideCircleTransform(mActivity));
+        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(mActivity, VerFullLiveUI.class);
+                intent.putExtra("playBean",playBean);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void getDataError(String errmsg) {
         showToast("获取颜值控数据失败");
     }
+
 }

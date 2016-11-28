@@ -3,5 +3,5 @@
     <dimen name="common_margin">12dp</dimen>
     <dimen name="bt_row_height">45dp</dimen>
 
-    <dimen name="status_bar_height">22dp</dimen>
+    <dimen name="status_bar_height">20dp</dimen>
 </resources>

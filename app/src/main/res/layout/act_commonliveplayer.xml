@@ -1,41 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+    <View
+        android:id="@+id/statusbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:alpha="0.65"
+        android:layout_height="@dimen/status_bar_height"/>
+
     <FrameLayout
         android:id="@+id/surfaceLayout"
+        android:layout_below="@id/statusbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
         <SurfaceView
-            android:id="@+id/SurfaceView"
+            android:id="@+id/surfaceView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/vertical_video_height"
-            android:layout_marginBottom="0dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
-            android:layout_marginTop="@dimen/status_bar_height"
-            android:layout_gravity="center" />
+            android:layout_marginBottom="0dp"
+            />
+        <ImageView
+            android:id="@+id/bgImg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_video_height"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            />
 
         <LinearLayout
             android:id="@+id/LoadingView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="horizontal">
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminateDuration="1000"
-                android:indeterminateDrawable="@drawable/live_loading"/>
+                android:indeterminateDrawable="@drawable/live_loading"
+                android:indeterminateDuration="1000"/>
         </LinearLayout>
 
     </FrameLayout>
 
-    <android.marshon.likequanmintv.view.VerticalMediaControllView
+    <android.marshon.likequanmintv.view.mediacontroll.VerticalMediaControllView
         android:id="@+id/verticalControll"
+        android:layout_below="@id/statusbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+    <android.marshon.likequanmintv.view.mediacontroll.HorMediaControllView
+        android:id="@+id/horizontalControll"
+        android:layout_below="@id/statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+
+
 </RelativeLayout>

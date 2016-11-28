@@ -1,6 +1,8 @@
 package android.marshon.likequanmintv.mvp.live.interactor;
 
 import android.marshon.likequanmintv.bean.PlayBean;
+import android.marshon.likequanmintv.bean.livehouse.LiveHouse;
+import android.marshon.likequanmintv.controller.RoomDataController;
 import android.marshon.likequanmintv.librarys.http.RetrofitManager;
 import android.marshon.likequanmintv.librarys.http.apiservice.LiveAPIService;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
@@ -28,10 +30,10 @@ import rx.Subscription;
  */
 
 
-public class LiveFragmentInteractor extends BaseInteractor {
+public class LiveInteractor extends BaseInteractor {
 
     @Inject
-    public LiveFragmentInteractor(){
+    public LiveInteractor(){
 
     }
 
@@ -50,6 +52,7 @@ public class LiveFragmentInteractor extends BaseInteractor {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
+                        delegate.getDataError("获取数据失败");
                     }
 
                     @Override
@@ -68,36 +71,31 @@ public class LiveFragmentInteractor extends BaseInteractor {
                     }
                 });
     }
+    public Subscription  enterRoom(final IGetDataDelegate<JSONObject> delegate, String uid){
 
-    public Subscription  loadPlayList2(final IGetDataDelegate<List<PlayBean>> delegate){
-
-        LiveAPIService liveAPIServicee = RetrofitManager.getInstance()
-                .getLiveAPIService();
-        Observable<JSONObject> playJson = null;
-                  playJson= liveAPIServicee.getPlayJson2(
-                RetrofitManager.getInstance().getCacheControl(),
-                SPUtils.getVersionCode(), SPUtils.getApiVersion());
-        Subscription subscription = playJson
-                .compose(TransformUtils.<JSONObject>defaultSchedulers())
+         return RetrofitManager.getInstance()
+                .getLiveAPIService().enterRoom(uid).
+                compose(TransformUtils.<JSONObject>defaultSchedulers())
                 .subscribe(new MSubscriber<JSONObject>() {
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                    }
 
                     @Override
-                    public void onNext(JSONObject jsonObject) {
-                        super.onNext(jsonObject);
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        delegate.getDataError("获取数据失败");
+                    }
 
-                        try {
-                            LogUtil.e("jsonObject"+jsonObject.toString());
-//                            JSONArray data = jsonObject.optJSONArray("data");
-//                            Type typeToken = new TypeToken<List<PlayBean>>() {
-//                            }.getType();
-//                            List<PlayBean> playBeanList = mGson.fromJson(data.toString(), typeToken);
-//                            delegate.getDataSuccess(playBeanList);
-                        } catch (Exception e) {
-                            LogUtil.e("数据有误" + jsonObject);
-                        }
+                    @Override
+                    public void onNext(JSONObject roomJson) {
+                        super.onNext(roomJson);
+                        delegate.getDataSuccess(roomJson);
                     }
                 });
-        return subscription;
     }
+
+
 
 }

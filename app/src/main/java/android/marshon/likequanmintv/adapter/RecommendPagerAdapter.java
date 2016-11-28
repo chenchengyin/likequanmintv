@@ -42,7 +42,7 @@ public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle=new Bundle();
         bundle.putString("url",mUrl);
         bundle.putString("tag",liveCategory.getName());
-        if (liveCategory.getName().equals("颜值控")){
+        if (liveCategory.getSlug().equals("love")){
             return LoveLiveListFragment.newInstance(bundle);
         }
         return BaseLiveWraperFragment.newInstance(bundle);

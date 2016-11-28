@@ -3,7 +3,7 @@ package android.marshon.likequanmintv.mvp.live;
 import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenterImpl;
-import android.marshon.likequanmintv.mvp.live.interactor.LiveFragmentInteractor;
+import android.marshon.likequanmintv.mvp.live.interactor.LiveInteractor;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
     }
 
     @Inject
-    LiveFragmentInteractor liveFragmentInteractor;
+    LiveInteractor mLiveInteractor;
 
     @Override
     public void onCreate() {
@@ -31,7 +31,7 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
 
     @Override
     public void loadPlayList() {
-        liveFragmentInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
+        mLiveInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
 
             @Override
             public void getDataSuccess(List<PlayBean> playBeanListHolderList) {
@@ -48,7 +48,7 @@ public class LiveFragmentPresenterImpl extends BasePresenterImpl<LiveFragmentVie
 
     @Override
     public void loadPlayListByUrl(String url) {
-        liveFragmentInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
+        mLiveInteractor.loadPlayList(new IGetDataDelegate<List<PlayBean>>(){
 
             @Override
             public void getDataSuccess(List<PlayBean> playBeanListHolderList) {

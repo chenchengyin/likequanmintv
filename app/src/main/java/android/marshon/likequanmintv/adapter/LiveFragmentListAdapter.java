@@ -3,9 +3,14 @@ package android.marshon.likequanmintv.adapter;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.PlayBean;
+import android.marshon.likequanmintv.librarys.base.BaseActivity;
+import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
+import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -26,10 +31,12 @@ import static com.bumptech.glide.Glide.clear;
 public class LiveFragmentListAdapter extends LoadMoreCommonAdapter<PlayBean> {
 
 
+    private BaseActivity mActivity;
     private int mLastPosition=-1;
 
-    public LiveFragmentListAdapter(Context context, int layoutId, List<PlayBean> datas) {
+    public LiveFragmentListAdapter(BaseActivity context, int layoutId, List<PlayBean> datas) {
         super(context, layoutId, datas);
+        this.mActivity=context;
     }
 
     private void initAnim(View itemView) {
@@ -71,14 +78,29 @@ public class LiveFragmentListAdapter extends LoadMoreCommonAdapter<PlayBean> {
     }
 
     @Override
-    protected void convert(ViewHolder holder, PlayBean playBeanListHolder, int position) {
+    protected void convert(ViewHolder holder, final PlayBean playBean, int position) {
 
-        holder.setImageUrl(R.id.thumnails,playBeanListHolder.thumb,new GlideRoundTransform(mContext,5));
-        holder.setText(R.id.title,playBeanListHolder.title);
-        holder.setText(R.id.tv_viewnum,playBeanListHolder.view);
-        holder.setText(R.id.nickName,playBeanListHolder.nick);
-        holder.setImageUrl(R.id.ic_head,playBeanListHolder.avatar,new GlideCircleTransform(mContext));
+        holder.setImageUrl(R.id.thumnails,playBean.thumb,new GlideRoundTransform(mContext,5));
+        holder.setText(R.id.title,playBean.title);
+        holder.setText(R.id.tv_viewnum,playBean.view);
+        holder.setText(R.id.nickName,playBean.nick);
+        holder.setImageUrl(R.id.ic_head,playBean.avatar,new GlideCircleTransform(mContext));
+        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (playBean.category_slug.equals("love")){
+                    Intent intent =new Intent(mActivity, VerFullLiveUI.class);
+                    intent.putExtra("playBean",playBean);
+                    mActivity.startActivity(intent);
+                }else {
+                    Intent intent =new Intent(mActivity, CommonLiveUI.class);
+                    intent.putExtra("playBean",playBean);
+                    mActivity.startActivity(intent);
+                }
+
+            }
+        });
         int adapterPosition = holder.getAdapterPosition();
         if (!isFirstOnly || adapterPosition > mLastPosition) {
             initAnim(holder.itemView);

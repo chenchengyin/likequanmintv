@@ -79,6 +79,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
                                     Intent intent=new Intent(SplashActivity.this, WebContainerActivity.class);
                                     intent.putExtra(Intent.EXTRA_TITLE,""+mAppStart.title);
                                     intent.putExtra(Intent.EXTRA_TEXT,""+mAppStart.link);
+                                    intent.putExtra("isAd",true);
                                     startActivityForResult(intent,CODE_AD);
                                 }
                             },1500);

@@ -20,14 +20,12 @@ import java.util.List;
 
 public  class BannerPagerAadapter extends PagerAdapter {
 
-    private TextView title;
     private Activity mContext;
     private List<Banner> banners;
 
-    public BannerPagerAadapter(Activity mContext, List<Banner> banners, TextView title){
+    public BannerPagerAadapter(Activity mContext, List<Banner> banners){
         this.banners = banners;
         this.mContext=mContext;
-        this.title=title;
 
     }
 
@@ -68,7 +66,6 @@ public  class BannerPagerAadapter extends PagerAdapter {
                 .into(webImageView);
         webImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(webImageView,layoutParams);
-        title.setText(""+banner.title);
         return webImageView;
     }
 

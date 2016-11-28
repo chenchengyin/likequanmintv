@@ -56,27 +56,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         View rootView = View.inflate(this, layoutResID, null);
         super.setContentView(rootView);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (isTranslateStatusBar()) {
 
-                SystemBarTintManager tintManager = new SystemBarTintManager(this);
-                // enable status bar tint
-                tintManager.setStatusBarTintEnabled(false);
-                // enable navigation bar tint
-                tintManager.setNavigationBarTintEnabled(false);
-
-            } else {
-                // create our manager instance after the content view is set
-                SystemBarTintManager tintManager = new SystemBarTintManager(this);
-                // enable status bar tint
-                tintManager.setStatusBarTintEnabled(true);
-                // enable navigation bar tint
-                tintManager.setNavigationBarTintEnabled(true);
-                //noinspection deprecation
-                tintManager.setStatusBarTintColor(getResources().getColor(getColorPrimary()));
-
-            }
-        }
     }
 
     public ActivityComponent getActivityComponent() {
@@ -103,7 +83,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         super.onCreate(savedInstanceState);
         AppActivityManager.getInstance().addActivity(this);
         mResources = getResources();
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//强制竖屏
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//强制竖屏
         //4.4之后实现沉浸式状态栏
         //初始化布局文件加载器
         mLayoutInflater = LayoutInflater.from(this);

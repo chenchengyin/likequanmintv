@@ -7,12 +7,11 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:clickable="true"
-        android:padding="5dp"
         android:src="@drawable/btn_back_selector" />
 
 
@@ -37,4 +36,17 @@
         android:padding="5dp"
         android:visibility="gone"
         android:src="@drawable/btn_search_selector" />
+
+    <ImageView
+        android:id="@+id/imgForward"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:rotation="180"
+        android:visibility="gone"
+        android:src="@drawable/btn_back_selector" />
+
 </RelativeLayout>

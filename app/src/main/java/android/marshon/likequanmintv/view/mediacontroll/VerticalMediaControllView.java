@@ -1,4 +1,4 @@
-package android.marshon.likequanmintv.view;
+package android.marshon.likequanmintv.view.mediacontroll;
 
 import android.content.Context;
 import android.marshon.likequanmintv.R;
@@ -88,8 +88,21 @@ public class VerticalMediaControllView extends FrameLayout {
                 if (onFullScreenListener!=null){
                     onFullScreenListener.onVerticalClickFullScreen();
                 }
+                //横屏显示
+                onDestroy();
+
             }
         });
+    }
+
+
+    public void  onCreate(){
+        setVisibility(VISIBLE);
+    }
+
+    public void  onDestroy(){
+        setVisibility(GONE);
+
     }
 
 

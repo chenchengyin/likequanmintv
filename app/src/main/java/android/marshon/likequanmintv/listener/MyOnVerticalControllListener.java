@@ -1,8 +1,8 @@
 package android.marshon.likequanmintv.listener;
 
 import android.marshon.likequanmintv.controller.LivePlayerHolder;
-import android.marshon.likequanmintv.mvp.live.ui.CommonLivePlayerActivity;
-import android.marshon.likequanmintv.view.VerticalMediaControllView;
+import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
+import android.marshon.likequanmintv.view.mediacontroll.VerticalMediaControllView;
 
 /**
  * Created by ITMarshon.Chen on 2016/11/28.
@@ -13,10 +13,10 @@ import android.marshon.likequanmintv.view.VerticalMediaControllView;
 public class MyOnVerticalControllListener implements VerticalMediaControllView.OnVerticalControllListener {
 
 
-    private CommonLivePlayerActivity activity;
+    private CommonLiveUI activity;
     private LivePlayerHolder playerHolder;
 
-    public MyOnVerticalControllListener(CommonLivePlayerActivity activity, LivePlayerHolder playerHolder) {
+    public MyOnVerticalControllListener(CommonLiveUI activity, LivePlayerHolder playerHolder) {
         this.activity = activity;
         this.playerHolder = playerHolder;
     }
