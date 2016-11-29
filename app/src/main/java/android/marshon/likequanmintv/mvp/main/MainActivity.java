@@ -65,13 +65,12 @@ public class MainActivity extends BaseActivity implements UpDownRvScrollListener
             public void onTabSelect(int position) {
                 mViewPager.setCurrentItem(position);
 
-
             }
 
             @Override
             public void onTabReselect(int position) {
                 if (position == 0) {
-                    mTablayout.showMsg(0, 100 + 1);
+//                    mTablayout.showMsg(0, 100 + 1);
 //                    UnreadMsgUtils.show(mTabLayout_2.getMsgView(0), mRandom.nextInt(100) + 1);
                 }
             }

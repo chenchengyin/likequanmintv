@@ -2,6 +2,5 @@
 <animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/video_loading"
     android:duration="100"
-    
     android:pivotX="50%"
     android:pivotY="50%" />

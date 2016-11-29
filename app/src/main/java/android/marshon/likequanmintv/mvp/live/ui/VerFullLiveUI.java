@@ -6,12 +6,16 @@ import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.controller.LivePlayerHolder;
 import android.marshon.likequanmintv.controller.RoomDataController;
 import android.marshon.likequanmintv.mvp.live.LivePlayerPresenterImpl;
+import android.marshon.likequanmintv.utils.blur.Blurry;
+import android.marshon.likequanmintv.view.LoadindImageView;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.ImageViewTarget;
 
 import org.json.JSONObject;
 
@@ -34,6 +38,8 @@ public class VerFullLiveUI extends BaseLiveUI {
     private RoomDataController mRoomDataController;
     private String mPlayerPath;
     private ImageView bgImg;
+    private ImageView imgBack;
+    private LoadindImageView loadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,14 @@ public class VerFullLiveUI extends BaseLiveUI {
         mPlayBean = (PlayBean) getIntent().getSerializableExtra("playBean");
         mSurfaceView = (SurfaceView) findViewById(R.id.mSurfaceView);
         bgImg = (ImageView) findViewById(R.id.bgImg);
+        loadingView = (LoadindImageView) findViewById(R.id.loadingView);
+        imgBack = (ImageView) findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         mCodec = getIntent().getIntExtra("mediaCodec", 0);
 //        mVideoPath = getIntent().getStringExtra("videoPath");
     }
@@ -63,9 +77,21 @@ public class VerFullLiveUI extends BaseLiveUI {
         if (mPlayBean!=null){
             livePlayerPresenterImpl.enterRoom(mPlayBean.uid);
         }
+
         Glide.with(this)
                 .load(mPlayBean.love_cover)
-                .into(bgImg);
+                .into(new ImageViewTarget<GlideDrawable>(bgImg) {
+                    @Override
+                    protected void setResource(GlideDrawable resource) {
+                        bgImg.setImageDrawable(resource);
+                        Blurry.with(VerFullLiveUI.this)
+                                .animate()
+                                .radius(10)
+                                .sampling(8)
+                                .capture(bgImg)
+                                .into(bgImg);
+                    }
+                });
     }
 
 
@@ -101,19 +127,22 @@ public class VerFullLiveUI extends BaseLiveUI {
 
     @Override
     public void onConnecting() {
+        bgImg.setAlpha(1);
         bgImg.setVisibility(View.VISIBLE);
+        loadingView.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void onReConnecting() {
+        bgImg.setAlpha(1);
         bgImg.setVisibility(View.VISIBLE);
-
+        loadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onConnectSucces() {
-
+        loadingView.setVisibility(View.GONE);
     }
 
     @Override
@@ -128,13 +157,14 @@ public class VerFullLiveUI extends BaseLiveUI {
 
     @Override
     public void onPlayerStart() {
+        loadingView.setVisibility(View.GONE);
         bgImg.animate().alpha(0).setDuration(1000).start();
+
 //        bgImg.setVisibility(View.GONE);
     }
 
     @Override
     public void onPlayePause() {
-
 
     }
 

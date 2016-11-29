@@ -1,11 +1,14 @@
 package android.marshon.likequanmintv.mvp.recommend.ui;
 
+import android.content.Intent;
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.bean.Banner;
 import android.marshon.likequanmintv.bean.LiveCategory;
-import android.marshon.likequanmintv.bean.Room;
+import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.controller.BannerHeadViewController;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
+import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
+import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenter;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenterImpl;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendView;
@@ -178,7 +181,7 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
             rmGridView=(RecyclerView)itemView.findViewById(R.id.rmGridView);
         }
 
-        public void setData(LiveCategory liveCategory) {
+        public void setData(final LiveCategory liveCategory) {
 
             categoryName.setText(""+liveCategory.getName());
             goToThisLive.setOnClickListener(new View.OnClickListener() {
@@ -187,16 +190,45 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
                     //选中指定tab
                 }
             });
-            List<Room> rooms = liveCategory.list;
+            List<PlayBean> rooms = liveCategory.list;
             rmGridView.setLayoutManager(new GridLayoutManager(mActivity,2));
-            rmGridView.setAdapter(new CommonAdapter<Room>(mActivity,R.layout.listitem_recommendcategory_child,rooms) {
+            boolean isLove=false;
+            if (liveCategory.getSlug().equals("love")){
+                isLove=true;
+            }
+            rmGridView.setAdapter(new CommonAdapter<PlayBean>(mActivity,isLove?R.layout.listitem_love:R.layout.listitem_recommendcategory_child,rooms) {
                 @Override
-                protected void convert(ViewHolder holder, Room room, int position) {
-                    holder.setImageUrl(R.id.thumnails,room.thumb,new GlideRoundTransform(mContext,5));
-                    holder.setText(R.id.title,room.title);
-                    holder.setText(R.id.tv_viewnum,room.view);
-                    holder.setText(R.id.nickName,room.nick);
-                    holder.setImageUrl(R.id.ic_head,room.avatar,new GlideCircleTransform(mContext));
+                protected void convert(ViewHolder holder, final PlayBean room, int position) {
+                    if (liveCategory.getSlug().equals("love")){
+                        holder.setImageUrl(R.id.thumnails,room.thumb,new GlideRoundTransform(mActivity,5));
+                        holder.setText(R.id.tv_viewnum,room.view);
+                        holder.setText(R.id.intro,room.title);
+                        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent =new Intent(mActivity, VerFullLiveUI.class);
+                                intent.putExtra("playBean",room);
+                                getActivity().startActivity(intent);
+                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+                            }
+                        });
+                    }else {
+                        holder.setImageUrl(R.id.thumnails,room.thumb,new GlideRoundTransform(mContext,5));
+                        holder.setText(R.id.title,room.title);
+                        holder.setText(R.id.tv_viewnum,room.view);
+                        holder.setText(R.id.nickName,room.nick);
+                        holder.setImageUrl(R.id.ic_head,room.avatar,new GlideCircleTransform(mContext));
+                        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent =new Intent(mActivity, CommonLiveUI.class);
+                                intent.putExtra("playBean",room);
+                                getActivity().startActivity(intent);
+                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+                            }
+                        });
+                    }
+
                 }
             });
 
