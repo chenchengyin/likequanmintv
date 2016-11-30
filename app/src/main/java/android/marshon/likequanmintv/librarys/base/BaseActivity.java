@@ -1,4 +1,4 @@
-package android.marshon.likequanmintv.librarys.base;
+﻿package android.marshon.likequanmintv.librarys.base;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -234,7 +234,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
     @Override
     public void showLongToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(APP.getContext(),msg, Toast.LENGTH_LONG).show();
     }
 
     @Override

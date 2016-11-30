@@ -234,12 +234,9 @@
             </LinearLayout>
         </LinearLayout>
 
+
     </RelativeLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
-        android:layout_alignParentBottom="true"
-        android:background="@color/divider_low" />
+
     <FrameLayout
         android:id="@+id/live_vertical_bottom"
         android:layout_width="match_parent"

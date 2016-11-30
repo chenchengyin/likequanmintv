@@ -12,7 +12,16 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_marginTop="350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:text="特别声明：\n本应用只为提供开发者技术参考。请自觉维护全民TV公司的合法权益！谢谢合作!"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            />
 
-   
     </LinearLayout>
 </RelativeLayout>

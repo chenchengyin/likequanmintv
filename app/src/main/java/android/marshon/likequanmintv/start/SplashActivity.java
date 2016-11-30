@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
     private View rootView;
     private RecommendFragmentInteractorImpl mInteractor=new RecommendFragmentInteractorImpl();
     private Subscription mSubscription;
-    private boolean hasAa;
+    private static boolean hasAa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,6 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 
     private void initData() {
         mSubscription = mInteractor.getStartInfo(new MSubscriber<JSONObject>() {
-
 
             @Override
             public void onNext(JSONObject appinfoJson) {
@@ -100,7 +99,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
         rootView = findViewById(R.id.main_root);
         final View viewById = findViewById(R.id.tt);
         ValueAnimator valueAnimator=ValueAnimator.ofFloat(0.3f,1.0f);
-        valueAnimator.setDuration(1200);
+        valueAnimator.setDuration(1500);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -125,7 +124,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 
         if (hasAa)return;
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -55,8 +55,7 @@ public abstract class BaseLiveUI extends BaseActivity implements LivePlayerView 
                 if (mToast != null) {
                     mToast.cancel();
                 }
-                mToast = Toast.makeText(BaseLiveUI.this, tips, Toast.LENGTH_SHORT);
-                mToast.show();
+                showToast(tips);
             }
         });
     }

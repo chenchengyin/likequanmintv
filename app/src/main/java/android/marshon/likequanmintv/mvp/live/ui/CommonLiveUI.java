@@ -54,7 +54,6 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     private String mPlayerPath;
     private ImageView bgImage;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);

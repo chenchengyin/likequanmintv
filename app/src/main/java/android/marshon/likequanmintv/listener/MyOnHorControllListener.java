@@ -34,7 +34,7 @@ public class MyOnHorControllListener implements HorMediaControllView.OnHorContro
 
     @Override
     public void onHorClickBack() {
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        activity.onBackPressed();
     }
 
 }
