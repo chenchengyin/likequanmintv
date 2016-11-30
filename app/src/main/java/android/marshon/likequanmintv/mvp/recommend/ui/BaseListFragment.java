@@ -10,7 +10,6 @@ import android.view.View;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreCommonAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IGetDa
 
     @Override
     protected void initView(View rootView) {
-        mRv=(RecyclerView)find(R.id.mRv);
+        mRv=find(R.id.mRv);
         mRv.setLayoutManager(new GridLayoutManager(mActivity,2));
         adapter= new LoadMoreCommonAdapter<T>(mActivity, this.getListItemLayout()) {
             @Override

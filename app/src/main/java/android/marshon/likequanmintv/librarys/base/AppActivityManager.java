@@ -65,7 +65,6 @@ public class AppActivityManager {
         if (activity != null) {
             mActivityStack.remove(activity);
             activity.finish();
-            activity = null;
         }
     }
 
