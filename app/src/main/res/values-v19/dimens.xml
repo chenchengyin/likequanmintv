@@ -4,4 +4,6 @@
     <dimen name="bt_row_height">45dp</dimen>
 
     <dimen name="status_bar_height">20dp</dimen>
+
+    <dimen name="fullscreen_topmargin">24dp</dimen>
 </resources>

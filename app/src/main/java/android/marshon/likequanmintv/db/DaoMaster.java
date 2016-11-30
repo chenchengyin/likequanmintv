@@ -22,11 +22,13 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         LiveCategoryDao.createTable(db, ifNotExists);
+        ItemColumnDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         LiveCategoryDao.dropTable(db, ifExists);
+        ItemColumnDao.dropTable(db, ifExists);
     }
 
     /**
@@ -46,6 +48,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(LiveCategoryDao.class);
+        registerDaoClass(ItemColumnDao.class);
     }
 
     public DaoSession newSession() {

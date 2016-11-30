@@ -31,7 +31,7 @@ public class LiveCategory {
     private int screen;
 
     @Transient
-    public List<Room> list;
+    public List<PlayBean> list;
 
     @Generated(hash = 206731314)
     public LiveCategory(int id, String name, int is_default, String slug, int type,

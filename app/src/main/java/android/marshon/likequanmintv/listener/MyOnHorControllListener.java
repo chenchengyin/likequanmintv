@@ -1,6 +1,5 @@
 package android.marshon.likequanmintv.listener;
 
-import android.content.pm.ActivityInfo;
 import android.marshon.likequanmintv.controller.LivePlayerHolder;
 import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
 import android.marshon.likequanmintv.view.mediacontroll.HorMediaControllView;

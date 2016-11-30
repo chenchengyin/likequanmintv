@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.marshon.likequanmintv" >
+          package="android.marshon.likequanmintv">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <meta-data
         android:name="com.bumptech.glide.integration.okhttp.OkHttpGlideModule"
-        android:value="GlideModule" />
+        android:value="GlideModule"/>
 
     <application
+        android:name=".base.APP"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".base.APP"
-        android:theme="@style/AppTheme" >
-
-        <activity android:name=".start.SplashActivity"
-            android:theme="@style/FullScreen"
-            >
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".start.SplashActivity"
+            android:theme="@style/FullScreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.main.MainActivity" android:launchMode="singleInstance"/>
-        <activity android:name=".utils.WebContainerActivity" />
-        <activity android:name=".mvp.live.ui.CommonLiveUI"
-                  android:launchMode="singleTop"
-            android:configChanges="keyboardHidden|screenSize|orientation">
-
-        </activity>
-        <activity android:name=".mvp.live.ui.VerFullLiveUI"
-                  android:configChanges="keyboardHidden|screenSize|orientation"
+        <activity
+            android:name=".mvp.main.MainActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".utils.WebContainerActivity"/>
+        <activity android:name=".mvp.column.ColumnListActivity"/>
+        <activity
+            android:name=".mvp.live.ui.CommonLiveUI"
+            android:configChanges="keyboardHidden|screenSize|orientation"
             android:launchMode="singleTop">
-
         </activity>
+        <activity
+            android:name=".mvp.live.ui.VerFullLiveUI"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:launchMode="singleTop">
+        </activity>
+
+        <service android:name=".start.Home"/>
 
     </application>
 

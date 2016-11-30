@@ -20,6 +20,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
+
 /**
  * Created by ITMarshon.Chen on 2016/11/24.
  * emal:itmarshon@163.com
@@ -36,7 +38,7 @@ public class RecommendRecommendPresenterImpl extends BasePresenterImpl<Recommend
 
     @Override
     public void getRecommendCategories() {
-        mInteractor.getRecommendCategories(new IGetDataDelegate<List<LiveCategory>>(){
+        Subscription subscription = mInteractor.getRecommendCategories(new IGetDataDelegate<List<LiveCategory>>() {
 
             @Override
             public void getDataSuccess(List<LiveCategory> liveCategories) {
@@ -48,26 +50,29 @@ public class RecommendRecommendPresenterImpl extends BasePresenterImpl<Recommend
 
             }
         });
+        mSubscriptions.add(subscription);
     }
 
     @Override
     public void getAppStartInfo() {
-        mInteractor.getStartInfo(new MSubscriber<JSONObject>(){
+        Subscription subscription = mInteractor.getStartInfo(new MSubscriber<JSONObject>() {
             @Override
             public void onNext(JSONObject obj) {
                 super.onNext(obj);
-                Gson mGson=new Gson();
+                Gson mGson = new Gson();
 
                 JSONArray appfocusArray = obj.optJSONArray("app-focus");
 
-                Type type=new TypeToken<List<Banner>>(){}.getType();
-                if (appfocusArray!=null){
-                    List<Banner> banners=mGson.fromJson(appfocusArray.toString(),type);
+                Type type = new TypeToken<List<Banner>>() {
+                }.getType();
+                if (appfocusArray != null) {
+                    List<Banner> banners = mGson.fromJson(appfocusArray.toString(), type);
                     mPresenterView.onGetBanners(banners);
                 }
 
 
             }
         });
+        mSubscriptions.add(subscription);
     }
 }

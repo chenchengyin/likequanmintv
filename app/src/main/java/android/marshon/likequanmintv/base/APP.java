@@ -2,23 +2,26 @@ package android.marshon.likequanmintv.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.marshon.likequanmintv.db.DaoMaster;
 import android.marshon.likequanmintv.db.DaoSession;
 import android.marshon.likequanmintv.di.component.ApplicationComponent;
 import android.marshon.likequanmintv.di.component.DaggerApplicationComponent;
 import android.marshon.likequanmintv.di.module.ApplicationModule;
+import android.marshon.likequanmintv.librarys.http.RetrofitManager;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
+import android.marshon.likequanmintv.start.Home;
 import android.os.Handler;
 
 
 import com.squareup.leakcanary.LeakCanary;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
-
-import static android.R.attr.path;
 
 /**
  * Created by Marshon.Chen on 2016/8/10.
@@ -26,11 +29,11 @@ import static android.R.attr.path;
  */
 public class APP extends Application {
 
-    private static OkHttpClient okHttpClient;
     private static Handler mHandler;
     private static Context mContext;
 
     public static final String DB_NAME= "history3-db";
+    public static boolean isInited;
     private ApplicationComponent mApplicationComponent;
 
     public static boolean isDebug() {
@@ -40,12 +43,14 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        startService(new Intent(this, Home.class));
         mHandler = new Handler();
 
         mContext = getApplicationContext();
 
         LeakCanary.install(this);
         initApplicationComponent();
+
     }
 
     private void initApplicationComponent() {
@@ -66,15 +71,7 @@ public class APP extends Application {
     public static Handler getMHanlder() {
         return mHandler;
     }
-    public static OkHttpClient getOkhttpClient() {
-        if (okHttpClient==null){
-            //手动创建一个OkHttpClient并设置超时时间
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-            okHttpClient = builder.build();
-        }
-        return okHttpClient;
-    }
+
     private static final int DEFAULT_TIMEOUT = 10;
 
 

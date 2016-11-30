@@ -32,7 +32,9 @@ public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
 //        if (getPageTitle(position).equals("颜值控")){
 //            return LoveLiveListFragment.newInstance();
 //        }
-
+        if (position==0){
+            return RecommendRecommendFragment.newInstance();
+        }
 
         LiveCategory liveCategory = mLiveCategoryList.get(position);
         String mUrl="json/categories/"+liveCategory.getSlug()+"/list.json";
@@ -41,9 +43,6 @@ public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
         bundle.putString("tag",liveCategory.getName());
         if (liveCategory.getSlug().equals("love")){
             return LoveLiveListFragment.newInstance(bundle);
-        }
-        if (position==0){
-            return RecommendRecommendFragment.newInstance();
         }
         return BaseLiveWraperFragment.newInstance(bundle);
     }

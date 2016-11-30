@@ -27,7 +27,7 @@ public class SPUtils {
     private SharedPreferences.Editor editor;
 
 
-    private static SPUtils getInstance(){
+    public static SPUtils getInstance(){
         SPUtils sputils=new SPUtils(APP.getContext(),"config");
         return sputils;
     }
@@ -35,6 +35,14 @@ public class SPUtils {
         String token = getInstance().getString("token");
         LogUtil.d("token:" +token);
         return token;
+    }
+    public static String getBase(){
+        String token = getInstance().getString("base");
+        LogUtil.d("base:" +token);
+        return token;
+    }
+    public static  void  setBase(String base){
+        getInstance().putString("base",""+base);
     }
     public static String getVersionCode(){
         String version = getInstance().getString("v","2.24");
@@ -77,6 +85,7 @@ public class SPUtils {
      */
     public void putString(String key, String value) {
         editor.putString(key, value).apply();
+        editor.commit();
     }
 
     /**

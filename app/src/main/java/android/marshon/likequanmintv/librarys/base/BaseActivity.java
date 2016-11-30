@@ -1,4 +1,4 @@
-﻿package android.marshon.likequanmintv.librarys.base;
+package android.marshon.likequanmintv.librarys.base;
 
 import android.content.Context;
 import android.content.DialogInterface;

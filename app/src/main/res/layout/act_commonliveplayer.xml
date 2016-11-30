@@ -18,6 +18,7 @@
 
 
         <SurfaceView
+            android:keepScreenOn="true"
             android:id="@+id/surfaceView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/vertical_video_height"

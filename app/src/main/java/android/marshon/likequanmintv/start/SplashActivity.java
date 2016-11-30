@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.marshon.likequanmintv.R;
+import android.marshon.likequanmintv.base.APP;
 import android.marshon.likequanmintv.bean.AppStart;
 import android.marshon.likequanmintv.event.BannerEvent;
 import android.marshon.likequanmintv.librarys.http.rxjava.MSubscriber;
@@ -39,6 +40,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
     private RecommendFragmentInteractorImpl mInteractor=new RecommendFragmentInteractorImpl();
     private Subscription mSubscription;
     private static boolean hasAa;
+    Handler mhandler=new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,23 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash);
-        start();
+        if (!APP.isInited){
+            mhandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    start();
+                    initData();
+                }
+            },3000);
+        }else {
+            start();
+            initData();
+        }
 
-        initData();
     }
 
     private void initData() {
+
         mSubscription = mInteractor.getStartInfo(new MSubscriber<JSONObject>() {
 
             @Override
@@ -71,7 +84,7 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
                         if (mAppStart!=null){
                             hasAa=true;
                             //去广告页面
-                            Handler mhandler=new Handler();
+
                             mhandler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -116,23 +129,18 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
 
     @Override
     public void onAnimationStart(Animator animation) {
-
     }
 
     @Override
     public void onAnimationEnd(Animator animation) {
-
         if (hasAa)return;
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
         gotoMain();
     }
-
 
     private void gotoMain(){
         String firstrun = "";

@@ -17,6 +17,8 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreCommonAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Subscription;
+
 /**
  * Created by Administrator on 2016/11/21.
  */
@@ -29,6 +31,7 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
     private ColumnFragmentListAdapter mAdapter;
     private ColumnFragmentInteractorImpl mColumnFragmentInteractor;
     private UpDownRvScrollListener.UpdownScroll mUpdownScroll;
+    private Subscription mSubscription;
 
 
     public static ColumnFragment newInstance() {
@@ -57,7 +60,7 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
     @Override
     protected void initData() {
         mColumnFragmentInteractor = new ColumnFragmentInteractorImpl();
-        mColumnFragmentInteractor.loadColumnList(this);
+        mSubscription = mColumnFragmentInteractor.loadColumnList(this);
 
     }
 
@@ -72,7 +75,6 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
     public void getDataSuccess(List<ItemColumn> itemColumns) {
         mAdapter.refreshDatas(itemColumns);
 
-
     }
 
     @Override
@@ -80,6 +82,12 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
 
     }
 
+    @Override
+    public void onDestroy() {
+        if (mSubscription!=null&&mSubscription.isUnsubscribed()){
+            mSubscription.unsubscribe();
+        }
+        super.onDestroy();
 
-
+    }
 }

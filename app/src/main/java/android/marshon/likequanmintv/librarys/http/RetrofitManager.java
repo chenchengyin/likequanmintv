@@ -45,15 +45,14 @@ import retrofit2.Retrofit;
  * @version 1.0 2016/5/26
  */
 public class RetrofitManager {
-    private static final String JOKE_BASE = "http://www.quanmin.tv/";
-//    private static final String JOKE_BASE = "http://120.24.71.47/";
+    public static  String PLAYERBASE = null;
     private final Retrofit mRetrofit;
 
     private String getHost(int hostType) {
         if (hostType==HostType.NETEASE_JOKE) {
-            return JOKE_BASE;
+            return PLAYERBASE;
         }
-        return JOKE_BASE;
+        return PLAYERBASE;
     }
 
     private RecommendAPIService mRecommendAPIService;
@@ -104,7 +103,7 @@ public class RetrofitManager {
     }
 
 
-    private OkHttpClient getOkHttpClient() {
+    public static OkHttpClient getOkHttpClient() {
         if (sOkHttpClient == null) {
             synchronized (RetrofitManager.class) {
                 Cache cache = new Cache(new File(APP.getContext().getCacheDir(), "HttpCache"),
@@ -127,7 +126,7 @@ public class RetrofitManager {
      * 云端响应头拦截器，用来配置缓存策略
      * Dangerous interceptor that rewrites the server's cache-control header.
      */
-    private final Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
+    private static final Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
@@ -154,7 +153,7 @@ public class RetrofitManager {
         }
     };
 
-    private final Interceptor mLoggingInterceptor = new Interceptor() {
+    private static final Interceptor mLoggingInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();

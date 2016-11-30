@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
+
 /**
  * Created by It.Marshon on 2016/11/24 0024 17:55
  */
@@ -28,7 +30,7 @@ public class RecommendFragmentPresenterImpl extends BasePresenterImpl<RecommendF
 
     @Override
     public void getAllCategories() {
-        mInteractor.getAllCategories(new IGetDataDelegate<List<LiveCategory>>(){
+        Subscription subscription = mInteractor.getAllCategories(new IGetDataDelegate<List<LiveCategory>>() {
 
             @Override
             public void getDataSuccess(List<LiveCategory> liveCategories) {
@@ -40,5 +42,6 @@ public class RecommendFragmentPresenterImpl extends BasePresenterImpl<RecommendF
 
             }
         });
+        mSubscriptions.add(subscription);
     }
 }
