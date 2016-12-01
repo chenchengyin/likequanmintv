@@ -1,4 +1,4 @@
-﻿# likequanmintv
+# likequanmintv
 仿全民TV。 
 基于模块规模合理采用MVP、MVC
 优雅的解耦。
@@ -13,18 +13,25 @@
 ![这里写图片描述](http://img.blog.csdn.net/20161201095010979)
 
 ![这里写图片描述](http://img.blog.csdn.net/20161201095024323)
-竖屏
+
+竖屏：
+
 ![这里写图片描述](http://img.blog.csdn.net/20161201095050058)
-横屏
+
+横屏：
+
 ![这里写图片描述](http://img.blog.csdn.net/20161201095059043)
 
-美女直播页
+美女直播：
+
 ![这里写图片描述](http://img.blog.csdn.net/20161201095112355)
 
 ![这里写图片描述](http://img.blog.csdn.net/20161201095121791)
 
 下载链接：
+
 ![这里写图片描述](http://img.blog.csdn.net/20161130214751856)
+
 项目地址：
 https://github.com/a371166028/likequanmintv
 
