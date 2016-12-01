@@ -13,10 +13,8 @@ import android.marshon.likequanmintv.di.module.ActivityModule;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenter;
 import android.marshon.likequanmintv.librarys.mvpbase.BaseView;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -163,33 +161,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
                 t.printStackTrace();
             }
         }
-    }
-
-    private void initToolbar() {
-        final Toolbar toolbar =null ;//(Toolbar) findViewById(R.id.toolbar);
-        if (toolbar!=null)
-        setSupportActionBar(toolbar);
-        final ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-
-//            if (this instanceof ChatListActivity){
-//                actionBar.setHomeAsUpIndicator(R.drawable.icon_home);
-//            }else{
-//                actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-//            }
-
-//            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-            actionBar.setDefaultDisplayHomeAsUpEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-//            TextView title = (TextView) toolbar.getChildAt(0);
-//            title.setText("设置");
-        }
-    }
-    public void setToolBarTitle(String toolBarTitle) {
-        if (getSupportActionBar()!=null)
-            getSupportActionBar().setTitle(toolBarTitle);
     }
 
 

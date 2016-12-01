@@ -34,7 +34,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int layoutId = getLayoutId();
         View inflate = inflater.inflate(layoutId, null);
-        ScrollView scrollView = null;
+        ScrollView scrollView;
         if (canScroll()){
             scrollView = new ScrollView(inflate.getContext());
             scrollView.addView(inflate);
