@@ -186,13 +186,10 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     public void onPlayerStart() {
 //        bgImage.setVisibility(View.GONE);
         bgImage.animate().alpha(0).setDuration(1000).start();
-
     }
 
     @Override
     public void onPlayePause() {
-
-
     }
 
     @Override

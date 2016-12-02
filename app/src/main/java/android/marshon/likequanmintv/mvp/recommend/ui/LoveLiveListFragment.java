@@ -6,7 +6,6 @@ import android.marshon.likequanmintv.bean.PlayBean;
 import android.marshon.likequanmintv.mvp.live.interactor.LiveInteractor;
 import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -34,12 +33,6 @@ public class LoveLiveListFragment extends BaseLiveWraperFragment {
     @Override
     public int getListItemLayout() {
         return R.layout.listitem_love;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        mScreenWidth = ScreenUtils.getScreenWidth(mActivity);
     }
 
     @Override

@@ -8,15 +8,9 @@
 
 部分界面截图：
 
-![这里写图片描述](http://img.blog.csdn.net/20161201094821976)
+![这里写图片描述](http://img.blog.csdn.net/20161201094821976) ![这里写图片描述](http://img.blog.csdn.net/20161201095010979)
 
-![这里写图片描述](http://img.blog.csdn.net/20161201095010979)
-
-![这里写图片描述](http://img.blog.csdn.net/20161201095024323)
-
-竖屏：
-
-![这里写图片描述](http://img.blog.csdn.net/20161201095050058)
+ ![这里写图片描述](http://img.blog.csdn.net/20161201095024323)竖屏：![这里写图片描述](http://img.blog.csdn.net/20161201095050058)
 
 横屏：
 
@@ -24,9 +18,7 @@
 
 美女直播：
 
-![这里写图片描述](http://img.blog.csdn.net/20161201095112355)
-
-![这里写图片描述](http://img.blog.csdn.net/20161201095121791)
+![这里写图片描述](http://img.blog.csdn.net/20161201095112355) ![这里写图片描述](http://img.blog.csdn.net/20161201095121791)
 
 下载链接：
 
@@ -41,9 +33,6 @@ https://github.com/a371166028/likequanmintv
 这个属于个人开发作品。诸位勿传播于非技术人员，拒绝用于商业用途。***勿大面积传播，以免被查水表谢谢合作^_^***
  邮箱：itmarshon@163.com    *qq*:371166028
 
-总结
--
-xiexie ni de guāng gù ！ 喜欢的朋友轻轻右上角赏个star，您的鼓励会给我持续更新的动力。
 
 
 

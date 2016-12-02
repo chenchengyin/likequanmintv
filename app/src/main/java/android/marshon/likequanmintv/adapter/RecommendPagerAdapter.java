@@ -29,9 +29,6 @@ public class RecommendPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-//        if (getPageTitle(position).equals("颜值控")){
-//            return LoveLiveListFragment.newInstance();
-//        }
         if (position==0){
             return RecommendRecommendFragment.newInstance();
         }

@@ -28,7 +28,6 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     protected void convertItem(ViewHolder holder, final PlayBean playBean, int position) {
         holder.setImageUrl(R.id.thumnails,playBean.thumb,new GlideRoundTransform(mActivity,5));
@@ -54,14 +53,12 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
 
     @Override
     protected void initData() {
-
         Bundle arguments = getArguments();
         mUrl = arguments.getString("url", "");
         mTag = arguments.getString("tag", "");
         mLiveInteractor = new LiveInteractor();
         mLiveInteractor.loadPlayList(this,mUrl);
     }
-
     @Override
     public void getDataError(String errmsg) {
         showToast("获取"+mTag+"数据失败");
