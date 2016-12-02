@@ -21,8 +21,8 @@
 ![这里写图片描述](http://img.blog.csdn.net/20161201095112355) ![这里写图片描述](http://img.blog.csdn.net/20161201095121791)
 
 下载链接：
+![](http://i.imgur.com/ljx14Sy.png)
 
-![这里写图片描述](http://img.blog.csdn.net/20161130214751856)
 
 项目地址：
 https://github.com/a371166028/likequanmintv
