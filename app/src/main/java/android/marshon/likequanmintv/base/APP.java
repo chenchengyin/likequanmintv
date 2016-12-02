@@ -13,6 +13,7 @@ import android.marshon.likequanmintv.librarys.http.RetrofitManager;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.start.Home;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
 
 
 import com.squareup.leakcanary.LeakCanary;
@@ -64,6 +65,12 @@ public class APP extends Application {
     }
 
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+
+    }
 
     public static Context getContext() {
         return mContext;
