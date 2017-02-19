@@ -5,6 +5,7 @@ import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.marshon.likequanmintv.librarys.utils.screen.ScreenUtils;
 import android.marshon.likequanmintv.listener.UpDownRvScrollListener;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -42,12 +43,20 @@ public class MainActivity extends BaseActivity implements UpDownRvScrollListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Debug.startMethodTracing("main");
         setContentView(R.layout.act_main);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTablayout =(CommonTabLayout)findViewById(R.id.tablayout);
         iniTab();
         initData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Debug.stopMethodTracing();
     }
 
     private void initData() {

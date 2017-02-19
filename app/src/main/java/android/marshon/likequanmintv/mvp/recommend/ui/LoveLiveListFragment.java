@@ -8,6 +8,7 @@ import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
 import android.os.Bundle;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
 
@@ -49,6 +50,18 @@ public class LoveLiveListFragment extends BaseLiveWraperFragment {
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Glide.with(this).resumeRequests();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Glide.with(this).pauseRequests();
     }
 
     @Override

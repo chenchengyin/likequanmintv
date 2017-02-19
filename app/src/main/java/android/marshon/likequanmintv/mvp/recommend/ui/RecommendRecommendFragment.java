@@ -151,7 +151,6 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
                     recommendCategoryViewHolder.setData(liveCategory);
                     convertView.setTag(recommendCategoryViewHolder);
                 }else {
-                    //不是头部view
                     recommendCategoryViewHolder= (RecommendCategoryViewHolder) convertView.getTag();
                     LiveCategory liveCategory = liveCategoryList.get(position - 1);
                     recommendCategoryViewHolder.setData(liveCategory);

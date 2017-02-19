@@ -226,7 +226,10 @@ public class LivePlayerHolder {
         }
 
         try {
-            mMediaPlayer = new PLMediaPlayer(mActivity, mAVOptions);
+
+            if (mMediaPlayer==null){
+                mMediaPlayer = new PLMediaPlayer(mActivity, mAVOptions);
+            }
 
             mMediaPlayer.setOnPreparedListener(mOnPreparedListener);
             mMediaPlayer.setOnVideoSizeChangedListener(mOnVideoSizeChangedListener);

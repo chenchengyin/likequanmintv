@@ -8,6 +8,7 @@ import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
 import android.os.Bundle;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.glide.glide.GlideCircleTransform;
 import com.zhy.adapter.recyclerview.glide.glide.GlideRoundTransform;
@@ -62,5 +63,18 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
     @Override
     public void getDataError(String errmsg) {
         showToast("获取"+mTag+"数据失败");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Glide.with(this).resumeRequests();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Glide.with(this).pauseRequests();
     }
 }

@@ -45,13 +45,13 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     public ActivityComponent mActivityComponent;
 
 
-    @Override
-    public void setContentView(int layoutResID) {
-        View rootView = View.inflate(this, layoutResID, null);
-        super.setContentView(rootView);
-
-
-    }
+//    @Override
+//    public void setContentView(int layoutResID) {
+//        View rootView = View.inflate(this, layoutResID, null);
+//        super.setContentView(rootView);
+//
+//
+//    }
 
     public ActivityComponent getActivityComponent() {
         return mActivityComponent;

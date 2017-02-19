@@ -13,6 +13,7 @@ import android.marshon.likequanmintv.mvp.live.LivePlayerPresenterImpl;
 import android.marshon.likequanmintv.view.mediacontroll.HorMediaControllView;
 import android.marshon.likequanmintv.view.mediacontroll.VerticalMediaControllView;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -53,6 +54,11 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     private int mCodec;
     private String mPlayerPath;
     private ImageView bgImage;
+
+    public CommonLiveUI(){
+        Debug.startMethodTracing("CommonLiveUI");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +127,8 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
         verticalControll.onDestroy();
         horizontalControll.onDestroy();
         super.onDestroy();
+
+        Debug.stopMethodTracing();
 
 
     }
@@ -196,7 +204,9 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     public void onRoomData(JSONObject roomJson) {
         mRoomDataController = new RoomDataController(roomJson);
         mPlayerPath = mRoomDataController.getPlayerPath(0);
-        playerHolder = new LivePlayerHolder(this,mSurfaceView,mCodec,mPlayerPath);
+        if (playerHolder==null){
+            playerHolder = new LivePlayerHolder(this,mSurfaceView,mCodec,mPlayerPath);
+        }
         playerHolder.startPlayer();
     }
 
