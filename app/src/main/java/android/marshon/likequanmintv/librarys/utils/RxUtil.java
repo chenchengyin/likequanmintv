@@ -14,6 +14,7 @@ public class RxUtil {
     public static void cancelSubscriptions(LinkedList<Subscription> subscriptions) {
         Iterator<Subscription> iterator =
                 subscriptions.iterator();
+
         while (iterator.hasNext()){
             Subscription subscription = iterator.next();
             if (subscription != null && !subscription.isUnsubscribed()) {

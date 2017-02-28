@@ -8,8 +8,9 @@ import android.marshon.likequanmintv.listener.UpDownRvScrollListener;
 import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenter;
 import android.marshon.likequanmintv.mvp.live.LiveFragmentPresenterImpl;
 import android.marshon.likequanmintv.mvp.live.LiveFragmentView;
+import android.marshon.likequanmintv.view.lazyvp.LazyFragmentPagerAdapter;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,7 +27,7 @@ import javax.inject.Inject;
  */
 
 public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> implements
-        LiveFragmentView, LoadMoreCommonAdapter.OnLoadMoreListener {
+        LiveFragmentView, LoadMoreCommonAdapter.OnLoadMoreListener ,LazyFragmentPagerAdapter.Laziable{
 
 
     private RecyclerView mRv;
@@ -71,7 +72,13 @@ public class LiveFragment extends BaseMvpFragment<LiveFragmentPresenter> impleme
     }
 
     @Override
-    protected void initData() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void initData() {
         //loadata
         liveFragmentPresenter.loadPlayList();
     }

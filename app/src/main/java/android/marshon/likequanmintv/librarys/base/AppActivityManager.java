@@ -2,6 +2,7 @@ package android.marshon.likequanmintv.librarys.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.marshon.likequanmintv.librarys.utils.LogUtil;
 
 import java.util.Stack;
 
@@ -46,8 +47,7 @@ public class AppActivityManager {
      * 获取栈顶Activity
      */
     public Activity getTopActivity() {
-        Activity activity = mActivityStack.lastElement();
-        return activity;
+        return mActivityStack.lastElement();
     }
 
     /**
@@ -61,7 +61,7 @@ public class AppActivityManager {
     /**
      * 结束指定的Activity
      */
-    public void killActivity(Activity activity) {
+    private void killActivity(Activity activity) {
         if (activity != null) {
             mActivityStack.remove(activity);
             activity.finish();
@@ -82,7 +82,7 @@ public class AppActivityManager {
     /**
      * 结束所有Activity
      */
-    public void killAllActivity() {
+    private void killAllActivity() {
         for (int i = 0, size = mActivityStack.size(); i < size; i++) {
             if (null != mActivityStack.get(i)) {
                 mActivityStack.get(i).finish();
@@ -103,7 +103,7 @@ public class AppActivityManager {
             activityMgr.restartPackage(context.getPackageName());
             System.exit(0);
         } catch (Exception e) {
-
+            LogUtil.e(""+e);
         }
     }
 }

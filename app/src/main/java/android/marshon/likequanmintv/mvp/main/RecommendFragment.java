@@ -7,7 +7,10 @@ import android.marshon.likequanmintv.librarys.mvpbase.BaseMvpFragment;
 import android.marshon.likequanmintv.mvp.recommend.RecommendFragmentPresenter;
 import android.marshon.likequanmintv.mvp.recommend.RecommendFragmentPresenterImpl;
 import android.marshon.likequanmintv.mvp.recommend.RecommendFragmentView;
+import android.marshon.likequanmintv.view.lazyvp.LazyFragmentPagerAdapter;
+import android.marshon.likequanmintv.view.lazyvp.LazyViewPager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,15 +25,15 @@ import javax.inject.Inject;
  * Created by Administrator on 2016/11/21.
  */
 
-public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresenter> implements RecommendFragmentView{
+public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresenter> implements RecommendFragmentView,LazyFragmentPagerAdapter.Laziable{
 
 
     private ImageView logo;
     private SlidingTabLayout mTablayout;
     private ImageView searchView;
     private ImageView tabManager;
-    private ViewPager mViewPager;
-
+    private LazyViewPager mViewPager;
+    private RecommendPagerAdapter recommendPagerAdapter;
 
 
     public static RecommendFragment newInstance() {
@@ -59,7 +62,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
         searchView = (ImageView) findViewById(R.id.searchView);
         mTablayout = (SlidingTabLayout) findViewById(R.id.mTablayout);
         tabManager = (ImageView) findViewById(R.id.tabManager);
-        mViewPager = (ViewPager) findViewById(R.id.mViewPager);
+        mViewPager = (LazyViewPager) findViewById(R.id.mViewPager);
 
 //        mViewPager.setAdapter(new Frag);
 //        mTablayout.setViewPager(mViewPager);
@@ -68,15 +71,49 @@ public class RecommendFragment extends BaseMvpFragment<RecommendFragmentPresente
     }
 
     @Override
-    protected void initData() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void initData() {
         mRecommendFragmentPresenter.getAllCategories();
     }
 
     @Override
     public void onGetAllCategories(List<LiveCategory> liveCategoryList) {
-        mViewPager.setAdapter(new RecommendPagerAdapter(getChildFragmentManager(),liveCategoryList));
+        recommendPagerAdapter = new RecommendPagerAdapter(getChildFragmentManager(), liveCategoryList);
+        mViewPager.setAdapter(recommendPagerAdapter);
         mTablayout.setViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                recommendPagerAdapter.fragmentSparseArray.get(position).initData();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+
+            }
+        });
+//        mViewPager.setCurrentItem(0);
+//        recommendPagerAdapter.fragmentSparseArray.get(0).initData();
+
     }
 
 
+    @Override
+    public void stopNetWork() {
+        super.stopNetWork();
+        if (recommendPagerAdapter!=null){
+            recommendPagerAdapter.stopNetWork();
+        }
+    }
 }

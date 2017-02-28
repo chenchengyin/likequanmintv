@@ -1,6 +1,8 @@
 package android.marshon.likequanmintv.librarys.utils.date;
 
 
+import android.marshon.likequanmintv.librarys.utils.LogUtil;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DateUtil {
@@ -27,7 +30,7 @@ public class DateUtil {
         if (dateFormat == null) {
             synchronized (object) {
                 if (dateFormat == null) {
-                    dateFormat = new SimpleDateFormat(pattern);
+                    dateFormat = new SimpleDateFormat(pattern, Locale.CHINA);
                     dateFormat.setLenient(false);
                     threadLocal.set(dateFormat);
                 }
@@ -180,6 +183,7 @@ public class DateUtil {
                         dateTmp = null;
                     }
                 } catch (Exception e) {
+                    LogUtil.e(""+e);
                 }
             }
             if (dateTmp != null) {
@@ -216,6 +220,8 @@ public class DateUtil {
             try {
                 myDate = getDateFormat(pattern).parse(date);
             } catch (Exception e) {
+
+                LogUtil.e(""+e);
             }
         }
         return myDate;
@@ -247,6 +253,7 @@ public class DateUtil {
             try {
                 dateString = getDateFormat(pattern).format(date);
             } catch (Exception e) {
+                LogUtil.e(""+e);
             }
         }
         return dateString;

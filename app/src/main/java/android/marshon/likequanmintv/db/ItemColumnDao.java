@@ -15,7 +15,7 @@ import android.marshon.likequanmintv.bean.ItemColumn;
 /** 
  * DAO for table "ITEM_COLUMN".
 */
-public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
+public class ItemColumnDao extends AbstractDao<ItemColumn, Long> {
 
     public static final String TABLENAME = "ITEM_COLUMN";
 
@@ -25,7 +25,7 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
      */
     public static class Properties {
         public final static Property First_letter = new Property(0, String.class, "first_letter", false, "FIRST_LETTER");
-        public final static Property Id = new Property(1, int.class, "id", true, "ID");
+        public final static Property Id = new Property(1, Long.class, "id", true, "_id");
         public final static Property Image = new Property(2, String.class, "image", false, "IMAGE");
         public final static Property Name = new Property(3, String.class, "name", false, "NAME");
         public final static Property Priority = new Property(4, int.class, "priority", false, "PRIORITY");
@@ -50,7 +50,7 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"ITEM_COLUMN\" (" + //
                 "\"FIRST_LETTER\" TEXT," + // 0: first_letter
-                "\"ID\" INTEGER PRIMARY KEY NOT NULL ," + // 1: id
+                "\"_id\" INTEGER PRIMARY KEY ," + // 1: id
                 "\"IMAGE\" TEXT," + // 2: image
                 "\"NAME\" TEXT," + // 3: name
                 "\"PRIORITY\" INTEGER NOT NULL ," + // 4: priority
@@ -75,7 +75,11 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
         if (first_letter != null) {
             stmt.bindString(1, first_letter);
         }
-        stmt.bindLong(2, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(2, id);
+        }
  
         String image = entity.getImage();
         if (image != null) {
@@ -110,7 +114,11 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
         if (first_letter != null) {
             stmt.bindString(1, first_letter);
         }
-        stmt.bindLong(2, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(2, id);
+        }
  
         String image = entity.getImage();
         if (image != null) {
@@ -138,15 +146,15 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
     }
 
     @Override
-    public Integer readKey(Cursor cursor, int offset) {
-        return cursor.getInt(offset + 1);
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1);
     }    
 
     @Override
     public ItemColumn readEntity(Cursor cursor, int offset) {
         ItemColumn entity = new ItemColumn( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // first_letter
-            cursor.getInt(offset + 1), // id
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // id
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // image
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // name
             cursor.getInt(offset + 4), // priority
@@ -162,7 +170,7 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
     @Override
     public void readEntity(Cursor cursor, ItemColumn entity, int offset) {
         entity.setFirst_letter(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setId(cursor.getInt(offset + 1));
+        entity.setId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setImage(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setPriority(cursor.getInt(offset + 4));
@@ -174,12 +182,13 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
      }
     
     @Override
-    protected final Integer updateKeyAfterInsert(ItemColumn entity, long rowId) {
-        return entity.getId();
+    protected final Long updateKeyAfterInsert(ItemColumn entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Integer getKey(ItemColumn entity) {
+    public Long getKey(ItemColumn entity) {
         if(entity != null) {
             return entity.getId();
         } else {
@@ -189,7 +198,7 @@ public class ItemColumnDao extends AbstractDao<ItemColumn, Integer> {
 
     @Override
     public boolean hasKey(ItemColumn entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getId() != null;
     }
 
     @Override

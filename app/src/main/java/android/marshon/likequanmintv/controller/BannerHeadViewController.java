@@ -57,7 +57,8 @@ public class BannerHeadViewController {
 
                 if (item.ext.type.equals("play")){
                     PlayBean playBean = item.link_object;
-                    if (playBean.category_slug.equals("love")){
+                    LogUtil.e(playBean.toString());
+                    if (playBean.category_slug!=null&&playBean.category_slug.equals("love")){
                         Intent intent =new Intent(mContext.getActivity(), VerFullLiveUI.class);
                         intent.putExtra("playBean",playBean);
                         BaseActivity activity= (BaseActivity) mContext.getActivity();

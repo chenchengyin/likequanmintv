@@ -11,6 +11,6 @@ public interface BasePresenter<T extends BaseView> {
 
     void attachView(@NonNull T t);
 //    void onResume();
-//    void onPause();
+    void onPause();
     void onDestroy();
 }

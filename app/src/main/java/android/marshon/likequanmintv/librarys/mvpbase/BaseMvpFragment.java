@@ -2,19 +2,17 @@ package android.marshon.likequanmintv.librarys.mvpbase;
 
 import android.app.Activity;
 import android.marshon.likequanmintv.base.APP;
+import android.marshon.likequanmintv.base.BaseFragment;
 import android.marshon.likequanmintv.di.component.DaggerFragmentComponent;
 import android.marshon.likequanmintv.di.component.FragmentComponent;
 import android.marshon.likequanmintv.di.module.FragmentModule;
 import android.marshon.likequanmintv.librarys.base.BaseActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -22,7 +20,7 @@ import org.greenrobot.eventbus.EventBus;
  * 邮箱：itmarshon@163.com
  * 功能描述：slidingtab模板
  */
-public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseView {
     protected View rootView;
     protected BaseActivity mActivity;
 
@@ -32,7 +30,7 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
     protected abstract T  initInjector();
     protected abstract int getLayoutId();
     protected abstract void initView(View rootView);
-    protected abstract void initData();
+    public abstract void initData();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,29 +54,50 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends Fragment 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int layoutId = getLayoutId();
-        View inflate = inflater.inflate(layoutId, null);
-        rootView = inflate;
+        rootView = inflater.inflate(layoutId, null);
         initView(rootView);
         return rootView;
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initData();
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+
+        }
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     protected View findViewById(int resId){
         return rootView.findViewById(resId);
     }
 
     @Override
-    public void onDestroy() {
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    public void stopNetWork() {
+        super.stopNetWork();
         if (mPresenter != null) {
             mPresenter.onDestroy();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+
         super.onDestroy();
     }
 

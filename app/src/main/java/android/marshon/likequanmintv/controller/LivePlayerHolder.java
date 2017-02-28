@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class LivePlayerHolder {
 
-    private static final String TAG = LivePlayerHolder.class.getSimpleName();;
+    private static final String TAG = LivePlayerHolder.class.getSimpleName();
     private  Integer codec;
     private BaseLiveUI mActivity;
     private AVOptions mAVOptions;
@@ -227,10 +227,7 @@ public class LivePlayerHolder {
 
         try {
 
-            if (mMediaPlayer==null){
-                mMediaPlayer = new PLMediaPlayer(mActivity, mAVOptions);
-            }
-
+            mMediaPlayer = new PLMediaPlayer(mActivity, mAVOptions);
             mMediaPlayer.setOnPreparedListener(mOnPreparedListener);
             mMediaPlayer.setOnVideoSizeChangedListener(mOnVideoSizeChangedListener);
             mMediaPlayer.setOnCompletionListener(mOnCompletionListener);

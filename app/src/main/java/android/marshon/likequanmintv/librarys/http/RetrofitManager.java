@@ -73,7 +73,6 @@ public class RetrofitManager {
         return mRetrofit.create(ProfileAPIService.class);
     }
 
-
     /**
      * 设缓存有效期为两天
      */
@@ -115,7 +114,8 @@ public class RetrofitManager {
                             .writeTimeout(10, TimeUnit.SECONDS)
                             .addInterceptor(mRewriteCacheControlInterceptor)
                             .addNetworkInterceptor(mRewriteCacheControlInterceptor)
-                            .addInterceptor(mLoggingInterceptor).build();
+                            .addInterceptor(mLoggingInterceptor)
+                            .build();
                 }
             }
         }
@@ -129,6 +129,7 @@ public class RetrofitManager {
     private static final Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
+
             Request request = chain.request();
             if (!NetUtil.isNetWorkConnectted()) {
                 request = request.newBuilder()
@@ -167,17 +168,9 @@ public class RetrofitManager {
         }
     };
 
-    /**
-     * @param  ：1 （新闻，视频），GANK_GIRL_PHOTO：2（图片新闻）;
-     *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
-     */
     public static RetrofitManager getInstance() {
         return getInstance(HostType.NETEASE_JOKE);
     }
-    /**
-     * @param hostType NETEASE_NEWS_VIDEO：1 （新闻，视频），GANK_GIRL_PHOTO：2（图片新闻）;
-     *                 EWS_DETAIL_HTML_PHOTO:3新闻详情html图片)
-     */
     public static RetrofitManager getInstance(int hostType) {
         RetrofitManager retrofitManager = sRetrofitManager.get(hostType);
         if (retrofitManager == null) {

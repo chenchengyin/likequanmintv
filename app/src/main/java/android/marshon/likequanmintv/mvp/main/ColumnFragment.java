@@ -7,7 +7,9 @@ import android.marshon.likequanmintv.bean.ItemColumn;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.listener.UpDownRvScrollListener;
 import android.marshon.likequanmintv.mvp.column.interactor.ColumnFragmentInteractorImpl;
+import android.marshon.likequanmintv.view.lazyvp.LazyFragmentPagerAdapter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,7 +25,7 @@ import rx.Subscription;
  * Created by Administrator on 2016/11/21.
  */
 
-public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapter.OnLoadMoreListener, IGetDataDelegate<List<ItemColumn>>{
+public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapter.OnLoadMoreListener, IGetDataDelegate<List<ItemColumn>>,LazyFragmentPagerAdapter.Laziable{
 
 
     private RecyclerView mRv;
@@ -57,11 +59,19 @@ public class ColumnFragment extends BaseFragment implements LoadMoreCommonAdapte
         mRv.setAdapter(mAdapter);
     }
 
-    @Override
-    protected void initData() {
-        mColumnFragmentInteractor = new ColumnFragmentInteractorImpl();
-        mSubscription = mColumnFragmentInteractor.loadColumnList(this);
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void initData() {
+        if (mAdapter.getDatas()==null||mAdapter.getDatas().isEmpty()){
+            mColumnFragmentInteractor = new ColumnFragmentInteractorImpl();
+            mSubscription = mColumnFragmentInteractor.loadColumnList(this);
+        }
     }
 
 

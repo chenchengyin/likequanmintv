@@ -33,14 +33,6 @@ public class MSubscriber<T> extends Subscriber<T> {
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        if (!hasNetWork()){
-            //无网络
-        }
-    }
-
-    @Override
     public void onCompleted() {
     }
 

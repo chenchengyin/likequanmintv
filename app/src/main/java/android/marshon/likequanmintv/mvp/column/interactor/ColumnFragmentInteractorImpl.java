@@ -7,15 +7,14 @@ import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.http.rxjava.MSubscriber;
 import android.marshon.likequanmintv.librarys.http.rxjava.TransformUtils;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
-import android.marshon.likequanmintv.librarys.utils.SPUtils;
-import android.os.SystemClock;
+import android.marshon.likequanmintv.thread.ThreadManager;
+import android.marshon.likequanmintv.utils.OrmKeys;
 
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 
 import java.lang.reflect.Type;
-import java.util.Date;
 import java.util.List;
 
 import rx.Observable;
@@ -33,29 +32,35 @@ public class ColumnFragmentInteractorImpl {
     public ColumnFragmentInteractorImpl(){}
 
     public Subscription loadColumnList(final IGetDataDelegate<List<ItemColumn>> delegate){
-        long columnfragment_load = SPUtils.getInstance().getLong("columnfragment_load", 0);
-        long currentThreadTimeMillis = SystemClock.currentThreadTimeMillis();
-        if (currentThreadTimeMillis-columnfragment_load<=1000*60*5){
-           return Observable.create(new Observable.OnSubscribe<List<ItemColumn>>() {
+
+        boolean needUpdate = OrmKeys.isNeedUpdate(OrmKeys.columnKey);
+        if (needUpdate){
+            return loadColumnListFromNet(delegate);
+        }else {
+            return Observable.create(new Observable.OnSubscribe<List<ItemColumn>>() {
                 @Override
                 public void call(Subscriber<? super List<ItemColumn>> subscriber) {
                     List<ItemColumn> itemColumns = APP.getWriteableDaoSession().getItemColumnDao().loadAll();
-                    subscriber.onNext(itemColumns);
+                    if (itemColumns!=null&&!itemColumns.isEmpty()){
+                        subscriber.onNext(itemColumns);
+
+                        LogUtil.d("拿本地数据");
+                    }else {
+                        loadColumnListFromNet(delegate);
+                    }
+
                 }
             })
-            .compose(TransformUtils.<List<ItemColumn>>defaultSchedulers())
-             .subscribe(new Action1<List<ItemColumn>>() {
-                 @Override
-                 public void call(List<ItemColumn> itemColumns) {
-                     delegate.getDataSuccess(itemColumns);
-                     loadColumnListFromNet(delegate);
+                    .compose(TransformUtils.<List<ItemColumn>>defaultSchedulers())
+                    .subscribe(new Action1<List<ItemColumn>>() {
+                        @Override
+                        public void call(List<ItemColumn> itemColumns) {
+                            delegate.getDataSuccess(itemColumns);
+        //                     loadColumnListFromNet(delegate);
 
-                 }
-             });
-        }else {
-            return loadColumnListFromNet(delegate);
+                        }
+                    });
         }
-
     }
 
 
@@ -68,12 +73,18 @@ public class ColumnFragmentInteractorImpl {
                     LogUtil.e("jsonObject" + jsonObject.toString());
                     Type token = new TypeToken<List<ItemColumn>>() {
                     }.getType();
-                    List<ItemColumn> columnList = mGson.fromJson(jsonObject.toString(), token);
+                    final List<ItemColumn> columnList = mGson.fromJson(jsonObject.toString(), token);
                     delegate.getDataSuccess(columnList);
-                    APP.getWriteableDaoSession().getItemColumnDao().insertOrReplaceInTx(columnList);
+                    ThreadManager.getLongPool().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            APP.getWriteableDaoSession().getItemColumnDao().insertOrReplaceInTx(columnList);
+                        }
+                    });
+                    OrmKeys.updateTime(OrmKeys.columnKey);
 
                 } catch (Exception e) {
-                    LogUtil.e("数据有误" + jsonObject);
+                    LogUtil.e("数据有误" + e);
                 }
             }
         };

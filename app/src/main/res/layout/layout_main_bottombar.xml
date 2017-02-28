@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:id="@+id/bottomBar"
+    android:layout_alignParentBottom="true"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_recommend"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/selector_btn_tabbar_home"
+            android:gravity="bottom|center_horizontal"
+            android:text="推荐"
+            android:paddingTop="10dp"
+            android:drawablePadding="1dp"
+            android:textColor="@color/btn_press_color"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignEnd="@+id/tv_recommend"
+            android:layout_alignRight="@+id/tv_recommend"
+            android:layout_alignTop="@+id/tv_recommend"
+            android:visibility="gone" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_column"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_column"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawablePadding="-5dp"
+            android:paddingTop="10dp"
+            android:drawableTop="@drawable/selector_btn_tabbar_lanmu"
+            android:gravity="bottom|center_horizontal"
+            android:text="栏目"
+            android:textColor="@color/btn_press_color"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_live"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_live"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawablePadding="-5dp"
+            android:drawableTop="@drawable/selector_btn_tabbar_zhibo"
+            android:gravity="bottom|center_horizontal"
+            android:text="直播"
+            android:paddingTop="10dp"
+            android:textColor="@color/btn_press_color"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_personal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_personal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawablePadding="-5dp"
+            android:drawableTop="@drawable/selector_btn_tabbar_wode"
+            android:gravity="bottom|center_horizontal"
+            android:text="我的"
+            android:paddingTop="10dp"
+            android:textColor="@color/btn_press_color"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

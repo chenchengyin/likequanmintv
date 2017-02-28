@@ -315,6 +315,6 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
     }
 
     protected interface OnScrollViewChangedListener {
-        public void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop);
+        void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop);
     }
 }

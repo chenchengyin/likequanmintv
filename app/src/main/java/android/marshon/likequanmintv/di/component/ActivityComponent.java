@@ -23,7 +23,6 @@ import android.marshon.likequanmintv.di.scope.ContextLife;
 import android.marshon.likequanmintv.di.scope.PerActivity;
 import android.marshon.likequanmintv.mvp.live.ui.CommonLiveUI;
 import android.marshon.likequanmintv.mvp.live.ui.VerFullLiveUI;
-import android.marshon.likequanmintv.mvp.main.MainActivity;
 
 
 import dagger.Component;

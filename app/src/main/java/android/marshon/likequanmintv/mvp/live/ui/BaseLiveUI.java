@@ -7,7 +7,6 @@ import android.marshon.likequanmintv.mvp.live.LivePlayerView;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 /**

@@ -27,7 +27,7 @@ android {
         }
     }
     greendao {
-        schemaVersion 1  //数据库版本号
+        schemaVersion 5  //数据库版本号
 
         daoPackage 'android.marshon.likequanmintv.db'
         targetGenDir 'src/main/java'

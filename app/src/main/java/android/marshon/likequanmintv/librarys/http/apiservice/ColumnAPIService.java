@@ -4,9 +4,7 @@ package android.marshon.likequanmintv.librarys.http.apiservice;
 import org.json.JSONArray;
 
 import retrofit2.http.GET;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**

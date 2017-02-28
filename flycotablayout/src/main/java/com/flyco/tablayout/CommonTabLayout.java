@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -789,7 +790,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
 
     // show MsgTipView
     private Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private SparseArray<Boolean> mInitSetMap = new SparseArray<>();
+    private SparseArray<Boolean> mInitSetMap = new SparseArray<Boolean>();
 
     /**
      * 显示未读消息

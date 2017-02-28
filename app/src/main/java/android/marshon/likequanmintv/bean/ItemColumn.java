@@ -32,7 +32,7 @@ public class ItemColumn implements Serializable{
 
     public String first_letter;
     @Id
-    public int id;
+    public Long id;
     public String image;
     public String name;
     public int priority;
@@ -41,8 +41,8 @@ public class ItemColumn implements Serializable{
     public String slug;
     public int status;
     public String thumb;
-    @Generated(hash = 2125681438)
-    public ItemColumn(String first_letter, int id, String image, String name,
+    @Generated(hash = 1838605758)
+    public ItemColumn(String first_letter, Long id, String image, String name,
             int priority, int prompt, int screen, String slug, int status,
             String thumb) {
         this.first_letter = first_letter;
@@ -65,10 +65,10 @@ public class ItemColumn implements Serializable{
     public void setFirst_letter(String first_letter) {
         this.first_letter = first_letter;
     }
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getImage() {

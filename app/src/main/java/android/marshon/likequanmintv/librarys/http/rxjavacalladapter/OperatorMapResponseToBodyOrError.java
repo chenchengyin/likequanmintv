@@ -16,7 +16,6 @@
 package android.marshon.likequanmintv.librarys.http.rxjavacalladapter;
 
 import retrofit2.Response;
-import retrofit2.adapter.rxjava.*;
 import rx.Observable;
 import rx.Observable.Operator;
 import rx.Subscriber;

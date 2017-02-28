@@ -3,7 +3,6 @@ package android.marshon.likequanmintv.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
-import android.view.ViewGroup;
 
 /**
  * Created by ITMarshon.Chen on 2016/11/27.

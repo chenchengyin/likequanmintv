@@ -96,7 +96,6 @@ public class NetUtil {
             }else{
                 if (callback!=null)
                     callback.strongNetWork();
-                return;
             }
 
 
@@ -113,15 +112,16 @@ public class NetUtil {
                 return true;
             }else{
                 NetworkInfo[] allNetworkInfo = connectivity.getAllNetworkInfo();
-                boolean can=true;
-                for (NetworkInfo networkInfo:allNetworkInfo){
-                    if (!networkInfo.isAvailable()){
-                        can=false;
-                        break;
+                if (allNetworkInfo != null) {
+                    int length = allNetworkInfo.length;
+                    for (int i = 0; i < length; i++) {
+                        // 判断获得的网络状态是否是处于连接状态
+                        if (allNetworkInfo[i].getState() == NetworkInfo.State.CONNECTED) {
+                            return true;
+                        }
                     }
-
                 }
-                return can;
+                return false;
 
             }
         }

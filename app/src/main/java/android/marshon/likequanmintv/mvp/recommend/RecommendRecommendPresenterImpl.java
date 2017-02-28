@@ -2,7 +2,6 @@ package android.marshon.likequanmintv.mvp.recommend;
 
 import android.marshon.likequanmintv.bean.Banner;
 import android.marshon.likequanmintv.bean.LiveCategory;
-import android.marshon.likequanmintv.event.BannerEvent;
 import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.http.rxjava.MSubscriber;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenterImpl;
@@ -11,7 +10,6 @@ import android.marshon.likequanmintv.mvp.recommend.interactor.RecommendFragmentI
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

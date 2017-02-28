@@ -148,6 +148,8 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
             //landscape
         }
 
+
+
     }
     @Override
     public void setRequestedOrientation(int requestedOrientation) {
@@ -204,10 +206,10 @@ public class CommonLiveUI extends BaseLiveUI implements VerticalMediaControllVie
     public void onRoomData(JSONObject roomJson) {
         mRoomDataController = new RoomDataController(roomJson);
         mPlayerPath = mRoomDataController.getPlayerPath(0);
-        if (playerHolder==null){
+        if (playerHolder==null&&mPlayerPath!=null){
             playerHolder = new LivePlayerHolder(this,mSurfaceView,mCodec,mPlayerPath);
+            playerHolder.startPlayer();
         }
-        playerHolder.startPlayer();
     }
 
     @Override

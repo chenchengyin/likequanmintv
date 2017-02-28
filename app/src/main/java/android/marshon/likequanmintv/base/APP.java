@@ -9,20 +9,13 @@ import android.marshon.likequanmintv.db.DaoSession;
 import android.marshon.likequanmintv.di.component.ApplicationComponent;
 import android.marshon.likequanmintv.di.component.DaggerApplicationComponent;
 import android.marshon.likequanmintv.di.module.ApplicationModule;
-import android.marshon.likequanmintv.librarys.http.RetrofitManager;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.start.Home;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
-
 import com.squareup.leakcanary.LeakCanary;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
 
 /**
  * Created by Marshon.Chen on 2016/8/10.
@@ -33,7 +26,7 @@ public class APP extends Application {
     private static Handler mHandler;
     private static Context mContext;
 
-    public static final String DB_NAME= "history3-db";
+    private static final String DB_NAME= "history3-db";
     public static boolean isInited;
     private ApplicationComponent mApplicationComponent;
 

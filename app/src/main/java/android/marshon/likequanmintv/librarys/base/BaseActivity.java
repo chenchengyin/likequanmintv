@@ -37,12 +37,12 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     protected BasePresenter mBasePresent=null;
 
     //资源文件
-    public Resources mResources;
+    private Resources mResources;
     //布局文件加载器
-    public LayoutInflater mLayoutInflater;
+    private LayoutInflater mLayoutInflater;
 
 
-    public ActivityComponent mActivityComponent;
+    protected ActivityComponent mActivityComponent;
 
 
 //    @Override
@@ -108,14 +108,12 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         overridePendingTransition(R.anim.anim_slide_in_left,R.anim.anim_slide_out_right);
     }
 
+
     @Override
     protected void onDestroy() {
         AppActivityManager.getInstance().removeActivity(this);
         super.onDestroy();
-        if (mBasePresent!=null){
-            mBasePresent.onDestroy();
-            mBasePresent=null;
-        }
+
 //        APP.getInstance().getLeakWather().watch(this);
         fixInputMethodManagerLeak(this);
     }
@@ -123,7 +121,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     /**
      * 解决InputMethodManager内存泄露现象
      */
-    public static void fixInputMethodManagerLeak(Context destContext) {
+    private static void fixInputMethodManagerLeak(Context destContext) {
         if (destContext == null) {
             return;
         }
@@ -189,6 +187,8 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         super.onPause();
 //        if (mBasePresent!=null)mBasePresent.onPause();
 //        JPushInterface.onPause(this);
+
+
     }
 
     @Override
@@ -198,8 +198,12 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
     @Override
     protected void onStop() {
-
         super.onStop();
+        if (mBasePresent!=null){
+            mBasePresent.onPause();
+            mBasePresent=null;
+        }
+
     }
 
 

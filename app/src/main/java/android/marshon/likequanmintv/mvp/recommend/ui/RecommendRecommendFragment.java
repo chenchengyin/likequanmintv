@@ -13,6 +13,7 @@ import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenter;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendPresenterImpl;
 import android.marshon.likequanmintv.mvp.recommend.RecommendRecommendView;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -81,8 +82,15 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
         bannerHeadViewHolder.setBannerData(bannerList);
 
     }
+
     @Override
-    protected void initData() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void initData() {
         mPresenter.getRecommendCategories();
         mPresenter.getAppStartInfo();
     }
@@ -207,8 +215,8 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
                             public void onClick(View v) {
                                 Intent intent =new Intent(mActivity, VerFullLiveUI.class);
                                 intent.putExtra("playBean",room);
-                                getActivity().startActivity(intent);
-                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+                                mActivity.startActivity(intent);
+//                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
                             }
                         });
                     }else {
@@ -222,8 +230,8 @@ public class RecommendRecommendFragment extends BaseMvpFragment<RecommendRecomme
                             public void onClick(View v) {
                                 Intent intent =new Intent(mActivity, CommonLiveUI.class);
                                 intent.putExtra("playBean",room);
-                                getActivity().startActivity(intent);
-                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
+                                mActivity.startActivity(intent);
+//                                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
                             }
                         });
                     }

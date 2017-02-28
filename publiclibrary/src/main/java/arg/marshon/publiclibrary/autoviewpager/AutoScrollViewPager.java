@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.Interpolator;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 
 // TODO add attr support?
@@ -40,18 +41,28 @@ public class AutoScrollViewPager extends ViewPager implements ViewPager.PageTran
     private int touchSlop;
     private OnPageClickListener onPageClickListener;
 
-    private class H extends Handler {
+    private static class H extends Handler {
+        private AutoScrollViewPager autoScrollViewPager;
+        private WeakReference<AutoScrollViewPager> viewHolder;
+        public H(AutoScrollViewPager autoScrollViewPager){
+            this.autoScrollViewPager = autoScrollViewPager;
+            viewHolder = new WeakReference<AutoScrollViewPager>(autoScrollViewPager);
+        }
+
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MSG_AUTO_SCROLL:
-                    setCurrentItem(getCurrentItem() + 1);
-                    sendEmptyMessageDelayed(MSG_AUTO_SCROLL, intervalInMillis);
-                    break;
-                default:
-                    super.handleMessage(msg);
-                    break;
+            if (viewHolder.get()!=null){
+                switch (msg.what) {
+                    case MSG_AUTO_SCROLL:
+                        autoScrollViewPager.setCurrentItem(autoScrollViewPager.getCurrentItem() + 1);
+                        sendEmptyMessageDelayed(MSG_AUTO_SCROLL, autoScrollViewPager.intervalInMillis);
+                        break;
+                    default:
+                        super.handleMessage(msg);
+                        break;
+                }
             }
+
         }
     }
 
@@ -69,7 +80,7 @@ public class AutoScrollViewPager extends ViewPager implements ViewPager.PageTran
         listener = new InnerOnPageChangeListener();
         super.setOnPageChangeListener(listener);
 
-        handler = new H();
+        handler = new H(this);
         touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
 
         setPageTransformer(true,this);

@@ -109,9 +109,6 @@ public class HttpResult<T> {
 
     public boolean checkSuccess(){
         if (this==null)return false;
-        if (code==SUCCESS){
-            return true;
-        }
-        return false;
+        return code==SUCCESS;
     }
 }

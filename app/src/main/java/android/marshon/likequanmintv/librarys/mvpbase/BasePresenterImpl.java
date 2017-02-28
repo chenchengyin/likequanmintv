@@ -25,13 +25,18 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
         mPresenterView=baseView;
     }
 
-    //
     @Override
-    public void onDestroy() {
+    public void onPause() {
         if (!mSubscriptions.isUnsubscribed()){
             mSubscriptions.unsubscribe();
         }
-        mSubscriptions=null;
+    }
+
+
+    //
+    @Override
+    public void onDestroy() {
+
 
     }
 

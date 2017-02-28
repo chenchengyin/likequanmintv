@@ -7,7 +7,6 @@ import android.marshon.likequanmintv.mvp.recommend.ui.BaseLiveWraperFragment;
 import android.marshon.likequanmintv.mvp.recommend.ui.LoveLiveListFragment;
 import android.marshon.likequanmintv.utils.SystemBarUtils;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;

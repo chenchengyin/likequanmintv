@@ -53,12 +53,12 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         Bundle arguments = getArguments();
         mUrl = arguments.getString("url", "");
         mTag = arguments.getString("tag", "");
         mLiveInteractor = new LiveInteractor();
-        mLiveInteractor.loadPlayList(this,mUrl);
+        mSubscriptions.add(mLiveInteractor.loadPlayList(this, mUrl));
     }
     @Override
     public void getDataError(String errmsg) {
@@ -76,5 +76,6 @@ public class BaseLiveWraperFragment extends BaseListFragment<PlayBean> {
     public void onPause() {
         super.onPause();
         Glide.with(this).pauseRequests();
+
     }
 }

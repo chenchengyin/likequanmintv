@@ -7,7 +7,7 @@ import org.json.JSONArray;
  */
 
 public class BannerEvent {
-    public  JSONArray mAppfocusArray;
+    private  JSONArray mAppfocusArray;
 
     public BannerEvent(JSONArray appfocusArray) {
         mAppfocusArray = appfocusArray;

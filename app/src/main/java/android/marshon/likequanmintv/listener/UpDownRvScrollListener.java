@@ -3,8 +3,6 @@ package android.marshon.likequanmintv.listener;
 import android.marshon.likequanmintv.librarys.utils.LogUtil;
 import android.marshon.likequanmintv.librarys.utils.screen.ScreenUtils;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 
 /**
  * Created by It.Marshon on 2016/11/24 0024 15:27

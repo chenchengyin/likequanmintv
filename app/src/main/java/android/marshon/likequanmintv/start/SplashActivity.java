@@ -148,12 +148,12 @@ public class SplashActivity extends AppCompatActivity implements Animator.Animat
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
-            finish();
+//            finish();
         }else{
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
-            finish();
+//            finish();
         }
     }
 

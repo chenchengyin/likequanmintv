@@ -12,15 +12,15 @@ import org.json.JSONObject;
 
 public interface LivePlayerView  extends BaseView{
 
-    public void onConnecting();
-    public void onReConnecting();
-    public void onConnectSucces();
-    public void onConnectFailed();
-    public void onPlayComleted();
-    public void onPlayerStart();
-    public void onPlayePause();
+    void onConnecting();
+    void onReConnecting();
+    void onConnectSucces();
+    void onConnectFailed();
+    void onPlayComleted();
+    void onPlayerStart();
+    void onPlayePause();
 
     //view
-    public void onRoomData(JSONObject roomJson);
+    void onRoomData(JSONObject roomJson);
 
 }

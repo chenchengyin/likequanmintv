@@ -5,7 +5,6 @@ import android.marshon.likequanmintv.librarys.http.delagate.IGetDataDelegate;
 import android.marshon.likequanmintv.librarys.mvpbase.BasePresenterImpl;
 import android.marshon.likequanmintv.mvp.live.interactor.LiveInteractor;
 
-import org.eclipse.core.internal.watson.IElementInfoFlattener;
 
 import java.util.List;
 

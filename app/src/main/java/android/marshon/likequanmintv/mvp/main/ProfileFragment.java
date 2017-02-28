@@ -2,15 +2,18 @@ package android.marshon.likequanmintv.mvp.main;
 
 import android.marshon.likequanmintv.R;
 import android.marshon.likequanmintv.base.BaseFragment;
+import android.marshon.likequanmintv.view.lazyvp.LazyFragmentPagerAdapter;
 import android.marshon.likequanmintv.view.pulltozoomview.PullToZoomScrollViewEx;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
+
 
 /**
  * Created by Administrator on 2016/11/21.
  */
 
-public class ProfileFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment implements LazyFragmentPagerAdapter.Laziable{
 
 
     private PullToZoomScrollViewEx scrollView;
@@ -45,7 +48,13 @@ public class ProfileFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void initData() {
 
     }
 }

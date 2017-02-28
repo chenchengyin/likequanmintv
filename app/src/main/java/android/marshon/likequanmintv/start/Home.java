@@ -1,6 +1,5 @@
 package android.marshon.likequanmintv.start;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 import android.marshon.likequanmintv.base.APP;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 

@@ -13,15 +13,21 @@ import android.widget.ScrollView;
 
 import javax.annotation.Nullable;
 
+import rx.subscriptions.CompositeSubscription;
+
 
 /**
  * Created by Marshon.Chen on 2016/6/1.
  * DESC:
  */
 public abstract class BaseFragment extends Fragment implements BaseView {
-    protected View rootView;
+    private View rootView;
     protected BaseActivity mActivity;
     protected FragmentComponent mFragmentComponent;
+
+
+    //presenter的subscription管理器
+    protected CompositeSubscription mSubscriptions=new CompositeSubscription();
 
 
     @Override
@@ -46,13 +52,26 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         return  rootView;
     }
 
+
     @Override
-    public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initData();
+    public void onResume() {
+        super.onResume();
+
     }
 
-    public boolean canScroll(){
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopNetWork();
+    }
+
+    public void  stopNetWork(){
+        if (mSubscriptions.hasSubscriptions()&&!mSubscriptions.isUnsubscribed()){
+            mSubscriptions.unsubscribe();
+        }
+    }
+
+    private boolean canScroll(){
         return false;
     }
 
@@ -64,9 +83,9 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected abstract  int getLayoutId();
     protected abstract void initView(View rootView);
-    protected abstract void initData();
+    public abstract void initData();
 
-    public <T extends View> T find(int viewId)
+    protected  <T extends View> T find(int viewId)
     {
         View view = rootView.findViewById(viewId);
         return (T) view;

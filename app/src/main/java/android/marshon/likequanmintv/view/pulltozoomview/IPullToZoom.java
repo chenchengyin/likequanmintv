@@ -22,39 +22,39 @@ public interface IPullToZoom<T extends View> {
      *
      * @return The View which is currently wrapped
      */
-    public View getZoomView();
+    View getZoomView();
 
-    public View getHeaderView();
+    View getHeaderView();
 
     /**
      * Get the Wrapped root View.
      *
      * @return The View which is currently wrapped
      */
-    public T getPullRootView();
+    T getPullRootView();
 
     /**
      * Whether Pull-to-Refresh is enabled
      *
      * @return enabled
      */
-    public boolean isPullToZoomEnabled();
+    boolean isPullToZoomEnabled();
 
     /**
      * Returns whether the Widget is currently in the Zooming state
      *
      * @return true if the Widget is currently zooming
      */
-    public boolean isZooming();
+    boolean isZooming();
 
     /**
      * Returns whether the Widget is currently in the Zooming anim type
      *
      * @return true if the anim is parallax
      */
-    public boolean isParallax();
+    boolean isParallax();
 
-    public boolean isHideHeader();
+    boolean isHideHeader();
 
-    public void handleStyledAttributes(TypedArray a);
+    void handleStyledAttributes(TypedArray a);
 }

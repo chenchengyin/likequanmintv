@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:overScrollMode="never"
+    <FrameLayout
+        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-    </android.support.v4.view.ViewPager>
+        />
 
-    <com.flyco.tablayout.CommonTabLayout
-        android:layout_alignParentBottom="true"
-        android:id="@+id/tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:background="#ffffff"
-        tl:tl_iconHeight="23dp"
-        tl:tl_iconWidth="23dp"
-        tl:tl_indicator_color="#2C97DE"
-        tl:tl_indicator_height="0dp"
-        tl:tl_textSelectColor="@color/colorAccent"
-        tl:tl_textUnselectColor="#66000000"
-        tl:tl_textsize="12sp"
-        tl:tl_underline_color="#DDDDDD"
-        tl:tl_underline_height="1dp"/>
+    <include layout="@layout/layout_main_bottombar"/>
 
 </RelativeLayout>
