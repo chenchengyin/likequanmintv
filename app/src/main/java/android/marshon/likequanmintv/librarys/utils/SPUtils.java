@@ -37,7 +37,7 @@ public class SPUtils {
         return token;
     }
     public static String getBase(){
-        String token = getInstance().getString("base");
+        String token = getInstance().getString("base","https://www.quanmin.tv/");
         LogUtil.d("base:" +token);
         return token;
     }

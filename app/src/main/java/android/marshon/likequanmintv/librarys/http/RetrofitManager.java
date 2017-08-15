@@ -45,7 +45,7 @@ import retrofit2.Retrofit;
  * @version 1.0 2016/5/26
  */
 public class RetrofitManager {
-    public static  String PLAYERBASE = null;
+    public static  String PLAYERBASE = "https://www.quanmin.tv/";
     private final Retrofit mRetrofit;
 
     private String getHost(int hostType) {
